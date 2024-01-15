@@ -13,17 +13,20 @@
         android:theme="@style/Theme.HomeWorkout"
         tools:targetApi="31">
         <activity
+            android:name=".SignInUp.SignInUpActivity"
+            android:exported="false" />
+        <activity
             android:name=".onborading.WelcomeScreenActivity"
-            android:exported="true" >
+            android:exported="true">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
             android:name=".MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
