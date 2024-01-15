@@ -64,7 +64,7 @@ public class WelcomeScreenActivity extends AppCompatActivity{
                 bottomSheetContent.setText("Create and save your own custom workouts. Name your workouts, save them, and they’ll automatically appear when you’re ready to workout");
                 bottomSheetBtn.setText("Start Training");
                 bottomSheetLiner.setVisibility(View.GONE);
-                int topMarginInPixels = 65; // Adjust this value as needed
+                int topMarginInPixels = 70; // Adjust this value as needed
                 params.setMargins(0, topMarginInPixels, 0, 0);
                 tabLayout.setLayoutParams(params);
             }
