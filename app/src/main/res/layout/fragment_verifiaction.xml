@@ -10,7 +10,7 @@
         android:id="@+id/textView5"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="114dp"
+        android:layout_marginTop="112dp"
         android:fontFamily="@font/poppins_semibold"
         android:lineHeight="32dp"
         android:text="Phone verification"
