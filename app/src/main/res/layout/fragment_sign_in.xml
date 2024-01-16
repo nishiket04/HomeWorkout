@@ -10,7 +10,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="114dp"
         android:fontFamily="@font/poppins_semibold"
         android:lineHeight="32dp"
         android:text="Sing In"
@@ -25,7 +25,7 @@
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
-        android:inputType="textEmailAddress|number"
+        android:inputType="textEmailAddress"
         android:hint="Phone / Email"
         android:paddingStart="10dp"
         android:fontFamily="@font/open_sans"
@@ -81,24 +81,24 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:fontFamily="@font/poppins_medium"
         android:lineHeight="24dp"
         android:text="Sign in with"
         android:textSize="20dp"
-        android:layout_marginTop="112dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout2"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+        app:layout_constraintStart_toStartOf="parent" />
 
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:layout_marginBottom="50dp"
         android:gravity="center"
         app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView4">
+        app:layout_constraintStart_toStartOf="parent">
 
         <ImageView
             android:layout_width="26dp"
@@ -125,7 +125,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:gravity="center"
-        android:layout_marginBottom="5dp"
+        android:layout_marginBottom="8dp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent">
