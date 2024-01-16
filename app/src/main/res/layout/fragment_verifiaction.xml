@@ -1,14 +1,137 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".SignInUp.VerifiactionFragment">
 
-    <!-- TODO: Update blank fragment layout -->
     <TextView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:id="@+id/textView5"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="114dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:lineHeight="32dp"
+        android:text="Phone verification"
+        android:textSize="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-</FrameLayout>
+    <TextView
+        android:id="@+id/textView6"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:lineHeight="22dp"
+        android:layout_marginTop="8dp"
+        android:text="We sent a code to your number "
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+    <TextView
+        android:id="@+id/textView7"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/open_sans"
+        android:lineHeight="22dp"
+        android:text="9(173)605-76-05"
+        android:textSize="16dp"
+        app:layout_constraintEnd_toEndOf="@+id/textView6"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <TextView
+        android:id="@+id/textView8"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="5dp"
+        android:fontFamily="@font/poppins_medium"
+        android:lineHeight="24dp"
+        android:text="Change"
+        android:textColor="@color/primary"
+        android:textSize="15dp"
+        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintTop_toBottomOf="@+id/textView6" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout4"
+        android:layout_width="305dp"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="32dp"
+        android:gravity="center"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView8">
+
+        <EditText
+            android:layout_width="65dp"
+            android:layout_height="64dp"
+            android:inputType="number"
+            android:id="@+id/otp_1"
+            android:maxLength="1"
+            android:textColor="@color/white"
+            android:layout_marginLeft="0dp"
+            android:textAlignment="center"
+            android:background="@drawable/edittext_verification_design"/>
+
+        <EditText
+            android:layout_width="65dp"
+            android:layout_height="64dp"
+            android:inputType="number"
+            android:id="@+id/otp_2"
+            android:maxLength="1"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/edittext_verification_design"/>
+
+        <EditText
+            android:layout_width="65dp"
+            android:layout_height="64dp"
+            android:inputType="number"
+            android:id="@+id/otp_3"
+            android:maxLength="1"
+            android:textColor="@color/white"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:background="@drawable/edittext_verification_design"/>
+
+        <EditText
+            android:layout_width="65dp"
+            android:layout_height="64dp"
+            android:inputType="number"
+            android:id="@+id/otp_4"
+            android:maxLength="1"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:background="@drawable/edittext_verification_design"/>
+
+    </LinearLayout>
+
+    <TextView
+        android:id="@+id/textView9"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:text="Didn't receive your code?"
+        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Resend"
+        android:layout_marginStart="5dp"
+        android:layout_marginTop="24dp"
+        android:textColor="@color/primary"
+        app:layout_constraintStart_toEndOf="@+id/textView9"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
