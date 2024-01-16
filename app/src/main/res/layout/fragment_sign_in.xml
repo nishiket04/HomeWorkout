@@ -22,30 +22,134 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
+        android:layout_width="358dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:inputType="textEmailAddress|number"
+        android:hint="Phone / Email"
+        android:paddingStart="10dp"
+        android:fontFamily="@font/open_sans"
+        android:textSize="14dp"
+        android:background="@drawable/edittext_design"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="match_parent"
+        android:layout_width="358dp"
+        android:layout_height="48dp"
+        android:background="@drawable/edittext_design"
+        android:paddingStart="10dp"
+        android:layout_marginTop="16dp"
+        android:hint="Password"
+        android:inputType="textPassword"
+        android:fontFamily="@font/open_sans"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
-        android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@+id/editText2"
-        tools:layout_editor_absoluteX="0dp" />
-
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
+        android:id="@+id/appCompatButton"
         android:layout_width="358dp"
         android:layout_height="wrap_content"
-        android:fontFamily="@font/poppins_medium"
+        android:layout_marginTop="24dp"
         android:background="@drawable/button_design"
+        android:fontFamily="@font/poppins_medium"
         android:lineHeight="20dp"
         android:text="Sing In"
         android:textSize="17dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/editText" />
+
+    <TextView
+        android:id="@+id/textView3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="24dp"
+        android:fontFamily="@font/poppins_medium"
+        android:lineHeight="24dp"
+        android:text="Forgot Password?"
+        android:textSize="12dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="@font/poppins_medium"
+        android:lineHeight="24dp"
+        android:text="Sign in with"
+        android:textSize="20dp"
+        android:layout_marginTop="112dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+    <LinearLayout
+        android:id="@+id/linearLayout2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView4">
+
+        <ImageView
+            android:layout_width="26dp"
+            android:layout_height="32dp"
+            android:src="@drawable/logo_apple" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="18dp"
+            android:src="@drawable/logo_facebook" />
+
+        <ImageView
+            android:layout_width="32dp"
+            android:layout_height="32dp"
+            android:layout_marginStart="18dp"
+            android:src="@drawable/logo_google" />
+    </LinearLayout>
+
+
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center"
+        android:layout_marginBottom="5dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent">
+
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Don't have an account?"
+            android:fontFamily="@font/open_sans"
+            android:textSize="14dp"
+            android:lineHeight="18dp"
+            />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="5dp"
+            android:text="Sign Up"
+            android:textColor="@color/primary"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="14dp"
+            android:lineHeight="20dp"
+            />
+    </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>
