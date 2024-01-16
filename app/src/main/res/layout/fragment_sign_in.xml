@@ -57,7 +57,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText2" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:id="@+id/appCompatButton"
+        android:id="@+id/signInBtn"
         android:layout_width="358dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -72,7 +72,7 @@
         app:layout_constraintTop_toBottomOf="@+id/editText" />
 
     <TextView
-        android:id="@+id/textView3"
+        android:id="@+id/forgotPasswordTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
@@ -83,7 +83,7 @@
         android:textColor="@color/white"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/appCompatButton" />
+        app:layout_constraintTop_toBottomOf="@+id/signInBtn" />
 
     <TextView
         android:id="@+id/textView4"
@@ -112,17 +112,20 @@
         <ImageView
             android:layout_width="26dp"
             android:layout_height="32dp"
+            android:id="@+id/logoApple"
             android:src="@drawable/logo_apple" />
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:id="@+id/logoFacebook"
             android:layout_marginStart="18dp"
             android:src="@drawable/logo_facebook" />
 
         <ImageView
             android:layout_width="32dp"
             android:layout_height="32dp"
+            android:id="@+id/logoGoogle"
             android:layout_marginStart="18dp"
             android:src="@drawable/logo_google" />
     </LinearLayout>
@@ -151,15 +154,15 @@
             />
 
         <TextView
+            android:id="@+id/signUpTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
+            android:fontFamily="@font/poppins_medium"
+            android:lineHeight="20dp"
             android:text="Sign Up"
             android:textColor="@color/primary"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="14dp"
-            android:lineHeight="20dp"
-            />
+            android:textSize="14dp" />
     </LinearLayout>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

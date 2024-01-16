@@ -2,11 +2,20 @@ package com.nishiket.homeworkout.SignInUp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.CheckBox;
+import android.widget.ImageView;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.nishiket.homeworkout.R;
 
@@ -62,5 +71,52 @@ public class SignUpFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_up, container, false);
+    }
+
+    private TextView signInInSignUpTxt;
+    private ImageView logoAppleSignUp,logoFacebookSignUp,logoGoogleSignUp;
+    private AppCompatButton signUpBtn;
+    private CheckBox privacyCheckBox;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // to assignId
+        assignId(view);
+
+        // parent fragment manager
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        signInInSignUpTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ft.replace(R.id.frame,new SignInFragment()).commit();
+            }
+        });
+
+
+            signUpBtn.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    if(privacyCheckBox.isChecked()) {
+                    ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
+                    }else {
+                        Toast.makeText(getContext(), "Please Check Privacy and Policy", Toast.LENGTH_SHORT).show();
+                    }
+                }
+            });
+        }
+
+    private void assignId(View view) {
+
+        signInInSignUpTxt = view.findViewById(R.id.SignInInSignUpTxt);
+
+        logoAppleSignUp = view.findViewById(R.id.logoAppleSignUp);
+        logoFacebookSignUp = view.findViewById(R.id.logoFacebookSignUp);
+        logoGoogleSignUp = view.findViewById(R.id.logoGoogleSignUp);
+
+        signUpBtn = view.findViewById(R.id.signUpBtn);
+
+        privacyCheckBox = view.findViewById(R.id.privacyCheckBox);
     }
 }

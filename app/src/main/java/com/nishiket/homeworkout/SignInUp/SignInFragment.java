@@ -2,11 +2,18 @@ package com.nishiket.homeworkout.SignInUp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import com.nishiket.homeworkout.R;
 
@@ -63,4 +70,37 @@ public class SignInFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_sign_in, container, false);
     }
+
+    private ImageView logoApple,logoFacebook,logoGoogle;
+    private TextView forgotPasswordTxt,signUpTxt;
+    private AppCompatButton signInBtn;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        // assign id to views
+        assignId(view);
+
+        // parent fragment manager
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        signUpTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                ft.replace(R.id.frame,new SignUpFragment()).commit();
+            }
+        });
+    }
+
+    private void assignId(View view) {
+        logoApple = view.findViewById(R.id.logoApple);
+        logoFacebook = view.findViewById(R.id.logoFacebook);
+        logoGoogle = view.findViewById(R.id.logoGoogle);
+
+        forgotPasswordTxt = view.findViewById(R.id.forgotPasswordTxt);
+        signUpTxt = view.findViewById(R.id.signUpTxt);
+
+        signInBtn = view.findViewById(R.id.signInBtn);
+    }
+
 }
