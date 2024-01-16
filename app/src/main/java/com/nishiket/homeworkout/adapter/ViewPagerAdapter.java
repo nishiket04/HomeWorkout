@@ -22,7 +22,6 @@ public class ViewPagerAdapter extends FragmentPagerAdapter {
         @NonNull
         @Override
         public Fragment getItem(int position) {
-            Log.d("position", ""+ position);
             if(position == 0){
                 return (new WelcomeScreenOneFragment());
             } else if (position == 1) {
