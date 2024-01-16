@@ -101,7 +101,7 @@ public class SignUpFragment extends Fragment {
                     if(privacyCheckBox.isChecked()) {
                     ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
                     }else {
-                        Toast.makeText(getContext(), "Please Check Privacy and Policy", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(getContext(), "Please Accept Privacy and Policy", Toast.LENGTH_SHORT).show();
                     }
                 }
             });

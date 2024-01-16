@@ -77,6 +77,7 @@
             android:inputType="number"
             android:id="@+id/otp_1"
             android:maxLength="1"
+            android:focusedByDefault="true"
             android:textColor="@color/white"
             android:layout_marginLeft="0dp"
             android:textAlignment="center"
