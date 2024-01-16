@@ -16,7 +16,7 @@ public class SignInUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_up);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.add(R.id.frame,new VerificationFragment()).commit();
+        ft.add(R.id.frame,new SignUpFragment()).commit();
 
     }
 }

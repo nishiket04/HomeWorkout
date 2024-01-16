@@ -8,10 +8,10 @@
             <InsightsFilterSettings>
               <option name="connection">
                 <ConnectionSetting>
-                  <option name="appId" value="PLACEHOLDER" />
-                  <option name="mobileSdkAppId" value="" />
-                  <option name="projectId" value="" />
-                  <option name="projectNumber" value="" />
+                  <option name="appId" value="com.nishiket.homeworkout" />
+                  <option name="mobileSdkAppId" value="1:514357553984:android:c0566bb9ea65e4ee4868a5" />
+                  <option name="projectId" value="fitoozone" />
+                  <option name="projectNumber" value="514357553984" />
                 </ConnectionSetting>
               </option>
               <option name="signal" value="SIGNAL_UNSPECIFIED" />

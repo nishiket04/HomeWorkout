@@ -1,0 +1,47 @@
+{
+  "project_info": {
+    "project_number": "514357553984",
+    "project_id": "fitoozone",
+    "storage_bucket": "fitoozone.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:514357553984:android:c0566bb9ea65e4ee4868a5",
+        "android_client_info": {
+          "package_name": "com.nishiket.homeworkout"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "514357553984-liqvv9v9tg6lvrsaspr707f291fbdc9b.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.nishiket.homeworkout",
+            "certificate_hash": "6130ab7f79142de442e25fa495d2f3e664eacce5"
+          }
+        },
+        {
+          "client_id": "514357553984-6jdqglnfnb99dmg2jmkhc4pjl8rojm35.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyDbKUghLUS7P4MzD7voiAkBPcmiWxJK0mA"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "514357553984-6jdqglnfnb99dmg2jmkhc4pjl8rojm35.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

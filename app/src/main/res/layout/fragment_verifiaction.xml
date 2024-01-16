@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@android:color/background_dark"
     tools:context=".SignInUp.VerificationFragment">
 
     <TextView
@@ -13,6 +14,7 @@
         android:layout_marginTop="112dp"
         android:fontFamily="@font/poppins_semibold"
         android:lineHeight="32dp"
+        android:textColor="@color/white"
         android:text="Phone verification"
         android:textSize="27dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -25,6 +27,7 @@
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans"
         android:lineHeight="22dp"
+        android:textColor="@color/white"
         android:layout_marginTop="8dp"
         android:text="We sent a code to your number "
         android:textSize="16dp"
@@ -39,6 +42,7 @@
         android:fontFamily="@font/open_sans"
         android:lineHeight="22dp"
         android:text="9(173)605-76-05"
+        android:textColor="@color/white"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="@+id/textView6"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,6 +122,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
+        android:textColor="@color/white"
         android:text="Didn't receive your code?"
         app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
         app:layout_constraintStart_toStartOf="parent"
