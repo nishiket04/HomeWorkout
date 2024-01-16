@@ -18,10 +18,10 @@ import com.nishiket.homeworkout.R;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link VerifiactionFragment#newInstance} factory method to
+ * Use the {@link VerificationFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class VerifiactionFragment extends Fragment {
+public class VerificationFragment extends Fragment {
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -32,7 +32,7 @@ public class VerifiactionFragment extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    public VerifiactionFragment() {
+    public VerificationFragment() {
         // Required empty public constructor
     }
 
@@ -45,8 +45,8 @@ public class VerifiactionFragment extends Fragment {
      * @return A new instance of fragment VerifiactionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static VerifiactionFragment newInstance(String param1, String param2) {
-        VerifiactionFragment fragment = new VerifiactionFragment();
+    public static VerificationFragment newInstance(String param1, String param2) {
+        VerificationFragment fragment = new VerificationFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);

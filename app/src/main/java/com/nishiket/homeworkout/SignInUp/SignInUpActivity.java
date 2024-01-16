@@ -4,9 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
-import android.app.Fragment;
 import android.os.Bundle;
-import android.widget.FrameLayout;
 
 import com.nishiket.homeworkout.R;
 
@@ -18,7 +16,7 @@ public class SignInUpActivity extends AppCompatActivity {
         setContentView(R.layout.activity_sign_in_up);
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
-        ft.add(R.id.frame,new VerifiactionFragment()).commit();
+        ft.add(R.id.frame,new VerificationFragment()).commit();
 
     }
 }
