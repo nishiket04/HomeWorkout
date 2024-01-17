@@ -36,7 +36,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView5" />
 
     <TextView
-        android:id="@+id/textView7"
+        android:id="@+id/phoneNumberTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:fontFamily="@font/open_sans"
@@ -49,7 +49,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <TextView
-        android:id="@+id/textView8"
+        android:id="@+id/changeTxt"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
@@ -58,21 +58,21 @@
         android:text="Change"
         android:textColor="@color/primary"
         android:textSize="15dp"
-        app:layout_constraintStart_toEndOf="@+id/textView7"
+        app:layout_constraintStart_toEndOf="@+id/phoneNumberTxt"
         app:layout_constraintTop_toBottomOf="@+id/textView6" />
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="305dp"
+        android:layout_width="390dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView8">
+        app:layout_constraintTop_toBottomOf="@+id/changeTxt">
 
         <EditText
-            android:layout_width="65dp"
+            android:layout_width="55dp"
             android:layout_height="64dp"
             android:inputType="number"
             android:id="@+id/otp_1"
@@ -84,7 +84,7 @@
             android:background="@drawable/edittext_verification_design"/>
 
         <EditText
-            android:layout_width="65dp"
+            android:layout_width="55dp"
             android:layout_height="64dp"
             android:inputType="number"
             android:id="@+id/otp_2"
@@ -95,7 +95,7 @@
             android:background="@drawable/edittext_verification_design"/>
 
         <EditText
-            android:layout_width="65dp"
+            android:layout_width="55dp"
             android:layout_height="64dp"
             android:inputType="number"
             android:id="@+id/otp_3"
@@ -106,10 +106,32 @@
             android:background="@drawable/edittext_verification_design"/>
 
         <EditText
-            android:layout_width="65dp"
+            android:layout_width="55dp"
             android:layout_height="64dp"
             android:inputType="number"
             android:id="@+id/otp_4"
+            android:maxLength="1"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:background="@drawable/edittext_verification_design"/>
+
+        <EditText
+            android:layout_width="60dp"
+            android:layout_height="64dp"
+            android:inputType="number"
+            android:id="@+id/otp_5"
+            android:maxLength="1"
+            android:layout_marginLeft="10dp"
+            android:textAlignment="center"
+            android:textColor="@color/white"
+            android:background="@drawable/edittext_verification_design"/>
+
+        <EditText
+            android:layout_width="55dp"
+            android:layout_height="64dp"
+            android:inputType="number"
+            android:id="@+id/otp_6"
             android:maxLength="1"
             android:layout_marginLeft="10dp"
             android:textAlignment="center"

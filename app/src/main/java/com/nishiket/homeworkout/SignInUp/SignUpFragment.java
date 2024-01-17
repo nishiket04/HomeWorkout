@@ -1,5 +1,6 @@
 package com.nishiket.homeworkout.SignInUp;
 
+import android.content.pm.verify.domain.DomainVerificationManager;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,61 +10,40 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.facebook.CallbackManager;
+import com.google.android.gms.tasks.OnCompleteListener;
+import com.google.android.gms.tasks.Task;
+import com.google.firebase.FirebaseException;
+import com.google.firebase.FirebaseTooManyRequestsException;
+import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseAuthInvalidCredentialsException;
+import com.google.firebase.auth.FirebaseAuthMissingActivityForRecaptchaException;
+import com.google.firebase.auth.FirebaseUser;
+import com.google.firebase.auth.PhoneAuthCredential;
+import com.google.firebase.auth.PhoneAuthOptions;
+import com.google.firebase.auth.PhoneAuthProvider;
 import com.nishiket.homeworkout.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignUpFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.concurrent.TimeUnit;
+
 public class SignUpFragment extends Fragment {
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
 
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public SignUpFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment SignUpFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static SignUpFragment newInstance(String param1, String param2) {
-        SignUpFragment fragment = new SignUpFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -77,6 +57,8 @@ public class SignUpFragment extends Fragment {
     private ImageView logoAppleSignUp,logoFacebookSignUp,logoGoogleSignUp;
     private AppCompatButton signUpBtn;
     private CheckBox privacyCheckBox;
+
+    private EditText phoneEdt,fullNameEdt,passwordEdt,emailEdt;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -86,6 +68,8 @@ public class SignUpFragment extends Fragment {
         // parent fragment manager
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
+
+        FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
 
         signInInSignUpTxt.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -99,13 +83,19 @@ public class SignUpFragment extends Fragment {
                 @Override
                 public void onClick(View view) {
                     if(privacyCheckBox.isChecked()) {
-                    ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
+                        String phoneNumber = phoneEdt.getText().toString();
+                        SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
+                        signInUpActivity.phoneNumber = "+91"+phoneNumber;
+                        ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
+
                     }else {
                         Toast.makeText(getContext(), "Please Accept Privacy and Policy", Toast.LENGTH_SHORT).show();
                     }
                 }
             });
         }
+
+
 
     private void assignId(View view) {
 
@@ -118,5 +108,11 @@ public class SignUpFragment extends Fragment {
         signUpBtn = view.findViewById(R.id.signUpBtn);
 
         privacyCheckBox = view.findViewById(R.id.privacyCheckBox);
+
+        phoneEdt = view.findViewById(R.id.phoneEdt);
+        passwordEdt = view.findViewById(R.id.passwordEdt);
+        fullNameEdt = view.findViewById(R.id.fullNameEdt);
+        emailEdt = view.findViewById(R.id.emailEdt);
+
     }
 }

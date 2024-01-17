@@ -1,5 +1,7 @@
 package com.nishiket.homeworkout.SignInUp;
 
+import static com.facebook.FacebookSdk.getApplicationContext;
+
 import android.content.Intent;
 import android.os.Bundle;
 
@@ -10,6 +12,13 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import com.facebook.AccessToken;
+import com.facebook.CallbackManager;
+import com.facebook.FacebookCallback;
+import com.facebook.FacebookException;
+import com.facebook.FacebookSdk;
+import com.facebook.login.LoginManager;
+import com.facebook.login.LoginResult;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
 import com.google.android.gms.auth.api.signin.GoogleSignInClient;
 
@@ -29,15 +38,15 @@ import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
+import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.nishiket.homeworkout.R;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link SignInFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.Arrays;
+import java.util.concurrent.Executor;
+
+
 public class SignInFragment extends Fragment {
 
     private static final int RC_SIGN_IN = 9001;
@@ -60,11 +69,16 @@ public class SignInFragment extends Fragment {
     private ImageView logoApple,logoFacebook,logoGoogle;
     private TextView forgotPasswordTxt,signUpTxt;
     private AppCompatButton signInBtn;
+    private CallbackManager callbackManager;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        FacebookSdk.sdkInitialize(getApplicationContext());
+
         // assign id to views
         assignId(view);
+        mAuth = FirebaseAuth.getInstance();
+        callbackManager = CallbackManager.Factory.create();
 
         // parent fragment manager
         FragmentManager fragmentManager = getParentFragmentManager();
@@ -78,7 +92,6 @@ public class SignInFragment extends Fragment {
         });
 
         // google
-        mAuth = FirebaseAuth.getInstance();
         mAuth.signOut();
 
         // Configure Google Sign In
@@ -95,6 +108,48 @@ public class SignInFragment extends Fragment {
                 signInWithGoogle(mGoogleSignInClient);
             }
         });
+
+
+        callbackManager = CallbackManager.Factory.create();
+        logoFacebook.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                handleFacebookLogin();
+            }
+        });
+    }
+
+    private void handleFacebookLogin() {
+        LoginManager.getInstance().logInWithReadPermissions(this, Arrays.asList("email", "public_profile"));
+        LoginManager.getInstance().registerCallback(callbackManager, new FacebookCallback<LoginResult>() {
+            @Override
+            public void onSuccess(LoginResult loginResult) {
+                // Handle successful login
+                handleFacebookAccessToken(loginResult.getAccessToken());
+            }
+
+            @Override
+            public void onCancel() {
+                // Handle canceled login
+            }
+
+            @Override
+            public void onError(FacebookException error) {
+                Log.d("facebook", "handleFacebookAccessToken: fail");
+            }
+        });
+    }
+
+    private void handleFacebookAccessToken(AccessToken token) {
+        AuthCredential credential = FacebookAuthProvider.getCredential(token.getToken());
+        mAuth.signInWithCredential(credential)
+                .addOnCompleteListener((Executor) this, task -> {
+                    if (task.isSuccessful()) {
+                        Log.d("facebook", "handleFacebookAccessToken: success ");
+                    } else {
+                        Log.d("facebook", "handleFacebookAccessToken: fail");
+                    }
+                });
     }
 
 
@@ -117,7 +172,7 @@ public class SignInFragment extends Fragment {
     @Override
     public void onActivityResult(int requestCode, int resultCode, Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-
+        callbackManager.onActivityResult(requestCode, resultCode, data);
         // Result returned from launching the Intent from GoogleSignInClient.getSignInIntent(...);
         if (requestCode == RC_SIGN_IN) {
             try {

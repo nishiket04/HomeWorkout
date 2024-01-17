@@ -1,4 +1,10 @@
 <resources>
     <string name="app_name">FitooZone</string>
     <string name="hello_blank_fragment">Hello blank fragment</string>
+
+    <string name="facebook_app_id">1079239676861058</string>
+    <string name="fb_login_protocol_scheme">fb1234</string>
+    <string name="facebook_client_token">2071342133235878</string>
+
+
 </resources>

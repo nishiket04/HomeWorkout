@@ -33,4 +33,5 @@ public class SignInUpActivity extends AppCompatActivity {
         }
 
     }
+    String phoneNumber;
 }

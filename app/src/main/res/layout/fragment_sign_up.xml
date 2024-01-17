@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <EditText
-        android:id="@+id/editText2"
+        android:id="@+id/fullNameEdt"
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
@@ -40,7 +40,7 @@
         app:layout_constraintTop_toBottomOf="@+id/textView" />
 
     <EditText
-        android:id="@+id/editText"
+        android:id="@+id/emailEdt"
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -54,10 +54,10 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText2" />
+        app:layout_constraintTop_toBottomOf="@+id/fullNameEdt" />
 
     <EditText
-        android:id="@+id/editText3"
+        android:id="@+id/phoneEdt"
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:textColor="@color/white"
@@ -71,10 +71,10 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText" />
+        app:layout_constraintTop_toBottomOf="@+id/emailEdt" />
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/passwordEdt"
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
@@ -88,7 +88,7 @@
         android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText3" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneEdt" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -99,7 +99,7 @@
         app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/editText4">
+        app:layout_constraintTop_toBottomOf="@+id/passwordEdt">
 
         <CheckBox
             android:layout_width="wrap_content"
