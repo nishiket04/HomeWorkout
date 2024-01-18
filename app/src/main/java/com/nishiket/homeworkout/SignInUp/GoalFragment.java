@@ -2,59 +2,31 @@ package com.nishiket.homeworkout.SignInUp;
 
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.adapter.MainGoalRecyclerViewAdapter;
+import com.nishiket.homeworkout.model.CardList;
 
-/**
- * A simple {@link Fragment} subclass.
- * Use the {@link GoalFragment#newInstance} factory method to
- * create an instance of this fragment.
- */
+import java.util.ArrayList;
+import java.util.List;
+
 public class GoalFragment extends Fragment {
-
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
-    public GoalFragment() {
-        // Required empty public constructor
-    }
-
-    /**
-     * Use this factory method to create a new instance of
-     * this fragment using the provided parameters.
-     *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
-     * @return A new instance of fragment GoalFragment.
-     */
-    // TODO: Rename and change types and number of parameters
-    public static GoalFragment newInstance(String param1, String param2) {
-        GoalFragment fragment = new GoalFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
-        return fragment;
-    }
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
-        }
     }
 
     @Override
@@ -62,5 +34,52 @@ public class GoalFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_goal, container, false);
+    }
+    private RecyclerView recyclerView;
+    private List<CardList> cardListList = new ArrayList<>();
+    private AppCompatButton mainGoalContinueBtn;
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        recyclerView = view.findViewById(R.id.goalRecycler);
+        mainGoalContinueBtn = view.findViewById(R.id.mainGoalContinuBtn);
+            CardList c1 = new CardList();
+            CardList c2 = new CardList();
+            CardList c3 = new CardList();
+            CardList c4 = new CardList();
+
+            c1.setGender("Lose weight");
+            c2.setGender("Keep fit");
+            c3.setGender("Get stronger");
+            c4.setGender("Gain muscle mass");
+
+            c1.setImage(R.drawable.weight_scale);
+            c2.setImage(R.drawable.clover);
+            c3.setImage(R.drawable.bicep);
+            c4.setImage(R.drawable.dumbbell);
+
+            cardListList.add(c1);
+            cardListList.add(c2);
+            cardListList.add(c3);
+            cardListList.add(c4);
+
+
+
+        MainGoalRecyclerViewAdapter mainGoalRecyclerViewAdapter = new MainGoalRecyclerViewAdapter(getActivity());
+        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        recyclerView.setAdapter(mainGoalRecyclerViewAdapter);
+        mainGoalRecyclerViewAdapter.setCardListList(cardListList);
+        mainGoalRecyclerViewAdapter.notifyDataSetChanged();
+
+        mainGoalContinueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.frame,new BirthDateFragment()).commit();
+            }
+        });
+
+
     }
 }

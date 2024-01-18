@@ -79,6 +79,7 @@
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:text="Continue"
+        android:id="@+id/mainGoalContinuBtn"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

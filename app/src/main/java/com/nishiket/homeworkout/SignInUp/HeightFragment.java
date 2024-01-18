@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -31,14 +34,25 @@ public class HeightFragment extends Fragment {
     }
     private TabLayout heightTabLayout;
     private ViewPager heightViewPager;
+    private AppCompatButton heightContinueBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         heightTabLayout = view.findViewById(R.id.heightTabLayout);
         heightViewPager = view.findViewById(R.id.heightViewPager);
+        heightContinueBtn = view.findViewById(R.id.heightContinueBtn);
 
         HeightViewPagerAdapter heightViewPagerAdapter = new HeightViewPagerAdapter(getParentFragmentManager());
         heightViewPager.setAdapter(heightViewPagerAdapter);
         heightTabLayout.setupWithViewPager(heightViewPager);
+
+        heightContinueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.frame,new WeightFragment()).commit();
+            }
+        });
     }
 }

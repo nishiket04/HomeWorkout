@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -32,19 +35,20 @@ public class GenderFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_gender, container, false);
     }
-
+    private AppCompatButton genderBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
+        genderBtn = view.findViewById(R.id.genderContinueBtn);
         CardList c1 = new CardList();
-        c1.setImage(R.drawable.man_emoji);
+        c1.setImage(R.drawable.man);
         c1.setGender("Man");
         CardList c2 = new CardList();
-        c2.setImage(R.drawable.woman_emoji);
+        c2.setImage(R.drawable.woman);
         c2.setGender("Woman");
         CardList c3 = new CardList();
-        c3.setImage(R.drawable.other_emoji);
+        c3.setImage(R.drawable.other);
         c3.setGender("Other");
         cardListList.add(c1);
         cardListList.add(c2);
@@ -54,6 +58,15 @@ public class GenderFragment extends Fragment {
         recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         recyclerView.setAdapter(cardListRecyclerViewAdapter);
         cardListRecyclerViewAdapter.setActiveComplainList(cardListList);
+
+        genderBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.frame,new GoalFragment()).commit();
+            }
+        });
 
     }
 }

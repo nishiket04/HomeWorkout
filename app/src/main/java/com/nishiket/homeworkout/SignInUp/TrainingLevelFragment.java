@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -34,10 +37,12 @@ public class TrainingLevelFragment extends Fragment {
     }
     private RecyclerView traingLevelRecyclerView;
     private List<TraingListModel> traingListModelList =  new ArrayList<>();
+    private AppCompatButton trainingLevelContinueBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         traingLevelRecyclerView = view.findViewById(R.id.traingLevelRecylerView);
+        trainingLevelContinueBtn = view.findViewById(R.id.trainingLevelContinueBtn);
 
         TraingListModel t1 = new TraingListModel();
         TraingListModel t2 = new TraingListModel();
@@ -65,6 +70,15 @@ public class TrainingLevelFragment extends Fragment {
         traingLevelRecyclerView.setAdapter(traingListRecyclerViewAdapter);
         traingListRecyclerViewAdapter.setTraingListModelList(traingListModelList);
         traingListRecyclerViewAdapter.notifyDataSetChanged();
+
+        trainingLevelContinueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.frame,new ActivitiesInterestFragment()).commit();
+            }
+        });
 
     }
 }

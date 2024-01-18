@@ -4,7 +4,10 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
@@ -31,15 +34,26 @@ public class GoalWeightFragment extends Fragment {
 
     private TabLayout goalWeightTabLayout;
     private ViewPager goalWeightViewPager;
+    private AppCompatButton goalWeigthContinueBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
         goalWeightTabLayout = view.findViewById(R.id.goalWeightTabLayout);
         goalWeightViewPager = view.findViewById(R.id.goalWeightViewPager);
+        goalWeigthContinueBtn = view.findViewById(R.id.goalWeightContinueBtn);
 
         GoalWeightViewPagerAdapter goalWeightViewPagerAdapter = new GoalWeightViewPagerAdapter(getParentFragmentManager());
         goalWeightViewPager.setAdapter(goalWeightViewPagerAdapter);
         goalWeightTabLayout.setupWithViewPager(goalWeightViewPager);
+
+        goalWeigthContinueBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction ft = fragmentManager.beginTransaction();
+                ft.replace(R.id.frame,new TrainingLevelFragment()).commit();
+            }
+        });
     }
 }

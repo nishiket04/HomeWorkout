@@ -41,7 +41,7 @@
                     android:layout_height="32dp"
                     android:id="@+id/emojiGenderCard"
                     android:layout_gravity="center"
-                    android:src="@drawable/man_emoji"
+                    android:src="@drawable/man"
                     app:layout_constraintBottom_toBottomOf="parent"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"

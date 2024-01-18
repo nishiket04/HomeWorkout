@@ -6,5 +6,5 @@
     <string name="fb_login_protocol_scheme">fb1234</string>
     <string name="facebook_client_token">2071342133235878</string>
 
-
+    <string name="steps_complete_deatils">We create a workout according  to demographic profile, activity  level and interests</string>
 </resources>

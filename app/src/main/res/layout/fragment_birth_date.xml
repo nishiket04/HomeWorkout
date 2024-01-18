@@ -78,6 +78,7 @@
         android:layout_width="358dp"
         android:layout_height="48dp"
         android:text="Continue"
+        android:id="@+id/birthDateContinueBtn"
         android:textColor="@color/white"
         android:background="@drawable/button_design"
         app:layout_constraintBottom_toBottomOf="parent"
