@@ -1,14 +1,113 @@
 <?xml version="1.0" encoding="utf-8"?>
-<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:background="@android:color/background_dark"
     tools:context=".SignInUp.HeightFragment">
 
-    <!-- TODO: Update blank fragment layout -->
-    <TextView
+    <RelativeLayout
+        android:id="@+id/heightRelativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:text="@string/hello_blank_fragment" />
+        android:layout_height="wrap_content"
+        android:layout_marginTop="15dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
 
-</FrameLayout>
+        <ImageView
+            android:id="@+id/backGenderBtn"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="10dp"
+            android:src="@drawable/back_button_icon" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentEnd="true"
+            android:fontFamily="@font/poppins_medium"
+            android:lineHeight="20dp"
+            android:text="Step 4 of 8"
+            android:textAlignment="center"
+            android:textColor="@color/primary"
+            android:textSize="16dp" />
+
+        <TextView
+            android:id="@+id/skipGenderTxt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="10dp"
+            android:fontFamily="@font/open_sans"
+            android:lineHeight="20dp"
+            android:text="Skip"
+            android:textAlignment="center"
+            android:textColor="#E5E9EF"
+            android:textSize="16dp" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/textViewHeight"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="81dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:lineHeight="32dp"
+        android:text="Select height"
+        android:textColor="@color/white"
+        android:textSize="27dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightRelativeLayout" />
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/heightTabLayout"
+        android:layout_width="252dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="31dp"
+        android:background="@drawable/edittext_design"
+        android:textAlignment="center"
+        app:tabMode="fixed"
+        app:tabGravity="fill"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textViewHeight"
+        app:tabIndicatorAnimationDuration="1400"
+        app:tabIndicatorAnimationMode="elastic"
+        app:tabPadding="5dp"
+        app:tabSelectedTextColor="@color/white"
+        app:tabTextColor="@color/white"
+        app:tabIndicatorHeight="32dp"
+        app:tabIndicatorGravity="center"
+        app:tabMaxWidth="110dp"
+        app:tabIndicatorFullWidth="true"
+        app:tabMinWidth="110dp"
+        android:padding="5dp"
+        app:tabIndicatorColor="@color/primary_light"
+        app:tabIndicator="@drawable/tab_idicator_design"
+        />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/heightViewPager"
+        android:layout_width="match_parent"
+        android:layout_height="250dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/heightTabLayout" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="358dp"
+        android:layout_height="48dp"
+        android:background="@drawable/button_design"
+        android:text="Continue"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="15dp"/>
+
+</androidx.constraintlayout.widget.ConstraintLayout>
