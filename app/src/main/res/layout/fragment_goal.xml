@@ -68,8 +68,6 @@
         android:layout_width="match_parent"
         android:id="@+id/goalRecycler"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="21dp"
-        android:layout_marginRight="21dp"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="31dp"
         tools:itemCount="4"

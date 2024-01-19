@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="80dp"
+        android:layout_marginTop="31dp"
         android:fontFamily="@font/poppins_semibold"
         android:lineHeight="32dp"
         android:text="Sing Up"
@@ -97,6 +97,24 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneEdt" />
+    <EditText
+        android:id="@+id/confirmPasswordEdt"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
+        android:background="@drawable/edittext_design"
+        android:fontFamily="@font/open_sans"
+        android:hint="Confirm Password"
+        android:textColor="@color/white"
+        android:textColorHint="@android:color/background_light"
+        android:inputType="textPassword"
+        android:paddingStart="10dp"
+        android:textSize="14dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/passwordEdt" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"
@@ -107,7 +125,7 @@
         app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEdt">
+        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEdt">
 
         <CheckBox
             android:layout_width="wrap_content"

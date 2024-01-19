@@ -5,6 +5,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,16 @@ public class ActivitiesInterestRecyclerViewAdapter extends RecyclerView.Adapter<
                 holder.activitiCheckBox.setChecked(true);
                 holder.activitieCard.setBackgroundResource(R.drawable.card_selected_design);
                 holder.imageActivities.setBackgroundResource(R.drawable.card_selected_emoji_design);
+            }
+        });
+
+        holder.activitiCheckBox.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if (compoundButton.isChecked()){
+                    holder.activitieCard.setBackgroundResource(R.drawable.card_selected_design);
+                    holder.imageActivities.setBackgroundResource(R.drawable.card_selected_emoji_design);
+                }
             }
         });
 

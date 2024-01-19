@@ -68,8 +68,6 @@
     <androidx.recyclerview.widget.RecyclerView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="21dp"
-        android:layout_marginRight="21dp"
         android:id="@+id/traingLevelRecylerView"
         app:layout_constraintEnd_toEndOf="parent"
         android:layout_marginTop="32dp"

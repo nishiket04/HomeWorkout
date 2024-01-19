@@ -193,7 +193,7 @@ public class SignUpFragment extends Fragment {
                         Log.d("facebook", "handleFacebookAccessToken: success ");
                         FragmentManager fragmentManager = getParentFragmentManager();
                         FragmentTransaction ft = fragmentManager.beginTransaction();
-                        ft.replace(R.id.frame,new GenderFragment());
+                        ft.replace(R.id.frame,new GenderFragment()).commit();
                     } else {
                         Log.d("facebook", "handleFacebookAccessToken: fail");
                     }
@@ -233,7 +233,7 @@ public class SignUpFragment extends Fragment {
                             // or use mAuth.getCurrentUser() to get the current user.
                             FragmentManager fragmentManager = getParentFragmentManager();
                             FragmentTransaction ft = fragmentManager.beginTransaction();
-                            ft.replace(R.id.frame,new GenderFragment());
+                            ft.replace(R.id.frame,new GenderFragment()).commit();
 
                         } else {
                             // If sign in fails, display a message to the user.
