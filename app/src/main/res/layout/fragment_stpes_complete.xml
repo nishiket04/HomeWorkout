@@ -62,8 +62,10 @@
         app:layout_constraintTop_toBottomOf="@+id/progressBar" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="44dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
         android:background="@drawable/button_design"
         android:fontFamily="@font/poppins_medium"
         android:text="Start Training"

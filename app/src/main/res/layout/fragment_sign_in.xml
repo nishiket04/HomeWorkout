@@ -24,9 +24,11 @@
 
     <EditText
         android:id="@+id/editText2"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="24dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
         android:inputType="textEmailAddress"
         android:hint="Phone / Email"
         android:textColor="@color/white"
@@ -41,8 +43,10 @@
 
     <EditText
         android:id="@+id/editText"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
         android:background="@drawable/edittext_design"
         android:paddingStart="10dp"
         android:layout_marginTop="16dp"
@@ -58,7 +62,9 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signInBtn"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
         android:background="@drawable/button_design"

@@ -11,7 +11,7 @@
         android:id="@+id/textView"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="104dp"
+        android:layout_marginTop="80dp"
         android:fontFamily="@font/poppins_semibold"
         android:lineHeight="32dp"
         android:text="Sing Up"
@@ -24,8 +24,10 @@
 
     <EditText
         android:id="@+id/fullNameEdt"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
         android:layout_marginTop="24dp"
         android:background="@drawable/edittext_design"
         android:fontFamily="@font/open_sans"
@@ -41,8 +43,10 @@
 
     <EditText
         android:id="@+id/emailEdt"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
         android:layout_marginTop="16dp"
         android:textColor="@color/white"
         android:textColorHint="@android:color/background_light"
@@ -58,8 +62,10 @@
 
     <EditText
         android:id="@+id/phoneEdt"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
         android:textColor="@color/white"
         android:textColorHint="@android:color/background_light"
         android:layout_marginTop="16dp"
@@ -75,9 +81,11 @@
 
     <EditText
         android:id="@+id/passwordEdt"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginTop="16dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
         android:background="@drawable/edittext_design"
         android:fontFamily="@font/open_sans"
         android:hint="Password"
@@ -95,7 +103,7 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        android:paddingStart="28dp"
+        android:paddingStart="23dp"
         app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -118,9 +126,11 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/signUpBtn"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="22dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
         android:background="@drawable/button_design"
         android:fontFamily="@font/poppins_medium"
         android:lineHeight="20dp"
@@ -135,12 +145,12 @@
         android:id="@+id/textView4"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="42dp"
         android:fontFamily="@font/poppins_medium"
         android:lineHeight="24dp"
         android:text="Sign Up with"
-        android:textSize="20dp"
         android:textColor="@color/white"
+        android:textSize="20dp"
+        app:layout_constraintBottom_toTopOf="@+id/linearLayout"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/signUpBtn" />

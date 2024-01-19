@@ -86,7 +86,7 @@ public class SignUpFragment extends Fragment {
                         String phoneNumber = phoneEdt.getText().toString();
                         SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
                         signInUpActivity.phoneNumber = "+91"+phoneNumber;
-                        ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
+                        ft.add(R.id.frame, new ActivitiesInterestFragment(), "verification").commit();
 
                     }else {
                         Toast.makeText(getContext(), "Please Accept Privacy and Policy", Toast.LENGTH_SHORT).show();

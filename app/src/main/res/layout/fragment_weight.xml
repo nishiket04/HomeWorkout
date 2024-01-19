@@ -101,8 +101,10 @@
         app:layout_constraintTop_toBottomOf="@+id/weightTabLayout" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
         android:background="@drawable/button_design"
         android:text="Continue"
         android:id="@+id/weightContinueBtn"

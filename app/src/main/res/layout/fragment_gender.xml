@@ -66,7 +66,9 @@
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recyclerView"
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="31dp"
         app:layout_constraintEnd_toEndOf="parent"
@@ -75,8 +77,10 @@
         tools:listitem="@layout/choose_gender_design" />
 
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
         android:id="@+id/genderContinueBtn"
         android:background="@drawable/button_design"
         android:text="Continue"

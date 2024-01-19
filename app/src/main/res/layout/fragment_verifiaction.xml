@@ -14,8 +14,8 @@
         android:layout_marginTop="112dp"
         android:fontFamily="@font/poppins_semibold"
         android:lineHeight="32dp"
-        android:textColor="@color/white"
         android:text="Phone verification"
+        android:textColor="@color/white"
         android:textSize="27dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -25,11 +25,11 @@
         android:id="@+id/textView6"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:layout_marginTop="8dp"
         android:fontFamily="@font/open_sans"
         android:lineHeight="22dp"
-        android:textColor="@color/white"
-        android:layout_marginTop="8dp"
         android:text="We sent a code to your number "
+        android:textColor="@color/white"
         android:textSize="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -63,7 +63,7 @@
 
     <LinearLayout
         android:id="@+id/linearLayout4"
-        android:layout_width="390dp"
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="32dp"
         android:gravity="center"
@@ -72,71 +72,72 @@
         app:layout_constraintTop_toBottomOf="@+id/changeTxt">
 
         <EditText
-            android:layout_width="55dp"
-            android:layout_height="64dp"
-            android:inputType="number"
             android:id="@+id/otp_1"
-            android:maxLength="1"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
+            android:layout_marginLeft="5dp"
+            android:background="@drawable/edittext_verification_design"
             android:focusedByDefault="true"
-            android:textColor="@color/white"
-            android:layout_marginLeft="0dp"
+            android:inputType="number"
+            android:maxLength="1"
             android:textAlignment="center"
-            android:background="@drawable/edittext_verification_design"/>
+            android:textColor="@color/white" />
 
         <EditText
-            android:layout_width="55dp"
-            android:layout_height="64dp"
-            android:inputType="number"
             android:id="@+id/otp_2"
-            android:maxLength="1"
-            android:textColor="@color/white"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
             android:layout_marginLeft="8dp"
+            android:background="@drawable/edittext_verification_design"
+            android:inputType="number"
+            android:maxLength="1"
             android:textAlignment="center"
-            android:background="@drawable/edittext_verification_design"/>
+            android:textColor="@color/white" />
 
         <EditText
-            android:layout_width="55dp"
-            android:layout_height="64dp"
-            android:inputType="number"
             android:id="@+id/otp_3"
-            android:maxLength="1"
-            android:textColor="@color/white"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
             android:layout_marginLeft="8dp"
+            android:background="@drawable/edittext_verification_design"
+            android:inputType="number"
+            android:maxLength="1"
             android:textAlignment="center"
-            android:background="@drawable/edittext_verification_design"/>
+            android:textColor="@color/white" />
 
         <EditText
-            android:layout_width="55dp"
-            android:layout_height="64dp"
-            android:inputType="number"
             android:id="@+id/otp_4"
-            android:maxLength="1"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
             android:layout_marginLeft="8dp"
+            android:background="@drawable/edittext_verification_design"
+            android:inputType="number"
+            android:maxLength="1"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:background="@drawable/edittext_verification_design"/>
+            android:textColor="@color/white" />
 
         <EditText
-            android:layout_width="60dp"
-            android:layout_height="64dp"
-            android:inputType="number"
             android:id="@+id/otp_5"
-            android:maxLength="1"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
             android:layout_marginLeft="8dp"
+            android:background="@drawable/edittext_verification_design"
+            android:inputType="number"
+            android:maxLength="1"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:background="@drawable/edittext_verification_design"/>
+            android:textColor="@color/white" />
 
         <EditText
-            android:layout_width="55dp"
-            android:layout_height="64dp"
-            android:inputType="number"
             android:id="@+id/otp_6"
-            android:maxLength="1"
+            android:layout_width="52dp"
+            android:layout_height="64dp"
             android:layout_marginLeft="8dp"
+            android:background="@drawable/edittext_verification_design"
+            android:inputType="number"
+            android:maxLength="1"
+            android:layout_marginRight="5dp"
             android:textAlignment="center"
-            android:textColor="@color/white"
-            android:background="@drawable/edittext_verification_design"/>
+            android:textColor="@color/white" />
 
     </LinearLayout>
 
@@ -145,18 +146,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="24dp"
-        android:textColor="@color/white"
         android:text="Didn't receive your code?"
-        app:layout_constraintEnd_toEndOf="@+id/linearLayout4"
-        app:layout_constraintStart_toStartOf="parent"
+        android:textColor="@color/white"
+        app:layout_constraintEnd_toEndOf="@+id/changeTxt"
+        app:layout_constraintStart_toStartOf="@+id/textView6"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />
 
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Resend"
         android:layout_marginStart="5dp"
         android:layout_marginTop="24dp"
+        android:text="Resend"
         android:textColor="@color/primary"
         app:layout_constraintStart_toEndOf="@+id/textView9"
         app:layout_constraintTop_toBottomOf="@+id/linearLayout4" />

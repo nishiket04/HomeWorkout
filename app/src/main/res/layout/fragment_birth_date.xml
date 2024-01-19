@@ -65,18 +65,29 @@
         app:layout_constraintTop_toBottomOf="@+id/birthDateRelativeLayout" />
 
     <EditText
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
         android:layout_height="44dp"
+        android:id="@+id/birthDateEditText"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         android:layout_marginTop="50dp"
+        android:hint="DD/MM/YYYY"
+        android:fontFamily="@font/open_sans"
+        android:cursorVisible="false"
+        android:textColorHint="@color/white"
+        android:textColor="@color/white"
+        android:textAlignment="center"
         app:layout_constraintTop_toBottomOf="@+id/textViewGoal"
         android:background="@drawable/birthdate_edittxt_design"
         android:inputType="date"
         />
     <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="358dp"
+        android:layout_width="match_parent"
         android:layout_height="48dp"
+        android:layout_marginLeft="21dp"
+        android:layout_marginRight="21dp"
         android:text="Continue"
         android:id="@+id/birthDateContinueBtn"
         android:textColor="@color/white"
