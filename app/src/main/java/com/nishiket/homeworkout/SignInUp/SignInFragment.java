@@ -92,7 +92,6 @@ public class SignInFragment extends Fragment {
         });
 
         // google
-        mAuth.signOut();
 
         // Configure Google Sign In
         GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
