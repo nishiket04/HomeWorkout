@@ -21,6 +21,10 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
     private List<CardList> cardListList;
     private Context context;
 
+    private int selectedPosition = -1;
+
+
+
     public MainGoalRecyclerViewAdapter(Context context) {
         this.context = context;
     }
@@ -35,7 +39,12 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
         View view = LayoutInflater.from(context).inflate(R.layout.choose_gender_design,parent,false);
         return new viewHolder(view);
     }
-
+    public CardList getSelectedData() {
+        if (selectedPosition != -1 && selectedPosition < cardListList.size()) {
+            return cardListList.get(selectedPosition);
+        }
+        return null;
+    }
     @Override
     public void onBindViewHolder(@NonNull MainGoalRecyclerViewAdapter.viewHolder holder, int position) {
         CardList cardList = cardListList.get(position);
@@ -46,6 +55,7 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
             public void onClick(View view) {
                 holder.card.setBackgroundResource(R.drawable.card_selected_design);
                 holder.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
+                selectedPosition = position;
 
             }
         });

@@ -51,6 +51,7 @@ public class VerificationFragment extends Fragment {
 
     private String verificationId;
     private String otp;
+    private String email,password;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -66,6 +67,8 @@ public class VerificationFragment extends Fragment {
 
         sendVerificationCode(signInUpActivity.phoneNumber);
         phoneNumberTxt.setText(signInUpActivity.phoneNumber);
+        email = signInUpActivity.email;
+        password = signInUpActivity.password;
         otp_1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -228,7 +231,7 @@ public class VerificationFragment extends Fragment {
 
     private void createAccountWithEmailPassword() {
         FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
-        firebaseAuth.createUserWithEmailAndPassword("nishiket04@gmail.com", "Nishiket04")
+        firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
@@ -238,7 +241,7 @@ public class VerificationFragment extends Fragment {
                             FragmentTransaction ft = fragmentManager.beginTransaction();
                             ft.replace(R.id.frame,new GenderFragment()).commit();
                         }else {
-
+                            Toast.makeText(getContext(),task.getException().getMessage(), Toast.LENGTH_SHORT).show();
                         }
                     }
                 });

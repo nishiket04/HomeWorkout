@@ -97,6 +97,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/phoneEdt" />
+
+    <ToggleButton
+        android:id="@+id/passwordToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/passwordEdt"
+        app:layout_constraintEnd_toEndOf="@+id/passwordEdt"
+        app:layout_constraintTop_toTopOf="@+id/passwordEdt" />
     <EditText
         android:id="@+id/confirmPasswordEdt"
         android:layout_width="match_parent"
@@ -115,6 +124,15 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/passwordEdt" />
+
+    <ToggleButton
+        android:id="@+id/confirmPasswordToggle"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="@+id/confirmPasswordEdt"
+        app:layout_constraintEnd_toEndOf="@+id/confirmPasswordEdt"
+        app:layout_constraintTop_toTopOf="@+id/confirmPasswordEdt" />
 
     <LinearLayout
         android:id="@+id/linearLayout3"

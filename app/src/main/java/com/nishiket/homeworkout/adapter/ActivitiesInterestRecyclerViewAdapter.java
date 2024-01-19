@@ -16,6 +16,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.model.ActivitiesInterestModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ActivitiesInterestRecyclerViewAdapter extends RecyclerView.Adapter<ActivitiesInterestRecyclerViewAdapter.viewHolder> {

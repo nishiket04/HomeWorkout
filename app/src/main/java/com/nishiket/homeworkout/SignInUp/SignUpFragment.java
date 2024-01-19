@@ -11,15 +11,18 @@ import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
+import android.widget.ToggleButton;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -78,10 +81,12 @@ public class SignUpFragment extends Fragment {
 
     private FirebaseAuth mAuth;
 
-    private EditText phoneEdt,fullNameEdt,passwordEdt,emailEdt;
+    private EditText phoneEdt,fullNameEdt,passwordEdt,emailEdt,confirmPasswordEdt;
+    private ToggleButton passwordToggle,confirmPasswordToggle;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
         // to assignId
         assignId(view);
 
@@ -99,15 +104,24 @@ public class SignUpFragment extends Fragment {
             }
         });
 
-
             signUpBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     if(privacyCheckBox.isChecked()) {
                         String phoneNumber = phoneEdt.getText().toString();
-                        SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
-                        signInUpActivity.phoneNumber = "+91"+phoneNumber;
-                        ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
+                        String email = emailEdt.getText().toString();
+                        String password = passwordEdt.getText().toString();
+                        String confirmPassword = confirmPasswordEdt.getText().toString();
+                        if (confirmPassword.equals(password)) {
+                            SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
+                            signInUpActivity.phoneNumber = "+91"+phoneNumber;
+                            signInUpActivity.email = email;
+                            signInUpActivity.password = password;
+                            ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
+                        }else {
+                            Toast.makeText(getContext(), "Password Mismatch", Toast.LENGTH_SHORT).show();
+                        }
+
 
                     }else {
                         Toast.makeText(getContext(), "Please Accept Privacy and Policy", Toast.LENGTH_SHORT).show();
@@ -160,6 +174,10 @@ public class SignUpFragment extends Fragment {
         passwordEdt = view.findViewById(R.id.passwordEdt);
         fullNameEdt = view.findViewById(R.id.fullNameEdt);
         emailEdt = view.findViewById(R.id.emailEdt);
+        confirmPasswordEdt = view.findViewById(R.id.confirmPasswordEdt);
+
+        passwordToggle = view.findViewById(R.id.passwordToggle);
+        confirmPasswordToggle = view.findViewById(R.id.confirmPasswordToggle);
 
     }
 

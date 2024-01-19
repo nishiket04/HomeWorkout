@@ -34,4 +34,6 @@ public class SignInUpActivity extends AppCompatActivity {
 
     }
     String phoneNumber;
+    String email;
+    String password;
 }

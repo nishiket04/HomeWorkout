@@ -11,6 +11,7 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,9 +72,12 @@ public class GoalFragment extends Fragment {
         mainGoalRecyclerViewAdapter.setCardListList(cardListList);
         mainGoalRecyclerViewAdapter.notifyDataSetChanged();
 
+
         mainGoalContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                CardList c = mainGoalRecyclerViewAdapter.getSelectedData();
+                Log.d("c", "onClick: " + c.getGender());
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.frame,new BirthDateFragment()).commit();
