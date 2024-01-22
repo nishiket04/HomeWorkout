@@ -4,6 +4,8 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
@@ -36,6 +38,12 @@ public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<Pop
     @Override
     public void onBindViewHolder(@NonNull PopularWorkoutsRecyclerViewAdapter.viewHolder holder, int position) {
 
+        PopularWorkoutModel popularWorkoutModel = popularWorkoutModelList.get(position);
+        holder.popularWorkoutImage.setImageResource(popularWorkoutModel.getImage());
+        holder.popularWorkoutTxt.setText(popularWorkoutModel.getWorkout());
+        holder.popularWorkoutLevelTxt.setText(popularWorkoutModel.getType());
+        holder.popularWorkoutTimeTxt.setText(popularWorkoutModel.getTime());
+
     }
 
     @Override
@@ -48,8 +56,15 @@ public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<Pop
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
+        TextView popularWorkoutTxt,popularWorkoutLevelTxt,popularWorkoutTimeTxt;
+        ImageView popularWorkoutImage;
         public viewHolder(@NonNull View itemView) {
             super(itemView);
+
+            popularWorkoutTxt = itemView.findViewById(R.id.popularWorkoutTxt);
+            popularWorkoutLevelTxt = itemView.findViewById(R.id.popularWorkoutLevelTxt);
+            popularWorkoutTimeTxt = itemView.findViewById(R.id.popularWorkoutTimeTxt);
+            popularWorkoutImage = itemView.findViewById(R.id.popualrWorkoutImage);
         }
     }
 }

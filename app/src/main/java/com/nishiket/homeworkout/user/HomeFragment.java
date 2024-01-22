@@ -15,8 +15,10 @@ import android.view.ViewGroup;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.CategoryRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.ExercisesRecyclerViewAdapter;
+import com.nishiket.homeworkout.adapter.PopularWorkoutsRecyclerViewAdapter;
 import com.nishiket.homeworkout.model.CategoryModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
+import com.nishiket.homeworkout.model.PopularWorkoutModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,11 +40,13 @@ public class HomeFragment extends Fragment {
     private RecyclerView categoryRexcyclerView,exercisesRecyclerView,popularWorkoutRecyclerView;
     private List<CategoryModel> categoryModelList = new ArrayList<>();
     private  List<ExercisesModel> exercisesModelsList = new ArrayList<>();
+    private List<PopularWorkoutModel> popularWorkoutModelList = new ArrayList<>();
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         categoryRexcyclerView = view.findViewById(R.id.categoryRecyclerView);
         exercisesRecyclerView = view.findViewById(R.id.exercisesRecyclerView);
+        popularWorkoutRecyclerView = view.findViewById(R.id.popularWorkoutRecyclerView);
 
         CategoryModel c1 = new CategoryModel();
         CategoryModel c2 = new CategoryModel();
@@ -89,6 +93,24 @@ public class HomeFragment extends Fragment {
         exercisesModelsList.add(e3);
         exercisesModelsList.add(e4);
 
+        PopularWorkoutModel p1 = new PopularWorkoutModel();
+        PopularWorkoutModel p2 = new PopularWorkoutModel();
+
+        p1.setImage(R.drawable.women_workingout);
+        p2.setImage(R.drawable.man_workingout);
+
+        p1.setWorkout("Rapid Lower Body");
+        p2.setWorkout("Bodyweight Stretch");
+
+        p1.setType("Beginner");
+        p2.setType("Beginner");
+
+        p1.setTime("42 min");
+        p2.setTime("25 min");
+
+        popularWorkoutModelList.add(p1);
+        popularWorkoutModelList.add(p2);
+
 
         CategoryRecyclerViewAdapter categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter(getActivity());
         categoryRexcyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
@@ -102,5 +124,11 @@ public class HomeFragment extends Fragment {
         exercisesRecyclerView.setAdapter(exercisesRecyclerViewAdapter);
         exercisesRecyclerViewAdapter.setExercisesModelList(exercisesModelsList);
         exercisesRecyclerViewAdapter.notifyDataSetChanged();
+
+        PopularWorkoutsRecyclerViewAdapter popularWorkoutsRecyclerViewAdapter = new PopularWorkoutsRecyclerViewAdapter(getActivity());
+        popularWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        popularWorkoutRecyclerView.setAdapter(popularWorkoutsRecyclerViewAdapter);
+        popularWorkoutsRecyclerViewAdapter.setPopularWorkoutModelList(popularWorkoutModelList);
+        popularWorkoutsRecyclerViewAdapter.notifyDataSetChanged();
     }
 }
