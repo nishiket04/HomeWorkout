@@ -73,6 +73,8 @@
                 android:layout_height="48dp"
                 android:layout_marginRight="6dp"
                 android:layout_weight="0.7"
+                android:singleLine="true"
+                android:keyboardNavigationCluster="true"
                 android:background="@android:color/transparent"
                 android:fontFamily="@font/open_sans"
                 android:hint="Search something"

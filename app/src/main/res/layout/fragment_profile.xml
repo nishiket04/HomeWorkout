@@ -89,8 +89,8 @@
             <com.google.android.material.card.MaterialCardView
                 android:layout_width="108dp"
                 android:layout_height="80dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="11dp"
                 app:cardBackgroundColor="#2D3450"
                 app:strokeColor="#2D3450">
 
