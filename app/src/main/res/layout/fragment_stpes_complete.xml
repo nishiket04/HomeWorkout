@@ -63,6 +63,7 @@
 
     <androidx.appcompat.widget.AppCompatButton
         android:layout_width="match_parent"
+        android:id="@+id/stepsCompleteBtn"
         android:layout_height="44dp"
         android:layout_marginRight="21dp"
         android:layout_marginLeft="21dp"

@@ -42,6 +42,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.user.MainActivity;
 
 import java.util.Arrays;
 import java.util.concurrent.Executor;
@@ -88,6 +89,16 @@ public class SignInFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 ft.replace(R.id.frame,new SignUpFragment()).commit();
+            }
+        });
+
+        signInBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent i = new Intent(getActivity(), MainActivity.class);
+                startActivity(i);
+                SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
+                signInUpActivity.finish();
             }
         });
 
@@ -145,6 +156,10 @@ public class SignInFragment extends Fragment {
                 .addOnCompleteListener((Executor) this, task -> {
                     if (task.isSuccessful()) {
                         Log.d("facebook", "handleFacebookAccessToken: success ");
+                        Intent i = new Intent(getActivity(), MainActivity.class);
+                        startActivity(i);
+                        SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
+                        signInUpActivity.finish();
                     } else {
                         Log.d("facebook", "handleFacebookAccessToken: fail");
                     }
@@ -194,6 +209,10 @@ public class SignInFragment extends Fragment {
                             Log.d("login", "signInWithCredential:success");
                             // You can get the user information using task.getResult().getUser()
                             // or use mAuth.getCurrentUser() to get the current user.
+                            Intent i = new Intent(getActivity(), MainActivity.class);
+                            startActivity(i);
+                            SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
+                            signInUpActivity.finish();
                         } else {
                             // If sign in fails, display a message to the user.
                             Log.w("login", "signInWithCredential:failure", task.getException());
