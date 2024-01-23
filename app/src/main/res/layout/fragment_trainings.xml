@@ -1,131 +1,140 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:background="@android:color/background_dark"
     tools:context=".user.TrainingsFragment">
+    <TextView
+        android:id="@+id/trainingDeshboardTxt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:lineHeight="40dp"
+        android:text="Trainings"
+        android:textColor="@color/white"
+        android:textSize="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <com.google.android.material.card.MaterialCardView
+        android:id="@+id/materialCardView2"
+        android:layout_width="40dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="21dp"
+        android:layout_marginRight="16dp"
+        app:cardBackgroundColor="@color/primary_light"
+        app:cardCornerRadius="8dp"
+        app:cardElevation="0dp"
+        app:cardPreventCornerOverlap="false"
+        app:cardUseCompatPadding="true"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:strokeColor="@color/primary_light">
+
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="18dp"
+            android:layout_gravity="center"
+            android:src="@drawable/filter" />
+    </com.google.android.material.card.MaterialCardView>
+
+    <LinearLayout
+        android:id="@+id/linearLayout5"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="48dp"
+        android:layout_marginStart="21dp"
+        android:layout_marginTop="24dp"
+        android:layout_marginEnd="21dp"
+        android:background="@drawable/searchbar_design"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@id/trainingDeshboardTxt">
 
-        <TextView
-            android:id="@+id/trainingDeshboardTxt"
+        <ImageView
+            android:layout_width="16dp"
+            android:layout_height="16dp"
+            android:layout_gravity="center"
+            android:layout_marginLeft="10dp"
+            android:layout_weight="0.1"
+            android:src="@drawable/search_primary_light" />
+
+        <EditText
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="21dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:lineHeight="40dp"
-            android:text="Trainings"
-            android:textColor="@color/white"
-            android:textSize="27dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <com.google.android.material.card.MaterialCardView
-            android:id="@+id/materialCardView2"
-            android:layout_width="40dp"
-            android:layout_height="40dp"
-            android:layout_marginTop="21dp"
-            android:layout_marginRight="16dp"
-            app:cardBackgroundColor="@color/primary_light"
-            app:cardCornerRadius="8dp"
-            app:cardElevation="0dp"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent"
-            app:strokeColor="@color/primary_light">
-
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="18dp"
-                android:layout_gravity="center"
-                android:src="@drawable/filter" />
-        </com.google.android.material.card.MaterialCardView>
-
-        <LinearLayout
-            android:id="@+id/linearLayout5"
-            android:layout_width="match_parent"
             android:layout_height="48dp"
-            android:layout_marginStart="21dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="21dp"
-            android:background="@drawable/searchbar_design"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/trainingDeshboardTxt">
+            android:layout_marginRight="6dp"
+            android:layout_weight="0.7"
+            android:background="@android:color/transparent"
+            android:fontFamily="@font/open_sans"
+            android:hint="Search something"
+            android:keyboardNavigationCluster="true"
+            android:singleLine="true"
+            android:textColor="@color/white"
+            android:textColorHint="@color/white"
+            android:textSize="14dp" />
+    </LinearLayout>
 
-            <ImageView
-                android:layout_width="16dp"
-                android:layout_height="16dp"
-                android:layout_gravity="center"
-                android:layout_marginLeft="10dp"
-                android:layout_weight="0.1"
-                android:src="@drawable/search_primary_light" />
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        android:layout_marginTop="9dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
 
-            <EditText
-                android:layout_width="wrap_content"
-                android:layout_height="48dp"
-                android:layout_marginRight="6dp"
-                android:layout_weight="0.7"
-                android:singleLine="true"
-                android:keyboardNavigationCluster="true"
-                android:background="@android:color/transparent"
-                android:fontFamily="@font/open_sans"
-                android:hint="Search something"
-                android:textColor="@color/white"
-                android:textColorHint="@color/white"
-                android:textSize="14dp" />
-        </LinearLayout>
 
-        <LinearLayout
-            android:id="@+id/linearLayout6"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="104dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginRight="21dp"
-            android:background="@drawable/searchbar_design"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout5">
+            android:layout_height="match_parent"
+            android:paddingBottom="150dp"
+            >
 
-            <TextView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.7"
-                android:fontFamily="@font/poppins_medium"
-                android:padding="20dp"
-                android:text="Create Personal Training"
-                android:textAlignment="center"
-                android:textColor="@color/white"
-                android:textSize="20dp" />
+            <LinearLayout
+                android:id="@+id/linearLayout6"
+                android:layout_width="match_parent"
+                android:layout_height="104dp"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="21dp"
+                android:background="@drawable/searchbar_design"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
 
-            <ImageView
-                android:layout_width="0dp"
-                android:layout_height="match_parent"
-                android:layout_weight="0.3"
-                android:padding="9dp"
-                android:src="@drawable/vector" />
-        </LinearLayout>
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.7"
+                    android:fontFamily="@font/poppins_medium"
+                    android:padding="20dp"
+                    android:text="Create Personal Training"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="20dp" />
 
-        <androidx.recyclerview.widget.RecyclerView
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:id="@+id/trainingRecyclerView"
-            android:paddingBottom="90dp"
-            android:paddingLeft="2dp"
-            android:scrollbars="none"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout6"
-            android:layout_marginTop="24dp"
-            />
-        
-    </androidx.constraintlayout.widget.ConstraintLayout>
+                <ImageView
+                    android:layout_width="0dp"
+                    android:layout_height="match_parent"
+                    android:layout_weight="0.3"
+                    android:padding="9dp"
+                    android:src="@drawable/vector" />
+            </LinearLayout>
 
-</ScrollView>
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/trainingRecyclerView"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:paddingLeft="2dp"
+                android:paddingBottom="90dp"
+                android:scrollbars="none"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout6" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>
