@@ -19,7 +19,41 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
+    <androidx.cardview.widget.CardView
+        android:layout_width="94dp"
+        android:layout_height="24dp"
+        android:layout_marginRight="16dp"
+        app:cardCornerRadius="18dp"
+        android:id="@+id/premium"
+        android:visibility="gone"
+        app:cardBackgroundColor="@color/primary_light"
+        app:layout_constraintBottom_toTopOf="@+id/scrollView2"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:gravity="center">
+            <ImageView
+                android:layout_width="13dp"
+                android:layout_height="16dp"
+                android:src="@drawable/fire"
+                android:layout_marginRight="8dp"
+                />
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Premium"
+                android:fontFamily="@font/poppins_medium"
+                android:textSize="10dp"
+                android:textColor="@color/white"
+                />
+        </LinearLayout>
+    </androidx.cardview.widget.CardView>
+
     <ScrollView
+        android:id="@+id/scrollView2"
         android:layout_width="match_parent"
         android:layout_height="0dp"
         app:layout_constraintBottom_toBottomOf="parent"
@@ -30,8 +64,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:paddingBottom="90dp"
-            >
+            android:paddingBottom="90dp">
 
             <de.hdodenhof.circleimageview.CircleImageView
                 android:id="@+id/profile_image"
@@ -155,7 +188,7 @@
             </LinearLayout>
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/appCompatButton2"
+                android:id="@+id/goPrimiumBtn"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:layout_marginLeft="21dp"
@@ -182,7 +215,7 @@
                 app:cardCornerRadius="8dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/appCompatButton2"
+                app:layout_constraintTop_toBottomOf="@+id/goPrimiumBtn"
                 app:strokeColor="#2D3450">
 
                 <androidx.constraintlayout.widget.ConstraintLayout

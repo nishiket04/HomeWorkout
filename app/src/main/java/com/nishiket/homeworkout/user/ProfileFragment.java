@@ -5,9 +5,9 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.appcompat.widget.AppCompatButton;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
-import androidx.fragment.app.FragmentManager;
-import androidx.fragment.app.FragmentTransaction;
 
 import android.view.LayoutInflater;
 import android.view.View;
@@ -36,6 +36,8 @@ public class ProfileFragment extends Fragment {
     }
 
     private TextView logout;
+    private CardView premium;
+    private AppCompatButton goPremiumBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -58,9 +60,26 @@ public class ProfileFragment extends Fragment {
                 mainActivity.finish();
             }
         });
+        goPremiumBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                premium.setVisibility(View.VISIBLE);
+                goPremiumBtn.setVisibility(View.GONE);
+            }
+        });
+
+        premium.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                premium.setVisibility(View.GONE);
+                goPremiumBtn.setVisibility(View.VISIBLE);
+            }
+        });
     }
 
     private void assignId(View view) {
         logout = view.findViewById(R.id.logout);
+        goPremiumBtn = view.findViewById(R.id.goPrimiumBtn);
+        premium = view.findViewById(R.id.premium);
     }
 }
