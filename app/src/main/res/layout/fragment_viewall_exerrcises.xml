@@ -78,14 +78,107 @@
             android:paddingBottom="220dp"
             >
 
+            <HorizontalScrollView
+                android:id="@+id/scrollView3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:scrollbars="none"
+                android:layout_marginTop="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent">
+
+                <LinearLayout
+                    android:id="@+id/linearLayout11"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="21dp"
+                    android:scrollbars="horizontal"
+                    android:paddingRight="25dp"
+                    android:orientation="horizontal"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent">
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="115dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        app:cardBackgroundColor="@color/primary_light"
+                        app:cardCornerRadius="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="All exercises"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="115dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        app:cardBackgroundColor="#2D3450"
+                        app:cardCornerRadius="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Beginner"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="115dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        app:cardBackgroundColor="#2D3450"
+                        app:cardCornerRadius="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Meduim"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <androidx.cardview.widget.CardView
+                        android:layout_width="115dp"
+                        android:layout_height="40dp"
+                        android:layout_marginRight="16dp"
+                        app:cardBackgroundColor="#2D3450"
+                        app:cardCornerRadius="18dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="Aadvacne"
+                            android:textColor="@color/white"
+                            android:textSize="12dp" />
+                    </androidx.cardview.widget.CardView>
+                </LinearLayout>
+            </HorizontalScrollView>
+
             <androidx.recyclerview.widget.RecyclerView
                 android:id="@+id/viewallExercisesRecyclerView1"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/scrollView3" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
