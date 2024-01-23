@@ -1,169 +1,536 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:background="@android:color/background_dark"
     android:layout_height="match_parent"
     tools:context=".user.ProfileFragment">
+    <TextView
+        android:id="@+id/textView19"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="16dp"
+        android:layout_marginTop="21dp"
+        android:fontFamily="@font/poppins_semibold"
+        android:text="Profile"
+        android:textColor="@color/white"
+        android:textSize="27dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
 
-    <androidx.constraintlayout.widget.ConstraintLayout
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/textView19">
 
-        <TextView
-            android:id="@+id/textView19"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginLeft="16dp"
-            android:layout_marginTop="21dp"
-            android:fontFamily="@font/poppins_semibold"
-            android:text="Profile"
-            android:textColor="@color/white"
-            android:textSize="27dp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
-
-        <de.hdodenhof.circleimageview.CircleImageView
-            android:id="@+id/profile_image"
-            android:layout_width="80dp"
-            android:layout_height="80dp"
-            android:layout_marginTop="32dp"
-            android:src="@mipmap/ic_launcher"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView19" />
-
-        <TextView
-            android:id="@+id/textView20"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="7dp"
-            android:fontFamily="@font/poppins_medium"
-            android:text="Deborah Moore"
-            android:textColor="@color/white"
-            android:textSize="20dp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/profile_image" />
-
-        <LinearLayout
-            android:id="@+id/linearLayout7"
+        <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
-            android:gravity="center"
-            android:weightSum="3"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/textView20">
+            android:layout_height="match_parent"
+            android:paddingBottom="90dp"
+            >
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/profile_image"
+                android:layout_width="80dp"
+                android:layout_height="80dp"
+                android:layout_marginTop="32dp"
+                android:src="@mipmap/ic_launcher"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView20"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="7dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Deborah Moore"
+                android:textColor="@color/white"
+                android:textSize="20dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/profile_image" />
+
+            <LinearLayout
+                android:id="@+id/linearLayout7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center"
+                android:weightSum="3"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView20">
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="108dp"
+                    android:layout_height="80dp"
+                    app:cardBackgroundColor="#2D3450"
+                    app:strokeColor="#2D3450">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/weight_test" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="55 Kg"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="108dp"
+                    android:layout_height="80dp"
+                    android:layout_marginLeft="11dp"
+                    android:layout_marginRight="11dp"
+                    app:cardBackgroundColor="#2D3450"
+                    app:strokeColor="#2D3450">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/height_emoji" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="167 cm"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <com.google.android.material.card.MaterialCardView
+                    android:layout_width="108dp"
+                    android:layout_height="80dp"
+                    app:cardBackgroundColor="#2D3450"
+                    app:strokeColor="#2D3450">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <ImageView
+                            android:layout_width="24dp"
+                            android:layout_height="22dp"
+                            android:src="@drawable/cake" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="3dp"
+                            android:fontFamily="@font/poppins_medium"
+                            android:text="26 Years"
+                            android:textColor="@color/white"
+                            android:textSize="14dp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/appCompatButton2"
+                android:layout_width="match_parent"
+                android:layout_height="48dp"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="24dp"
+                android:layout_marginRight="21dp"
+                android:background="@drawable/button_design"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Go Premium"
+                android:textAllCaps="false"
+                android:textColor="@color/white"
+                android:textSize="17dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="108dp"
-                android:layout_height="80dp"
+                android:id="@+id/materialCardView3"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="32dp"
+                android:layout_marginRight="21dp"
                 app:cardBackgroundColor="#2D3450"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/appCompatButton2"
                 app:strokeColor="#2D3450">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/weight_test" />
+                    android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/textView21"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="55 Kg"
+                        android:text="Account"
                         android:textColor="@color/white"
-                        android:textSize="14dp" />
-                </LinearLayout>
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout8"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout8"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:background="#495170"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView21"
+                        tools:ignore="Orientation" />
+
+                    <TextView
+                        android:id="@+id/textView22"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="My workouts"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout8" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout9"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout8" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout9"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:background="#495170"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView22"
+                        tools:ignore="Orientation" />
+
+                    <TextView
+                        android:id="@+id/textView23"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Workout reminders"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout9" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout10"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout9" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout10"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:background="#495170"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView23"
+                        tools:ignore="Orientation" />
+
+                    <TextView
+                        android:id="@+id/textView24"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="8dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Log out"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout10" />
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.card.MaterialCardView>
+
+            <TextView
+                android:id="@+id/textView25"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="32dp"
+                android:fontFamily="@font/poppins_medium"
+                android:text="Settings"
+                android:textColor="@color/white"
+                android:textSize="16dp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/materialCardView3" />
 
             <com.google.android.material.card.MaterialCardView
-                android:layout_width="108dp"
-                android:layout_height="80dp"
-                android:layout_marginLeft="11dp"
-                android:layout_marginRight="11dp"
+                android:id="@+id/materialCardView4"
+                android:layout_width="match_parent"
+                android:layout_height="240dp"
+                android:layout_marginLeft="21dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="21dp"
                 app:cardBackgroundColor="#2D3450"
+                app:cardCornerRadius="8dp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView25"
                 app:strokeColor="#2D3450">
 
-                <LinearLayout
+                <androidx.constraintlayout.widget.ConstraintLayout
                     android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
-
-                    <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/height_emoji" />
+                    android:layout_height="match_parent">
 
                     <TextView
+                        android:id="@+id/textView26"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="167 cm"
+                        android:text="Preferences"
                         android:textColor="@color/white"
-                        android:textSize="14dp" />
-                </LinearLayout>
-            </com.google.android.material.card.MaterialCardView>
-
-            <com.google.android.material.card.MaterialCardView
-                android:layout_width="108dp"
-                android:layout_height="80dp"
-                app:cardBackgroundColor="#2D3450"
-                app:strokeColor="#2D3450">
-
-                <LinearLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:gravity="center"
-                    android:orientation="vertical">
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
 
                     <ImageView
-                        android:layout_width="24dp"
-                        android:layout_height="22dp"
-                        android:src="@drawable/cake" />
+                        android:layout_width="8dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout12"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:background="#495170"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView26"
+                        tools:ignore="Orientation" />
 
                     <TextView
+                        android:id="@+id/textView27"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginTop="3dp"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
                         android:fontFamily="@font/poppins_medium"
-                        android:text="26 Years"
+                        android:text="Plan Settings"
                         android:textColor="@color/white"
-                        android:textSize="14dp" />
-                </LinearLayout>
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout12" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout13"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout12" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout13"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:background="#495170"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView27"
+                        tools:ignore="Orientation" />
+
+                    <TextView
+                        android:id="@+id/textView28"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Pin Lock"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout13" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:layout_width="52dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout14"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout13"
+                        app:thumbTint="@color/white"
+                        app:trackDecorationTint="@android:color/transparent"
+                        app:trackTint="@color/primary_light" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout14"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:background="#495170"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView28"
+                        tools:ignore="Orientation" />
+
+                    <TextView
+                        android:id="@+id/textView29"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Apple Health"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout14" />
+
+                    <com.google.android.material.materialswitch.MaterialSwitch
+                        android:layout_width="52dp"
+                        android:layout_height="25dp"
+                        android:layout_marginRight="16dp"
+                        app:layout_constraintBottom_toTopOf="@+id/linearLayout15"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@id/linearLayout14"
+                        app:thumbTint="@color/white"
+                        app:trackDecorationTint="@android:color/transparent"
+                        app:trackTint="@color/primary_light" />
+
+                    <LinearLayout
+                        android:id="@+id/linearLayout15"
+                        android:layout_width="match_parent"
+                        android:layout_height="2dp"
+                        android:layout_marginLeft="20dp"
+                        android:layout_marginTop="3dp"
+                        android:layout_marginRight="20dp"
+                        android:background="#495170"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toBottomOf="@+id/textView29"
+                        tools:ignore="Orientation" />
+
+                    <TextView
+                        android:id="@+id/textView30"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="16dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginBottom="16dp"
+                        android:fontFamily="@font/poppins_medium"
+                        android:text="Contacts Support"
+                        android:textColor="@color/white"
+                        android:textSize="16dp"
+                        app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout15" />
+
+                    <ImageView
+                        android:layout_width="8dp"
+                        android:layout_height="14dp"
+                        android:layout_marginRight="16dp"
+                        android:src="@drawable/right_arrow"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintTop_toTopOf="@+id/linearLayout15" />
+
+
+                </androidx.constraintlayout.widget.ConstraintLayout>
+
             </com.google.android.material.card.MaterialCardView>
-        </LinearLayout>
 
-        <androidx.appcompat.widget.AppCompatButton
-            android:layout_width="match_parent"
-            android:layout_height="48dp"
-            android:layout_marginLeft="21dp"
-            android:layout_marginRight="21dp"
-            android:layout_marginTop="24dp"
-            android:text="Go Premium"
-            android:textAllCaps="false"
-            android:textColor="@color/white"
-            android:fontFamily="@font/poppins_medium"
-            android:textSize="17dp"
-            android:background="@drawable/button_design"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/linearLayout7" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
 
-
-
-    </androidx.constraintlayout.widget.ConstraintLayout>
-
-
-</ScrollView>
+</androidx.constraintlayout.widget.ConstraintLayout>

@@ -12,5 +12,8 @@
             <item name="colorControlActivated">#62F1F1</item>
             <item name="colorOnBackground">#495170</item>
         </style>
-
+    <style name="CustomSwitch" parent="Widget.AppCompat.CompoundButton.Switch">
+        <item name="android:thumbTint">@color/primary_light</item>
+        <item name="android:trackTint">@color/white</item>
+    </style>
 </resources>

@@ -94,5 +94,7 @@ public class TrainingsFragment extends Fragment {
         trainingRecyclerView.setAdapter(trainingRecyclerViewAdapter);
         trainingRecyclerViewAdapter.setTrainingModelList(trainingModelList);
         trainingRecyclerViewAdapter.notifyDataSetChanged();
+
+        trainingRecyclerView.setNestedScrollingEnabled(false);
     }
 }

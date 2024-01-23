@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.TextView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.CategoryRecyclerViewAdapter;
@@ -38,15 +41,15 @@ public class HomeFragment extends Fragment {
     }
 
     private RecyclerView categoryRexcyclerView,exercisesRecyclerView,popularWorkoutRecyclerView;
+    private TextView viewallCategoryHomeTxt;
     private List<CategoryModel> categoryModelList = new ArrayList<>();
     private  List<ExercisesModel> exercisesModelsList = new ArrayList<>();
     private List<PopularWorkoutModel> popularWorkoutModelList = new ArrayList<>();
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        categoryRexcyclerView = view.findViewById(R.id.categoryRecyclerView);
-        exercisesRecyclerView = view.findViewById(R.id.exercisesRecyclerView);
-        popularWorkoutRecyclerView = view.findViewById(R.id.popularWorkoutRecyclerView);
+
+        assignId(view);
 
         CategoryModel c1 = new CategoryModel();
         CategoryModel c2 = new CategoryModel();
@@ -130,5 +133,24 @@ public class HomeFragment extends Fragment {
         popularWorkoutRecyclerView.setAdapter(popularWorkoutsRecyclerViewAdapter);
         popularWorkoutsRecyclerViewAdapter.setPopularWorkoutModelList(popularWorkoutModelList);
         popularWorkoutsRecyclerViewAdapter.notifyDataSetChanged();
+
+        exercisesRecyclerView.setNestedScrollingEnabled(false);
+
+        viewallCategoryHomeTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.homeFrameLayout,new ViewallCategoryFragment()).commit();
+            }
+        });
+
+    }
+
+    private void assignId(View view) {
+        categoryRexcyclerView = view.findViewById(R.id.categoryRecyclerView);
+        exercisesRecyclerView = view.findViewById(R.id.exercisesRecyclerView);
+        popularWorkoutRecyclerView = view.findViewById(R.id.popularWorkoutRecyclerView);
+        viewallCategoryHomeTxt = view.findViewById(R.id.viewallCategoryHomeTxt);
     }
 }
