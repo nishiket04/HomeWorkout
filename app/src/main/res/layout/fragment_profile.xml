@@ -301,7 +301,7 @@
                         tools:ignore="Orientation" />
 
                     <TextView
-                        android:id="@+id/textView24"
+                        android:id="@+id/logout"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="16dp"

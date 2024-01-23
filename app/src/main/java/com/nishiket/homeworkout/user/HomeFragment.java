@@ -41,7 +41,7 @@ public class HomeFragment extends Fragment {
     }
 
     private RecyclerView categoryRexcyclerView,exercisesRecyclerView,popularWorkoutRecyclerView;
-    private TextView viewallCategoryHomeTxt;
+    private TextView viewallCategoryHomeTxt,viewallExercisiesHomeTxt;
     private List<CategoryModel> categoryModelList = new ArrayList<>();
     private  List<ExercisesModel> exercisesModelsList = new ArrayList<>();
     private List<PopularWorkoutModel> popularWorkoutModelList = new ArrayList<>();
@@ -145,6 +145,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        viewallExercisiesHomeTxt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.homeFrameLayout,new ViewallExerrcisesFragment()).commit();
+            }
+        });
+
     }
 
     private void assignId(View view) {
@@ -152,5 +161,6 @@ public class HomeFragment extends Fragment {
         exercisesRecyclerView = view.findViewById(R.id.exercisesRecyclerView);
         popularWorkoutRecyclerView = view.findViewById(R.id.popularWorkoutRecyclerView);
         viewallCategoryHomeTxt = view.findViewById(R.id.viewallCategoryHomeTxt);
+        viewallExercisiesHomeTxt = view.findViewById(R.id.viewallExercisesHomeTxt);
     }
 }
