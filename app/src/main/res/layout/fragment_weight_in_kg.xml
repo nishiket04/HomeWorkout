@@ -12,7 +12,7 @@
         android:layout_width="97dp"
         android:layout_height="64dp"
         android:background="@drawable/birthdate_edittxt_design"
-        android:inputType="number"
+        android:inputType="numberDecimal"
         android:maxLength="3"
         android:textCursorDrawable="@drawable/cursor_color"
         android:textAlignment="center"
