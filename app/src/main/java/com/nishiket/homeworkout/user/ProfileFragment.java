@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private TextView logout;
-    private LinearLayout accountInformationProfileLn;
+    private LinearLayout accountInformationProfileLn,myWorkOutProfileLn;
     private CardView premium;
     private AppCompatButton goPremiumBtn;
     @Override
@@ -89,6 +89,15 @@ public class ProfileFragment extends Fragment {
                 fragmentTransaction.replace(R.id.homeFrameLayout,new AccountInformationFragment()).addToBackStack("accountInformation").commit();
             }
         });
+
+        myWorkOutProfileLn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.homeFrameLayout,new WarmUpsEditFragment()).addToBackStack("accountInformation").commit();
+            }
+        });
     }
 
     private void assignId(View view) {
@@ -96,5 +105,6 @@ public class ProfileFragment extends Fragment {
         goPremiumBtn = view.findViewById(R.id.goPrimiumBtn);
         premium = view.findViewById(R.id.premium);
         accountInformationProfileLn = view.findViewById(R.id.accountInformationProfileLn);
+        myWorkOutProfileLn = view.findViewById(R.id.myWorkoutProfileLn);
     }
 }
