@@ -2,8 +2,7 @@
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:layout_marginTop="24dp"
-    android:layout_height="168dp">
+    android:layout_height="216dp">
 
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="171dp"
@@ -16,7 +15,7 @@
         <androidx.cardview.widget.CardView
             android:id="@+id/cardView4"
             android:layout_width="match_parent"
-            android:layout_height="113dp"
+            android:layout_height="120dp"
             app:cardCornerRadius="8dp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
@@ -27,7 +26,7 @@
                 android:layout_height="match_parent">
 
                 <ImageView
-                    android:id="@+id/traingWorkoutImage"
+                    android:id="@+id/personalTrainingImage"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="fitXY"
@@ -49,7 +48,7 @@
         </androidx.cardview.widget.CardView>
 
         <TextView
-            android:id="@+id/traingWorkoutTxt"
+            android:id="@+id/personalTrainingTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -61,7 +60,7 @@
             app:layout_constraintTop_toBottomOf="@+id/cardView4" />
 
         <TextView
-            android:id="@+id/traingWorkoutLevelTxt"
+            android:id="@+id/personalTrainingLevelTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="5dp"
@@ -70,7 +69,7 @@
             android:textColor="@color/primary"
             android:textSize="12dp"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/traingWorkoutTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/personalTrainingTxt" />
 
         <ImageView
             android:id="@+id/imageView2"
@@ -80,11 +79,11 @@
             android:layout_marginBottom="12dp"
             android:src="@drawable/ovel"
             app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toEndOf="@+id/traingWorkoutLevelTxt"
-            app:layout_constraintTop_toBottomOf="@+id/traingWorkoutTxt" />
+            app:layout_constraintStart_toEndOf="@+id/personalTrainingLevelTxt"
+            app:layout_constraintTop_toBottomOf="@+id/personalTrainingTxt" />
 
         <TextView
-            android:id="@+id/traingWorkoutTimeTxt"
+            android:id="@+id/personalTrainingTimeTxt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginLeft="5dp"
@@ -93,6 +92,6 @@
             android:textColor="@color/white"
             android:textSize="12dp"
             app:layout_constraintStart_toEndOf="@+id/imageView2"
-            app:layout_constraintTop_toBottomOf="@+id/traingWorkoutTxt" />
+            app:layout_constraintTop_toBottomOf="@+id/personalTrainingTxt" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>

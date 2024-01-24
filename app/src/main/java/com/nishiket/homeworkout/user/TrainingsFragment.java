@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.TrainingRecyclerViewAdapter;
@@ -33,11 +36,13 @@ public class TrainingsFragment extends Fragment {
 
     private List<TrainingModel> trainingModelList = new ArrayList<>();
     private RecyclerView trainingRecyclerView;
+    private LinearLayout personalTraining;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         trainingRecyclerView = view.findViewById(R.id.trainingRecyclerView);
+        personalTraining = view.findViewById(R.id.personalTraining);
 
             TrainingModel t1 = new TrainingModel();
             TrainingModel t2 = new TrainingModel();
@@ -96,5 +101,14 @@ public class TrainingsFragment extends Fragment {
         trainingRecyclerViewAdapter.notifyDataSetChanged();
 
         trainingRecyclerView.setNestedScrollingEnabled(false);
+
+        personalTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.homeFrameLayout,new PersonalTrainingFragment()).addToBackStack("personalTraining").commit();
+            }
+        });
     }
 }

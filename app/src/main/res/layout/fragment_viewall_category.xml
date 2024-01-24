@@ -60,7 +60,7 @@
             android:keyboardNavigationCluster="true"
             android:singleLine="true"
             android:textColor="@color/white"
-            android:textColorHint="@color/white"
+            android:textColorHint="@android:color/background_light"
             android:textSize="14dp" />
     </LinearLayout>
 
