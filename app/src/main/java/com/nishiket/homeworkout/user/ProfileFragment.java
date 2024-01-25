@@ -93,9 +93,9 @@ public class ProfileFragment extends Fragment {
         myWorkOutProfileLn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.homeFrameLayout,new WarmUpsEditFragment()).addToBackStack("accountInformation").commit();
+//                FragmentManager fragmentManager = getParentFragmentManager();
+//                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+//                fragmentTransaction.replace(R.id.homeFrameLayout,new CustomWorkoutDetailsFragment()).addToBackStack("accountInformation").commit();
             }
         });
     }

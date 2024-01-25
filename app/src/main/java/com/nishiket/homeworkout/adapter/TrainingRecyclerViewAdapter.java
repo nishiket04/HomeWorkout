@@ -28,6 +28,15 @@ public class TrainingRecyclerViewAdapter extends RecyclerView.Adapter<TrainingRe
         this.trainingModelList = trainingModelList;
     }
 
+    public interface OnItemClickedListiner{
+        void onItemClicked(int position,TrainingModel trainingModel);
+    }
+    private OnItemClickedListiner onItemClickedListiner;
+
+    public void setOnItemClickedListiner(OnItemClickedListiner listiner) {
+        this.onItemClickedListiner = listiner;
+    }
+
     @NonNull
     @Override
     public TrainingRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
@@ -43,6 +52,15 @@ public class TrainingRecyclerViewAdapter extends RecyclerView.Adapter<TrainingRe
         holder.traingImage.setImageResource(trainingModel.getImage());
         holder.traingLevelTxt.setText(trainingModel.getLevel());
         holder.traingTimetxt.setText(trainingModel.getTime());
+
+        holder.traingImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onItemClickedListiner !=null){
+                    onItemClickedListiner.onItemClicked(position,trainingModel);
+                }
+            }
+        });
     }
 
     @Override

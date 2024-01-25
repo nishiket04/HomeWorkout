@@ -23,7 +23,7 @@ import com.nishiket.homeworkout.model.PersonalTrainingModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class PersonalTrainingFragment extends Fragment {
+public class PersonalTrainingFragment extends Fragment implements PersonalTrainingRecyclerViewAdapter.OnItemClickListener {
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -100,6 +100,7 @@ public class PersonalTrainingFragment extends Fragment {
         personalTrainingRecyclerView.setAdapter(personalTrainingRecyclerViewAdapter);
         personalTrainingRecyclerViewAdapter.setPersonalTrainingModelList(personalTrainingModelList);
         personalTrainingRecyclerViewAdapter.notifyDataSetChanged();
+        personalTrainingRecyclerViewAdapter.setOnItemClickListener(this);
 
         backToTrainingImage.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -124,5 +125,21 @@ public class PersonalTrainingFragment extends Fragment {
         personalTrainingRecyclerView = view.findViewById(R.id.personalTrainingRecylerView);
         createPersonalTrainingTxt = view.findViewById(R.id.createPersonalTrainingTxt);
         backToTrainingImage = view.findViewById(R.id.backToTrainingImage);
+    }
+    @Override
+    public void onItemClick(int position, PersonalTrainingModel personalTrainingModel) {
+        // Open the new fragment and pass data
+        CustomWorkoutDetailsFragment newFragment = new CustomWorkoutDetailsFragment();
+//
+//        // Pass data using Bundle
+//        Bundle bundle = new Bundle();
+//        bundle.putString("workoutName", personalTrainingModel.getWorkout());
+//        bundle.putString("level", personalTrainingModel.getLevel());
+//        // Add other data as needed
+//        newFragment.setArguments(bundle);
+
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.homeFrameLayout, newFragment).addToBackStack("accountInformation").commit();
     }
 }

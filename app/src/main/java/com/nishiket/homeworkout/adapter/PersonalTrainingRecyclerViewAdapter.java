@@ -1,10 +1,12 @@
 package com.nishiket.homeworkout.adapter;
 
+import android.app.FragmentManager;
 import android.content.Context;
 import android.media.Image;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -22,6 +24,17 @@ public class PersonalTrainingRecyclerViewAdapter extends RecyclerView.Adapter<Pe
 
     private List<PersonalTrainingModel> personalTrainingModelList;
     private Context context;
+    private int selectItem=-1;
+
+    public interface OnItemClickListener {
+        void onItemClick(int position, PersonalTrainingModel personalTrainingModel);
+    }
+
+    private OnItemClickListener onItemClickListener;
+
+    public void setOnItemClickListener(OnItemClickListener listener) {
+        this.onItemClickListener = listener;
+    }
 
     public PersonalTrainingRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -29,6 +42,15 @@ public class PersonalTrainingRecyclerViewAdapter extends RecyclerView.Adapter<Pe
 
     public void setPersonalTrainingModelList(List<PersonalTrainingModel> personalTrainingModelList) {
         this.personalTrainingModelList = personalTrainingModelList;
+    }
+
+    public PersonalTrainingModel getData(){
+        if(selectItem != -1 && selectItem< personalTrainingModelList.size()){
+            return personalTrainingModelList.get(selectItem);
+        }
+        else {
+            return null;
+        }
     }
 
     @NonNull
@@ -44,6 +66,16 @@ public class PersonalTrainingRecyclerViewAdapter extends RecyclerView.Adapter<Pe
             holder.personalTrainingTimeTxt.setText(personalTrainingModel.getTime());
             holder.personalTrainingLevelTxt.setText(personalTrainingModel.getLevel());
             holder.personalTrainingTxt.setText(personalTrainingModel.getWorkout());
+            holder.personalTrainingImage.setImageResource(personalTrainingModel.getImage());
+            holder.personalTrainingImage.setOnClickListener(new View.OnClickListener() {
+                @Override
+                public void onClick(View view) {
+                    selectItem = position;
+                    if (onItemClickListener != null) {
+                        onItemClickListener.onItemClick(position, personalTrainingModel);
+                    }
+                }
+            });
     }
 
     @Override

@@ -22,7 +22,7 @@ import com.nishiket.homeworkout.model.TrainingModel;
 import java.util.ArrayList;
 import java.util.List;
 
-public class TrainingsFragment extends Fragment {
+public class TrainingsFragment extends Fragment implements TrainingRecyclerViewAdapter.OnItemClickedListiner {
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -102,6 +102,8 @@ public class TrainingsFragment extends Fragment {
 
         trainingRecyclerView.setNestedScrollingEnabled(false);
 
+        trainingRecyclerViewAdapter.setOnItemClickedListiner(this);
+
         personalTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -110,5 +112,12 @@ public class TrainingsFragment extends Fragment {
                 fragmentTransaction.add(R.id.homeFrameLayout,new PersonalTrainingFragment()).addToBackStack("personalTraining").commit();
             }
         });
+    }
+
+    @Override
+    public void onItemClicked(int position, TrainingModel trainingModel) {
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.homeFrameLayout, new CustomWorkoutDetailsFragment()).addToBackStack("accountInformation").commit();
     }
 }

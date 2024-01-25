@@ -104,7 +104,7 @@ public class WarmUpsEditFragment extends Fragment {
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.homeFrameLayout,new ProfileFragment()).commit();
+                fragmentTransaction.replace(R.id.homeFrameLayout,new CustomWorkoutDetailsFragment()).commit();
             }
         });
     }

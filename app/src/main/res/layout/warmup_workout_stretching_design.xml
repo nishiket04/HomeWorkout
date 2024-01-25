@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.google.android.material.card.MaterialCardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="80dp"
+    app:strokeColor="#2D3450"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginLeft="21dp"
+    android:layout_marginRight="21dp"
+    app:cardBackgroundColor="#2D3450"
+    app:cardCornerRadius="8dp"
+    android:layout_marginTop="8dp"
+    >
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.cardview.widget.CardView
+            android:id="@+id/cardView2"
+            app:cardBackgroundColor="#2D3450"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="14dp"
+            app:cardCornerRadius="8dp"
+            app:cardElevation="1dp"
+            app:cardMaxElevation="2dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <ImageView
+                android:id="@+id/exercisesImage1"
+                android:layout_gravity="center"
+                android:layout_width="64dp"
+                android:layout_height="64dp"
+                android:src="@drawable/back" />
+        </androidx.cardview.widget.CardView>
+
+        <TextView
+            android:id="@+id/exercisesTxt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="19dp"
+            android:fontFamily="@font/poppins_medium"
+            android:textSize="16dp"
+            android:text="Front and Back Lunge"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/exercisesTimeTxt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:text="0:30"
+            android:fontFamily="@font/open_sans"
+            android:textSize="14dp"
+            android:textColor="@color/white"
+            app:layout_constraintStart_toEndOf="@+id/cardView2"
+            app:layout_constraintTop_toBottomOf="@+id/exercisesTxt1" />
+
+        <ImageView
+            android:id="@+id/exercisesInfoImage1"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:src="@drawable/feather_info"
+            android:layout_marginRight="16dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</com.google.android.material.card.MaterialCardView>
