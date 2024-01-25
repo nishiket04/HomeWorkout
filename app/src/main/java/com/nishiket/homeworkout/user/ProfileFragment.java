@@ -40,7 +40,7 @@ public class ProfileFragment extends Fragment {
     }
 
     private TextView logout;
-    private LinearLayout accountInformationProfileLn,myWorkOutProfileLn;
+    private LinearLayout accountInformationProfileLn,myWorkOutProfileLn,workoutReminderProfileLn;
     private CardView premium;
     private AppCompatButton goPremiumBtn;
     @Override
@@ -98,6 +98,15 @@ public class ProfileFragment extends Fragment {
 //                fragmentTransaction.replace(R.id.homeFrameLayout,new WeightTrackingFragment() ).addToBackStack("accountInformation").commit();
             }
         });
+
+        workoutReminderProfileLn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.homeFrameLayout,new WorkoutRemindersFragment()).addToBackStack("accountInformation").commit();
+            }
+        });
     }
 
     private void assignId(View view) {
@@ -106,5 +115,6 @@ public class ProfileFragment extends Fragment {
         premium = view.findViewById(R.id.premium);
         accountInformationProfileLn = view.findViewById(R.id.accountInformationProfileLn);
         myWorkOutProfileLn = view.findViewById(R.id.myWorkoutProfileLn);
+        workoutReminderProfileLn = view.findViewById(R.id.workoutReminderProfileLn);
     }
 }
