@@ -23,7 +23,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.card.MaterialCardView
-        android:id="@+id/materialCardView2"
+        android:id="@+id/notification"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:layout_marginTop="21dp"

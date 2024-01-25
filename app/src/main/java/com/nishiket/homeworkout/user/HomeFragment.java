@@ -15,6 +15,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
 
+import com.google.android.material.card.MaterialCardView;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.CategoryRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.ExercisesRecyclerViewAdapter;
@@ -45,6 +46,7 @@ public class HomeFragment extends Fragment {
     private List<CategoryModel> categoryModelList = new ArrayList<>();
     private  List<ExercisesModel> exercisesModelsList = new ArrayList<>();
     private List<PopularWorkoutModel> popularWorkoutModelList = new ArrayList<>();
+    private MaterialCardView notification;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -154,6 +156,15 @@ public class HomeFragment extends Fragment {
             }
         });
 
+        notification.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.homeFrameLayout,new NotificationFragment()).addToBackStack("notification").commit();
+            }
+        });
+
     }
 
     private void assignId(View view) {
@@ -162,5 +173,6 @@ public class HomeFragment extends Fragment {
         popularWorkoutRecyclerView = view.findViewById(R.id.popularWorkoutRecyclerView);
         viewallCategoryHomeTxt = view.findViewById(R.id.viewallCategoryHomeTxt);
         viewallExercisiesHomeTxt = view.findViewById(R.id.viewallExercisesHomeTxt);
+        notification = view.findViewById(R.id.notification);
     }
 }
