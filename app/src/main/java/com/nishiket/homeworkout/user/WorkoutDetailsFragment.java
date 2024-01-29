@@ -42,7 +42,7 @@ public class WorkoutDetailsFragment extends Fragment {
     private List<WorkoutDetailsEquipmentModel> workoutDetailsEquipmentModelList = new ArrayList<>();
     private List<WorkoutDetailsWarmUpModel> workoutDetailsWarmUpModelList = new ArrayList<>();
     private List<WorkoutDetailsWorkoutModel> workoutDetailsWorkoutModelList = new ArrayList<>();
-    private LinearLayout schudelWorkoutDetailsLn;
+    private LinearLayout schudelWorkoutDetailsLn,pickaPlayListLn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -119,6 +119,17 @@ public class WorkoutDetailsFragment extends Fragment {
                 fragmentTransaction.add(R.id.homeFrameLayout,new ScheduleWorkoutFragment()).addToBackStack(null).commit();
             }
         });
+
+        pickaPlayListLn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.homeFrameLayout,new MusicProviderFragment()).addToBackStack(null).commit();
+            }
+        });
+
+
     }
 
     private void assignId(View view) {
@@ -126,5 +137,6 @@ public class WorkoutDetailsFragment extends Fragment {
         workoutDetailsWarmupRecyclerView = view.findViewById(R.id.workoutDetailsExercisiesRecyclerView);
         workoutDetailsWorkoutRecyclerView = view.findViewById(R.id.workoutDetailsWorkoutRecyclerView);
         schudelWorkoutDetailsLn = view.findViewById(R.id.scgedulWorkoutDetailsLn);
+        pickaPlayListLn = view.findViewById(R.id.pickaPlayListLn);
     }
 }
