@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.WorkoutDetailsEquipmentRecylerViewAdapter;
@@ -39,6 +42,7 @@ public class WorkoutDetailsFragment extends Fragment {
     private List<WorkoutDetailsEquipmentModel> workoutDetailsEquipmentModelList = new ArrayList<>();
     private List<WorkoutDetailsWarmUpModel> workoutDetailsWarmUpModelList = new ArrayList<>();
     private List<WorkoutDetailsWorkoutModel> workoutDetailsWorkoutModelList = new ArrayList<>();
+    private LinearLayout schudelWorkoutDetailsLn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -106,11 +110,21 @@ public class WorkoutDetailsFragment extends Fragment {
         workoutDetailsWarmupRecyclerView.setAdapter(workoutDetailsWarmUpRecyclerViewAdapter);
         workoutDetailsWarmUpRecyclerViewAdapter.setWorkoutDetailsWarmUpModelList(workoutDetailsWarmUpModelList);
         workoutDetailsWarmUpRecyclerViewAdapter.notifyDataSetChanged();
+
+        schudelWorkoutDetailsLn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.homeFrameLayout,new ScheduleWorkoutFragment()).addToBackStack(null).commit();
+            }
+        });
     }
 
     private void assignId(View view) {
         workoutDetailsEquipmentRecyclerView = view.findViewById(R.id.workoutDetailsEquipmentRecyclerView);
         workoutDetailsWarmupRecyclerView = view.findViewById(R.id.workoutDetailsExercisiesRecyclerView);
         workoutDetailsWorkoutRecyclerView = view.findViewById(R.id.workoutDetailsWorkoutRecyclerView);
+        schudelWorkoutDetailsLn = view.findViewById(R.id.scgedulWorkoutDetailsLn);
     }
 }
