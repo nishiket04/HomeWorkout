@@ -98,7 +98,7 @@ public class ProfileFragment extends Fragment {
 //                fragmentTransaction.replace(R.id.homeFrameLayout,new WeightTrackingFragment() ).addToBackStack("accountInformation").commit();
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.homeFrameLayout,new MyWorkoutFragment()).addToBackStack("myworkout").commit();
+                fragmentTransaction.replace(R.id.homeFrameLayout,new WorkoutDetailsFragment()).addToBackStack("myworkout").commit();
             }
         });
 
@@ -110,6 +110,8 @@ public class ProfileFragment extends Fragment {
                 fragmentTransaction.replace(R.id.homeFrameLayout,new WorkoutRemindersFragment()).addToBackStack("accountInformation").commit();
             }
         });
+
+
     }
 
     private void assignId(View view) {
