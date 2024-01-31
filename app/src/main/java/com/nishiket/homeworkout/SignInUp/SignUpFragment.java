@@ -37,6 +37,7 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.android.gms.common.api.ApiException;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.textfield.TextInputEditText;
 import com.google.firebase.FirebaseException;
 import com.google.firebase.FirebaseTooManyRequestsException;
 import com.google.firebase.auth.AuthCredential;
@@ -81,7 +82,8 @@ public class SignUpFragment extends Fragment {
 
     private FirebaseAuth mAuth;
 
-    private EditText phoneEdt,fullNameEdt,passwordEdt,emailEdt,confirmPasswordEdt;
+    private EditText phoneEdt,fullNameEdt,emailEdt;
+    private TextInputEditText passwordEdt,confirmPasswordEdt;
     private ToggleButton passwordToggle,confirmPasswordToggle;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
@@ -175,9 +177,6 @@ public class SignUpFragment extends Fragment {
         fullNameEdt = view.findViewById(R.id.fullNameEdt);
         emailEdt = view.findViewById(R.id.emailEdt);
         confirmPasswordEdt = view.findViewById(R.id.confirmPasswordEdt);
-
-        passwordToggle = view.findViewById(R.id.passwordToggle);
-        confirmPasswordToggle = view.findViewById(R.id.confirmPasswordToggle);
 
     }
 

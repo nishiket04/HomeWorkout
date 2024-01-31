@@ -79,62 +79,59 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/emailEdt" />
 
-    <EditText
-        android:id="@+id/passwordEdt"
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etPasswordLayout1"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginLeft="21dp"
-        android:background="@drawable/edittext_design"
-        android:fontFamily="@font/open_sans"
-        android:hint="Password"
-        android:textColor="@color/white"
-        android:textColorHint="@android:color/background_light"
-        android:inputType="textPassword"
-        android:paddingStart="10dp"
-        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/phoneEdt" />
+        app:layout_constraintTop_toBottomOf="@+id/phoneEdt"
+        app:passwordToggleEnabled="true">
 
-    <ToggleButton
-        android:id="@+id/passwordToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/passwordEdt"
-        app:layout_constraintEnd_toEndOf="@+id/passwordEdt"
-        app:layout_constraintTop_toTopOf="@+id/passwordEdt" />
-    <EditText
-        android:id="@+id/confirmPasswordEdt"
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/passwordEdt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:background="@drawable/edittext_design"
+            android:fontFamily="@font/open_sans"
+            android:hint="Password"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="14dp" />
+    </com.google.android.material.textfield.TextInputLayout>
+
+    <com.google.android.material.textfield.TextInputLayout
+        android:id="@+id/etPasswordLayout"
         android:layout_width="match_parent"
-        android:layout_height="48dp"
+        android:layout_height="wrap_content"
         android:layout_marginTop="16dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginLeft="21dp"
-        android:background="@drawable/edittext_design"
-        android:fontFamily="@font/open_sans"
-        android:hint="Confirm Password"
-        android:textColor="@color/white"
-        android:textColorHint="@android:color/background_light"
-        android:inputType="textPassword"
-        android:paddingStart="10dp"
-        android:textSize="14dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/passwordEdt" />
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordLayout1"
+        app:passwordToggleEnabled="true">
 
-    <ToggleButton
-        android:id="@+id/confirmPasswordToggle"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:visibility="gone"
-        app:layout_constraintBottom_toBottomOf="@+id/confirmPasswordEdt"
-        app:layout_constraintEnd_toEndOf="@+id/confirmPasswordEdt"
-        app:layout_constraintTop_toTopOf="@+id/confirmPasswordEdt" />
+        <com.google.android.material.textfield.TextInputEditText
+            android:id="@+id/confirmPasswordEdt"
+            android:layout_width="match_parent"
+            android:layout_height="48dp"
+            android:layout_marginLeft="21dp"
+            android:layout_marginRight="21dp"
+            android:background="@drawable/edittext_design"
+            android:fontFamily="@font/open_sans"
+            android:hint="Confirm Password"
+            android:inputType="textPassword"
+            android:paddingStart="10dp"
+            android:textColor="@color/white"
+            android:textColorHint="@android:color/background_light"
+            android:textSize="14dp" />
+    </com.google.android.material.textfield.TextInputLayout>
 
-    <LinearLayout
+<LinearLayout
         android:id="@+id/linearLayout3"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -143,7 +140,7 @@
         app:layout_constraintBottom_toTopOf="@+id/signUpBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/confirmPasswordEdt">
+        app:layout_constraintTop_toBottomOf="@+id/etPasswordLayout">
 
         <CheckBox
             android:layout_width="wrap_content"
