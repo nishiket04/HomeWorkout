@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
+import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
@@ -37,12 +38,14 @@ public class TrainingsFragment extends Fragment implements TrainingRecyclerViewA
     private List<TrainingModel> trainingModelList = new ArrayList<>();
     private RecyclerView trainingRecyclerView;
     private LinearLayout personalTraining;
+    private CardView filter;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         trainingRecyclerView = view.findViewById(R.id.trainingRecyclerView);
         personalTraining = view.findViewById(R.id.personalTraining);
+        filter = view.findViewById(R.id.filter);
 
             TrainingModel t1 = new TrainingModel();
             TrainingModel t2 = new TrainingModel();
@@ -110,6 +113,15 @@ public class TrainingsFragment extends Fragment implements TrainingRecyclerViewA
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
                 fragmentTransaction.add(R.id.homeFrameLayout,new PersonalTrainingFragment()).addToBackStack("personalTraining").commit();
+            }
+        });
+
+        filter.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.homeFrameLayout,new FilterFragment()).addToBackStack("filter").commit();
             }
         });
     }
