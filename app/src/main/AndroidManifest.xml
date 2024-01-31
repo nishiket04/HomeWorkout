@@ -2,9 +2,10 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="com.google.android.gms.permission.AD_ID" tools:node="remove"/>
-
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission
+        android:name="com.google.android.gms.permission.AD_ID"
+        tools:node="remove" />
 
     <application
         android:allowBackup="true"
@@ -17,30 +18,33 @@
         android:theme="@style/Theme.HomeWorkout"
         tools:targetApi="31">
         <activity
-            android:name=".SignInUp.SignInUpActivity"
-            android:exported="false"/>
-        <activity
-            android:name=".onborading.WelcomeScreenActivity"
-            android:exported="true">
-<!--            TODO: make this launcher activity-->
+            android:name=".SplaseScreenActivity"
+            android:exported="true" >
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
+
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
         <activity
+            android:name=".SignInUp.SignInUpActivity"
+            android:exported="false" />
+        <activity
+            android:name=".onborading.WelcomeScreenActivity"
+            android:exported="false"/>
+        <activity
             android:name=".user.MainActivity"
-            android:exported="true">
-        </activity>
+            android:exported="true"></activity>
 
         <meta-data
             android:name="preloaded_fonts"
             android:resource="@array/preloaded_fonts" />
-
-
-        <meta-data android:name="com.facebook.sdk.ApplicationId" android:value="@string/facebook_app_id"/>
-        <meta-data android:name="com.facebook.sdk.ClientToken" android:value="@string/facebook_client_token"/>
-
-</application>
+        <meta-data
+            android:name="com.facebook.sdk.ApplicationId"
+            android:value="@string/facebook_app_id" />
+        <meta-data
+            android:name="com.facebook.sdk.ClientToken"
+            android:value="@string/facebook_client_token" />
+    </application>
 
 </manifest>
