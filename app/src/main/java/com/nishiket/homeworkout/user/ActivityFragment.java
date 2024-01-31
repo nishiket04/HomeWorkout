@@ -5,6 +5,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -12,6 +14,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.google.android.material.card.MaterialCardView;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.ActivityDateRecyclerViewAdapter;
 import com.nishiket.homeworkout.model.ActivityDateModel;
@@ -34,6 +37,7 @@ public class ActivityFragment extends Fragment {
     }
 
     private RecyclerView dateActivityRecyclerView;
+    private MaterialCardView progress;
     private List<ActivityDateModel> activityDateModelList = new ArrayList<>();
 
     @Override
@@ -78,9 +82,19 @@ public class ActivityFragment extends Fragment {
         dateActivityRecyclerView.setAdapter(dateRecyclerViewAdapter);
         dateRecyclerViewAdapter.setActivityDateModelsLst(activityDateModelList);
         dateRecyclerViewAdapter.notifyDataSetChanged();
+
+        progress.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.replace(R.id.homeFrameLayout,new ProgressFragment()).addToBackStack(null).commit();
+            }
+        });
     }
 
     private void assignId(View view) {
         dateActivityRecyclerView = view.findViewById(R.id.activityDateRecyclerView);
+        progress = view.findViewById(R.id.progress);
     }
 }
