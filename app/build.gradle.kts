@@ -53,5 +53,6 @@ dependencies {
 
     implementation ("com.airbnb.android:lottie:6.3.0")
 
+    implementation ("com.github.PhilJay:MPAndroidChart:v3.1.0")
 
 }

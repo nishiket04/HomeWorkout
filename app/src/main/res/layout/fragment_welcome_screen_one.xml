@@ -4,12 +4,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:id="@+id/relativeperent"
+    android:background="@color/dark_theam"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     tools:context=".onborading.WelcomeScreenOneFragment">
 
     <ImageView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
         android:scaleType="fitXY"
         android:src="@drawable/wlcome_screen_one_pic"/>
 
