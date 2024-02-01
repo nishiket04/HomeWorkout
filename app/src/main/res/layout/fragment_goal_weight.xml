@@ -4,7 +4,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    android:background="@android:color/background_dark"
+    android:background="@color/dark_theam"
     tools:context=".SignInUp.GoalWeightFragment">
 
     <RelativeLayout
@@ -107,6 +107,8 @@
         android:layout_marginRight="21dp"
         android:background="@drawable/button_design"
         android:text="Continue"
+        android:textSize="17dp"
+        android:textAllCaps="false"
         android:id="@+id/goalWeightContinueBtn"
         android:textColor="@color/white"
         app:layout_constraintBottom_toBottomOf="parent"

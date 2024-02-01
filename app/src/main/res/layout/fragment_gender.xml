@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@android:color/background_dark"
+    android:background="@color/dark_theam"
     tools:context=".SignInUp.GenderFragment">
 
     <RelativeLayout
@@ -78,6 +78,8 @@
         android:layout_width="match_parent"
         android:layout_height="48dp"
         android:layout_marginRight="21dp"
+        android:textAllCaps="false"
+        android:textSize="17dp"
         android:layout_marginLeft="21dp"
         android:id="@+id/genderContinueBtn"
         android:background="@drawable/button_design"
