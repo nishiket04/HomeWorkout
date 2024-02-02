@@ -8,7 +8,7 @@
     tools:context=".user.MyWorkoutFragment">
 
     <ImageView
-        android:id="@+id/backToHomeImage"
+        android:id="@+id/backToProfileImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
@@ -48,7 +48,7 @@
         android:textAlignment="center"
         app:tabIndicatorGravity="center"
         app:tabIndicator="@drawable/tab_idicator_design"
-        app:tabIndicatorColor="@color/primary_light"
+        app:tabIndicatorColor="@color/primary_light1"
         app:tabIndicatorAnimationDuration="1000"
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorHeight="32dp"
