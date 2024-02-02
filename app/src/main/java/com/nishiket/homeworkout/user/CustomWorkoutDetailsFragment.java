@@ -125,6 +125,14 @@ public class CustomWorkoutDetailsFragment extends Fragment {
             }
         });
 
+        backToPersonalTrainingImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
+
     }
 
     private void assigId(View view) {
