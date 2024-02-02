@@ -4,7 +4,8 @@
     <color name="white">#FFFFFFFF</color>
     <color name="primary">#62F1F1</color>
     <color name="primary_dark">#9662F1</color>
-    <color name="primary_light">#7850BF</color>
+    <color name="primary_light">@drawable/primary_light</color>
+    <color name="primary_light1">#7850BF</color>
     <color name="weight_red">#F5634A</color>
     <color name="weight_green">#40DBC1</color>
     <color name="dark_theam">#222332</color>
