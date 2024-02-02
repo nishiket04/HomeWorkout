@@ -1,13 +1,16 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
         <layer-list>
+            <item>
         <shape android:innerRadius="0dp"
             android:shape="ring"
             android:thickness="8dp"
             android:useLevel="false"
             android:tint="@color/primary_light1"
             >
+            <solid android:color="@color/primary_light1"/>
         </shape>
+            </item>
         <item
             android:width="7dp"
             android:height="5dp"

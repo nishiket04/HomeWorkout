@@ -5,11 +5,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.viewpager.widget.ViewPager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.google.android.material.tabs.TabLayout;
 import com.nishiket.homeworkout.R;
@@ -29,6 +31,7 @@ public class ProgressFragment extends Fragment {
     }
     private TabLayout progressTab;
     private ViewPager progressViewPager;
+    private ImageView backToActivityImage;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -39,10 +42,19 @@ public class ProgressFragment extends Fragment {
         progressViewPager.setAdapter(progressViewPagerAdapter);
         progressTab.setupWithViewPager(progressViewPager);
 
+        backToActivityImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
+
     }
 
     private void assignId(View view) {
         progressViewPager = view.findViewById(R.id.progressViewPager);
         progressTab = view.findViewById(R.id.progressTabLayout);
+        backToActivityImage = view.findViewById(R.id.backToActivityImage);
     }
 }
