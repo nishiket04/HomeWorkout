@@ -26,7 +26,7 @@
         app:cardCornerRadius="18dp"
         android:id="@+id/premium"
         android:visibility="gone"
-        app:cardBackgroundColor="@color/primary_light"
+        app:cardBackgroundColor="@color/primary_light1"
         app:layout_constraintBottom_toTopOf="@+id/scrollView2"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent">
