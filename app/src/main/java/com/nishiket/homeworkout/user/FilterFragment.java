@@ -5,12 +5,15 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.FilterDurationRecyclerViewAdapter;
@@ -42,6 +45,7 @@ public class FilterFragment extends Fragment {
     private List<FilterModel> levelFilterModelList = new ArrayList<>();
     private List<FilterModel> durationFilterModelList = new ArrayList<>();
     private List<FilterModel> equipmentFilterModelList = new ArrayList<>();
+    private ImageView backToTraining;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -143,6 +147,14 @@ public class FilterFragment extends Fragment {
         filterLevelRecyclerViewAdapter.notifyDataSetChanged();
         filterDurationRecyclerViewAdapter.notifyDataSetChanged();
         filterEquipmentRecyclerViewAdapter.notifyDataSetChanged();
+
+        backToTraining.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
     }
 
     private void assignId(View view) {
@@ -151,5 +163,6 @@ public class FilterFragment extends Fragment {
         levelFilterRecyclerView = view.findViewById(R.id.levelFilterRecyclerView);
         durationFilterRecyclerView = view.findViewById(R.id.durationFilterRecyclerView);
         equipmentFilterRecyclerView = view.findViewById(R.id.equipmentFilterRecyclerView);
+        backToTraining = view.findViewById(R.id.backToTraining);
     }
 }

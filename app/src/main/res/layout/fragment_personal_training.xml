@@ -84,7 +84,7 @@
                         android:layout_width="115dp"
                         android:layout_height="40dp"
                         android:layout_marginRight="16dp"
-                        app:cardBackgroundColor="@color/primary_light"
+                        app:cardBackgroundColor="@color/primary_light1"
                         app:cardCornerRadius="18dp">
 
                         <TextView
