@@ -41,7 +41,7 @@ public class ActivityDateRecyclerViewAdapter extends RecyclerView.Adapter<Activi
         holder.mntActivityTxt.setText(activityDateModel.getMonth());
         holder.dateActivityTxt.setText(activityDateModel.getDate());
         if(position == 0){
-            holder.date_bg.setBackgroundResource(R.color.primary_light);
+            holder.date_bg.setBackgroundResource(R.color.primary_light1);
         }
 
     }
