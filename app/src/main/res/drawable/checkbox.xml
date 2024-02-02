@@ -1,14 +1,28 @@
 <?xml version="1.0" encoding="utf-8"?>
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_checked="true">
-        <shape android:innerRadius="0dp"
-            android:shape="ring"
-            android:thickness="8dp"
-            android:useLevel="false"
-            android:tint="@color/primary"
-            >
-        </shape>
+        <layer-list>
+            <!-- Ring shape -->
+            <item>
+                <shape
+                    android:innerRadius="0dp"
+                    android:shape="ring"
+                    android:thickness="8dp"
+                    android:useLevel="false"
+                    android:tint="@color/primary">
+                </shape>
+            </item>
+            <!-- Right sign drawable -->
+            <item
+                android:width="7dp"
+                android:height="5dp"
+                android:drawable="@drawable/right_sign"
+                android:gravity="center">
+            </item>
+        </layer-list>
     </item>
+
+
 
     <item>
         <shape android:tint="#404B52"
@@ -19,4 +33,5 @@
             <solid android:color="@color/white"/>
         </shape>
     </item>
+
 </selector>
