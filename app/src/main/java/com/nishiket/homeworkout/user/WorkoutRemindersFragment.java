@@ -6,11 +6,13 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
+import android.widget.ImageView;
 import android.widget.TimePicker;
 
 import com.nishiket.homeworkout.R;
@@ -32,7 +34,7 @@ public class WorkoutRemindersFragment extends Fragment {
     }
     private EditText workoutTimeEditText;
     private TimePicker timePicker;
-
+    private ImageView backToProfileImage;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -57,10 +59,19 @@ public class WorkoutRemindersFragment extends Fragment {
         });
 
         workoutTimeEditText.setFocusable(false);
+
+        backToProfileImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
     }
 
     private void assignId(View view) {
         workoutTimeEditText = view.findViewById(R.id.workoutTimeEditText);
+        backToProfileImage = view.findViewById(R.id.backToProfileImage);
     }
 
     private TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
