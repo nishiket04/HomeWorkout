@@ -31,8 +31,6 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         bottom_navigation_view.setOnNavigationItemSelectedListener(this);
         bottom_navigation_view.setSelectedItemId(R.id.home);
 
-        bottom_navigation_view.getMenu().findItem(R.id.home).setIcon(R.drawable.home);
-
     }
 
     @SuppressLint("NonConstantResourceId")
