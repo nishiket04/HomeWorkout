@@ -149,7 +149,7 @@
         <CheckBox
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:background="@drawable/checkbox"
+            android:background="@drawable/checkbox3"
             android:button="@null"
             android:id="@+id/privacyCheckBox"
             />
