@@ -577,7 +577,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:thumbTint="@color/white"
                                 app:trackDecorationTint="@android:color/transparent"
-                                app:trackTint="@color/primary_light" />
+                                app:trackTint="@color/primary_light1" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
                     <LinearLayout
@@ -631,7 +631,7 @@
                                 app:layout_constraintTop_toTopOf="parent"
                                 app:thumbTint="@color/white"
                                 app:trackDecorationTint="@android:color/transparent"
-                                app:trackTint="@color/primary_light" />
+                                app:trackTint="@color/primary_light1" />
                         </androidx.constraintlayout.widget.ConstraintLayout>
                     </LinearLayout>
                     <LinearLayout

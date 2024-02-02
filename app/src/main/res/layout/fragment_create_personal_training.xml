@@ -380,7 +380,7 @@
                     app:layout_constraintTop_toTopOf="@id/linearLayout13"
                     app:thumbTint="@color/white"
                     app:trackDecorationTint="@android:color/transparent"
-                    app:trackTint="@color/primary_light" />
+                    app:trackTint="@color/primary_light1" />
 
                 <LinearLayout
                     android:id="@+id/linearLayout14"
@@ -420,7 +420,7 @@
                     app:layout_constraintTop_toTopOf="@id/linearLayout14"
                     app:thumbTint="@color/white"
                     app:trackDecorationTint="@android:color/transparent"
-                    app:trackTint="@color/primary_light" />
+                    app:trackTint="@color/primary_light1" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatButton
