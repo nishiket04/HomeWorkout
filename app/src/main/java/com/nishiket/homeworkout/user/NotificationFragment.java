@@ -1,16 +1,19 @@
 package com.nishiket.homeworkout.user;
 
+import android.media.Image;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ImageView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.NotificationParentRecyclerViewAdapter;
@@ -38,6 +41,7 @@ public class NotificationFragment extends Fragment {
     private RecyclerView notificationPerentRecycelrView;
     private List<NotificationParentModel> notificationParentModelList = new ArrayList<>();
     private List<NotificationChildModel> notificationChildModelList = new ArrayList<>();
+    private ImageView backToHome;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
@@ -78,9 +82,18 @@ public class NotificationFragment extends Fragment {
         notificationPerentRecycelrView.setAdapter(notificationParentRecyclerViewAdapter);
         notificationParentRecyclerViewAdapter.setNotificationParentModelList(notificationParentModelList);
         notificationParentRecyclerViewAdapter.notifyDataSetChanged();
+
+        backToHome.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                fragmentManager.popBackStack();
+            }
+        });
     }
 
     private void assignId(View view) {
         notificationPerentRecycelrView = view.findViewById(R.id.notificationPerentRecycelrView);
+        backToHome = view.findViewById(R.id.backToHomeImage);
     }
 }

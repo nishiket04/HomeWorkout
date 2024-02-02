@@ -8,7 +8,7 @@
     tools:context=".user.NotificationFragment">
 
     <ImageView
-        android:id="@+id/backToPersonalTrainingImage"
+        android:id="@+id/backToHomeImage"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginLeft="16dp"
