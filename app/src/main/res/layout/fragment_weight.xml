@@ -77,7 +77,7 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/textViewHeight"
-        app:tabIndicatorAnimationDuration="1400"
+        app:tabIndicatorAnimationDuration="1000"
         app:tabIndicatorAnimationMode="elastic"
         app:tabPadding="5dp"
         app:tabSelectedTextColor="@color/white"

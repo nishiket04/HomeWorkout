@@ -49,7 +49,7 @@
         app:tabIndicatorGravity="center"
         app:tabIndicator="@drawable/tab_idicator_design"
         app:tabIndicatorColor="@color/primary_light"
-        app:tabIndicatorAnimationDuration="3000"
+        app:tabIndicatorAnimationDuration="1000"
         app:tabIndicatorAnimationMode="elastic"
         app:tabIndicatorHeight="32dp"
         app:tabMaxWidth="95dp"

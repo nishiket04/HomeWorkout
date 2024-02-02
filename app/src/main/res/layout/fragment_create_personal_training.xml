@@ -87,8 +87,8 @@
                 android:id="@+id/linearLayout6"
                 android:layout_width="match_parent"
                 android:layout_height="98dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="11dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView31">
@@ -142,8 +142,8 @@
                 android:id="@+id/linearLayout16"
                 android:layout_width="match_parent"
                 android:layout_height="98dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="11dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout6">
@@ -197,8 +197,8 @@
                 android:id="@+id/linearLayout17"
                 android:layout_width="match_parent"
                 android:layout_height="98dp"
-                android:layout_marginLeft="21dp"
-                android:layout_marginRight="21dp"
+                android:layout_marginLeft="11dp"
+                android:layout_marginRight="11dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/linearLayout16">
