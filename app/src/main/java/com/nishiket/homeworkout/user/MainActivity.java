@@ -11,6 +11,7 @@ import android.view.MenuItem;
 import android.widget.FrameLayout;
 
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.firebase.messaging.FirebaseMessaging;
 import com.nishiket.homeworkout.R;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         bottom_navigation_view = findViewById(R.id.bottom_navigation_view);
+        FirebaseMessaging.getInstance().subscribeToTopic("all_users");
 
 //        FragmentManager fragmentManager = getSupportFragmentManager();
 //        FragmentTransaction ft = fragmentManager.beginTransaction();

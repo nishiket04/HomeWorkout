@@ -145,7 +145,7 @@
                         android:paddingRight="19dp">
 
                         <TextView
-                            android:id="@+id/textView61"
+                            android:id="@+id/textView62"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"
@@ -166,7 +166,7 @@
                             android:textColor="@color/white"
                             android:textSize="14dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView61" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView62" />
 
                     </androidx.constraintlayout.widget.ConstraintLayout>
 
@@ -176,7 +176,7 @@
                         android:layout_weight="1">
 
                         <TextView
-                            android:id="@+id/textView60"
+                            android:id="@+id/textView66"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginTop="16dp"
@@ -196,7 +196,7 @@
                             android:textColor="@color/white"
                             android:textSize="14dp"
                             app:layout_constraintStart_toStartOf="parent"
-                            app:layout_constraintTop_toBottomOf="@+id/textView60" />
+                            app:layout_constraintTop_toBottomOf="@+id/textView66" />
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -204,8 +204,8 @@
                             android:text="bpm"
                             android:textColor="#CAD0D8"
                             app:layout_constraintBottom_toTopOf="@+id/textView63"
-                            app:layout_constraintStart_toEndOf="@+id/textView60"
-                            app:layout_constraintTop_toTopOf="@+id/textView60" />
+                            app:layout_constraintStart_toEndOf="@+id/textView66"
+                            app:layout_constraintTop_toTopOf="@+id/textView66" />
                     </androidx.constraintlayout.widget.ConstraintLayout>
                 </LinearLayout>
 
@@ -239,12 +239,12 @@
                             android:layout_height="wrap_content"
                             android:text="Kcal"
                             android:textColor="#CAD0D8"
-                            app:layout_constraintBottom_toTopOf="@+id/textView62"
+                            app:layout_constraintBottom_toTopOf="@+id/textView67"
                             app:layout_constraintStart_toEndOf="@+id/textView61"
                             app:layout_constraintTop_toTopOf="@+id/textView61" />
 
                         <TextView
-                            android:id="@+id/textView62"
+                            android:id="@+id/textView67"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="16dp"

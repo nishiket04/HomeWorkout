@@ -1,6 +1,5 @@
 package com.nishiket.homeworkout.adapter;
 
-import android.app.FragmentManager;
 import android.content.Context;
 import android.media.Image;
 import android.view.LayoutInflater;
