@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.CardListRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentGenderBinding;
 import com.nishiket.homeworkout.model.CardList;
 
 import java.util.ArrayList;
@@ -24,6 +25,7 @@ import java.util.List;
 
 public class GenderFragment extends Fragment {
     private List<CardList> cardListList = new ArrayList<>();
+    private FragmentGenderBinding genderBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,15 +34,12 @@ public class GenderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_gender, container, false);
+        genderBinding = FragmentGenderBinding.inflate(inflater,container,false);
+        return genderBinding.getRoot();
     }
-    private AppCompatButton genderBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        RecyclerView recyclerView = view.findViewById(R.id.recyclerView);
-        genderBtn = view.findViewById(R.id.genderContinueBtn);
         CardList c1 = new CardList();
         c1.setImage(R.drawable.man);
         c1.setGender("Man");
@@ -55,11 +54,11 @@ public class GenderFragment extends Fragment {
         cardListList.add(c3);
 
         CardListRecyclerViewAdapter cardListRecyclerViewAdapter = new CardListRecyclerViewAdapter(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(cardListRecyclerViewAdapter);
+        genderBinding.recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        genderBinding.recyclerView.setAdapter(cardListRecyclerViewAdapter);
         cardListRecyclerViewAdapter.setActiveComplainList(cardListList);
 
-        genderBtn.setOnClickListener(new View.OnClickListener() {
+        genderBinding.genderContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();

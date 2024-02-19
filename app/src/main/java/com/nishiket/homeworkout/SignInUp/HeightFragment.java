@@ -17,10 +17,11 @@ import android.view.ViewGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.HeightViewPagerAdapter;
+import com.nishiket.homeworkout.databinding.FragmentHeightBinding;
 
 public class HeightFragment extends Fragment {
 
-
+    private FragmentHeightBinding heightBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,24 +30,18 @@ public class HeightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_height, container, false);
+        heightBinding = FragmentHeightBinding.inflate(inflater,container,false);
+        return heightBinding.getRoot();
     }
-    private TabLayout heightTabLayout;
-    private ViewPager heightViewPager;
-    private AppCompatButton heightContinueBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        heightTabLayout = view.findViewById(R.id.heightTabLayout);
-        heightViewPager = view.findViewById(R.id.heightViewPager);
-        heightContinueBtn = view.findViewById(R.id.heightContinueBtn);
 
         HeightViewPagerAdapter heightViewPagerAdapter = new HeightViewPagerAdapter(getParentFragmentManager());
-        heightViewPager.setAdapter(heightViewPagerAdapter);
-        heightTabLayout.setupWithViewPager(heightViewPager);
+        heightBinding.heightViewPager.setAdapter(heightViewPagerAdapter);
+        heightBinding.heightTabLayout.setupWithViewPager(heightBinding.heightViewPager);
 
-        heightContinueBtn.setOnClickListener(new View.OnClickListener() {
+        heightBinding.heightContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();

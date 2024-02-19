@@ -26,17 +26,20 @@ import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentVerifiactionBinding;
 
 import java.util.concurrent.TimeUnit;
 
 
 public class VerificationFragment extends Fragment {
-
+    private FragmentVerifiactionBinding verifiactionBinding;
+    private String verificationId;
+    private String otp;
+    private String email,password;
 
     public VerificationFragment() {
 
     }
-
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -45,31 +48,20 @@ public class VerificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_verifiaction, container, false);
+        verifiactionBinding = FragmentVerifiactionBinding.inflate(inflater,container,false);
+        return verifiactionBinding.getRoot();
     }
 
-    private String verificationId;
-    private String otp;
-    private String email,password;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        TextView otp_1,otp_2,otp_3,otp_4,otp_5,otp_6,phoneNumberTxt;
-        otp_1 = view.findViewById(R.id.otp_1);
-        otp_2 = view.findViewById(R.id.otp_2);
-        otp_3 = view.findViewById(R.id.otp_3);
-        otp_4 = view.findViewById(R.id.otp_4);
-        otp_5 = view.findViewById(R.id.otp_5);
-        otp_6 = view.findViewById(R.id.otp_6);
-        phoneNumberTxt = view.findViewById(R.id.phoneNumberTxt);
         SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
 
         sendVerificationCode(signInUpActivity.phoneNumber);
-        phoneNumberTxt.setText(signInUpActivity.phoneNumber);
+        verifiactionBinding.phoneNumberTxt.setText(signInUpActivity.phoneNumber);
         email = signInUpActivity.email;
         password = signInUpActivity.password;
-        otp_1.addTextChangedListener(new TextWatcher() {
+        verifiactionBinding.otp1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -83,12 +75,12 @@ public class VerificationFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() == 1){
-                    otp_2.requestFocus();
+                    verifiactionBinding.otp2.requestFocus();
                 }
             }
         });
 
-        otp_2.addTextChangedListener(new TextWatcher() {
+        verifiactionBinding.otp2.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -102,15 +94,15 @@ public class VerificationFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() == 0) {
-                    otp_1.requestFocus();
+                    verifiactionBinding.otp1.requestFocus();
                 }
                 else if (editable.length() == 1){
-                    otp_3.requestFocus();
+                    verifiactionBinding.otp3.requestFocus();
                 }
             }
         });
 
-        otp_3.addTextChangedListener(new TextWatcher() {
+        verifiactionBinding.otp3.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -124,14 +116,14 @@ public class VerificationFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() == 0) {
-                    otp_2.requestFocus();
+                    verifiactionBinding.otp2.requestFocus();
                 }
                 else if (editable.length() == 1){
-                    otp_4.requestFocus();
+                    verifiactionBinding.otp4.requestFocus();
                 }
             }
         });
-        otp_4.addTextChangedListener(new TextWatcher() {
+        verifiactionBinding.otp4.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -145,14 +137,14 @@ public class VerificationFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() == 0) {
-                    otp_3.requestFocus();
+                    verifiactionBinding.otp3.requestFocus();
                 }
                 else if (editable.length() == 1){
-                    otp_5.requestFocus();
+                    verifiactionBinding.otp5.requestFocus();
                 }
             }
         });
-        otp_5.addTextChangedListener(new TextWatcher() {
+        verifiactionBinding.otp5.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -166,14 +158,14 @@ public class VerificationFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() == 0) {
-                    otp_4.requestFocus();
+                    verifiactionBinding.otp4.requestFocus();
                 }
                 else if (editable.length() == 1){
-                    otp_6.requestFocus();
+                    verifiactionBinding.otp6.requestFocus();
                 }
             }
         });
-        otp_6.addTextChangedListener(new TextWatcher() {
+        verifiactionBinding.otp6.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
 
@@ -187,9 +179,9 @@ public class VerificationFragment extends Fragment {
             @Override
             public void afterTextChanged(Editable editable) {
                 if (editable.length() == 0) {
-                    otp_5.requestFocus();
+                    verifiactionBinding.otp5.requestFocus();
                 }else {
-                    otp = otp_1.getText().toString()+otp_2.getText().toString()+otp_3.getText().toString()+otp_4.getText().toString()+otp_5.getText().toString()+otp_6.getText().toString();
+                    otp = verifiactionBinding.otp1.getText().toString()+verifiactionBinding.otp2.getText().toString()+verifiactionBinding.otp3.getText().toString()+verifiactionBinding.otp4.getText().toString()+verifiactionBinding.otp5.getText().toString()+verifiactionBinding.otp6.getText().toString();
                     // Check if the entered OTP is valid
                     if (verificationId != null && !verificationId.isEmpty()) {
                         verifyPhoneNumberWithCode(verificationId, otp);

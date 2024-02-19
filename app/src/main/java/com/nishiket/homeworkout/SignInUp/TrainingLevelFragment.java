@@ -17,13 +17,15 @@ import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.TraingListRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentTrainingLevelBinding;
 import com.nishiket.homeworkout.model.TraingListModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrainingLevelFragment extends Fragment {
-
+    private FragmentTrainingLevelBinding trainingLevelBinding;
+    private List<TraingListModel> traingListModelList =  new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,17 +34,12 @@ public class TrainingLevelFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_training_level, container, false);
+        trainingLevelBinding = FragmentTrainingLevelBinding.inflate(inflater,container,false);
+        return trainingLevelBinding.getRoot();
     }
-    private RecyclerView traingLevelRecyclerView;
-    private List<TraingListModel> traingListModelList =  new ArrayList<>();
-    private AppCompatButton trainingLevelContinueBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        traingLevelRecyclerView = view.findViewById(R.id.traingLevelRecylerView);
-        trainingLevelContinueBtn = view.findViewById(R.id.trainingLevelContinueBtn);
 
         TraingListModel t1 = new TraingListModel();
         TraingListModel t2 = new TraingListModel();
@@ -66,12 +63,12 @@ public class TrainingLevelFragment extends Fragment {
 
 
         TraingListRecyclerViewAdapter traingListRecyclerViewAdapter = new TraingListRecyclerViewAdapter(getActivity());
-        traingLevelRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        traingLevelRecyclerView.setAdapter(traingListRecyclerViewAdapter);
+        trainingLevelBinding.traingLevelRecylerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        trainingLevelBinding.traingLevelRecylerView.setAdapter(traingListRecyclerViewAdapter);
         traingListRecyclerViewAdapter.setTraingListModelList(traingListModelList);
         traingListRecyclerViewAdapter.notifyDataSetChanged();
 
-        trainingLevelContinueBtn.setOnClickListener(new View.OnClickListener() {
+        trainingLevelBinding.trainingLevelContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();

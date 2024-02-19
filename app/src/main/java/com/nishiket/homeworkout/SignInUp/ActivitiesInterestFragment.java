@@ -17,6 +17,7 @@ import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.ActivitiesInterestRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentActivitiesInterestBinding;
 import com.nishiket.homeworkout.model.ActivitiesInterestModel;
 
 import java.util.ArrayList;
@@ -24,6 +25,8 @@ import java.util.List;
 
 public class ActivitiesInterestFragment extends Fragment {
 
+    private FragmentActivitiesInterestBinding activitiesInterestBinding;
+    private List<ActivitiesInterestModel> activitiesInterestModelList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +35,12 @@ public class ActivitiesInterestFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_activities_interest, container, false);
+        activitiesInterestBinding = FragmentActivitiesInterestBinding.inflate(inflater,container,false);
+        return activitiesInterestBinding.getRoot();
     }
-
-    private RecyclerView activitiesInterestRecylerView;
-    private List<ActivitiesInterestModel> activitiesInterestModelList = new ArrayList<>();
-    private AppCompatButton activityOfInterestContinueBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        activitiesInterestRecylerView = view.findViewById(R.id.activitiesInterestRecylerView);
-        activityOfInterestContinueBtn = view.findViewById(R.id.activitiOfInterestContinueBtn);
 
         ActivitiesInterestModel a1 = new ActivitiesInterestModel();
         ActivitiesInterestModel a2 = new ActivitiesInterestModel();
@@ -71,12 +68,12 @@ public class ActivitiesInterestFragment extends Fragment {
 
 
         ActivitiesInterestRecyclerViewAdapter activitiesInterestRecyclerViewAdapter = new ActivitiesInterestRecyclerViewAdapter(getActivity());
-        activitiesInterestRecylerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        activitiesInterestRecylerView.setAdapter(activitiesInterestRecyclerViewAdapter);
+        activitiesInterestBinding.activitiesInterestRecylerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        activitiesInterestBinding.activitiesInterestRecylerView.setAdapter(activitiesInterestRecyclerViewAdapter);
         activitiesInterestRecyclerViewAdapter.setActivitiesInterestModelList(activitiesInterestModelList);
         activitiesInterestRecyclerViewAdapter.notifyDataSetChanged();
 
-        activityOfInterestContinueBtn.setOnClickListener(new View.OnClickListener() {
+        activitiesInterestBinding.activitiOfInterestContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();

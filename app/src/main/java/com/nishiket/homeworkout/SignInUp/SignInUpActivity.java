@@ -10,13 +10,15 @@ import android.os.Bundle;
 import android.util.Log;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.ActivitySignInUpBinding;
 
 public class SignInUpActivity extends AppCompatActivity {
-
+    private ActivitySignInUpBinding activitySignInUpBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_sign_in_up);
+        activitySignInUpBinding = ActivitySignInUpBinding.inflate(getLayoutInflater());
+        setContentView(activitySignInUpBinding.getRoot());
         Intent i = getIntent();
         FragmentManager fragmentManager = getSupportFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();

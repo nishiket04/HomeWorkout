@@ -42,6 +42,7 @@ import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentSignInBinding;
 import com.nishiket.homeworkout.user.MainActivity;
 
 import java.util.Arrays;
@@ -53,6 +54,8 @@ public class SignInFragment extends Fragment {
     private static final int RC_SIGN_IN = 9001;
 
     private FirebaseAuth mAuth;
+    private FragmentSignInBinding signInBinding;
+    private CallbackManager callbackManager;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -63,21 +66,15 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_in, container, false);
+        signInBinding = FragmentSignInBinding.inflate(inflater,container,false);
+        return signInBinding.getRoot();
     }
 
-    private ImageView logoApple,logoFacebook,logoGoogle;
-    private TextView forgotPasswordTxt,signUpTxt;
-    private AppCompatButton signInBtn;
-    private CallbackManager callbackManager;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
         FacebookSdk.sdkInitialize(getApplicationContext());
 
-        // assign id to views
-        assignId(view);
         mAuth = FirebaseAuth.getInstance();
         callbackManager = CallbackManager.Factory.create();
 
@@ -85,14 +82,14 @@ public class SignInFragment extends Fragment {
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
 
-        signUpTxt.setOnClickListener(new View.OnClickListener() {
+        signInBinding.signUpTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ft.replace(R.id.frame,new SignUpFragment()).commit();
             }
         });
 
-        signInBtn.setOnClickListener(new View.OnClickListener() {
+        signInBinding.signInBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), MainActivity.class);
@@ -112,7 +109,7 @@ public class SignInFragment extends Fragment {
 
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
-        logoGoogle.setOnClickListener(new View.OnClickListener() {
+        signInBinding.logoGoogle.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signInWithGoogle(mGoogleSignInClient);
@@ -121,7 +118,7 @@ public class SignInFragment extends Fragment {
 
 
         callbackManager = CallbackManager.Factory.create();
-        logoFacebook.setOnClickListener(new View.OnClickListener() {
+        signInBinding.logoFacebook.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 handleFacebookLogin();
@@ -164,18 +161,6 @@ public class SignInFragment extends Fragment {
                         Log.d("facebook", "handleFacebookAccessToken: fail");
                     }
                 });
-    }
-
-
-    private void assignId(View view) {
-        logoApple = view.findViewById(R.id.logoApple);
-        logoFacebook = view.findViewById(R.id.logoFacebook);
-        logoGoogle = view.findViewById(R.id.logoGoogle);
-
-        forgotPasswordTxt = view.findViewById(R.id.forgotPasswordTxt);
-        signUpTxt = view.findViewById(R.id.signUpTxt);
-
-        signInBtn = view.findViewById(R.id.signInBtn);
     }
 
     private void signInWithGoogle(GoogleSignInClient mGoogleSignInClient) {

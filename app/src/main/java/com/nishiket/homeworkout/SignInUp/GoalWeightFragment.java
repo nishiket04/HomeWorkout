@@ -17,9 +17,10 @@ import android.view.ViewGroup;
 import com.google.android.material.tabs.TabLayout;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.GoalWeightViewPagerAdapter;
+import com.nishiket.homeworkout.databinding.FragmentGoalWeightBinding;
 
 public class GoalWeightFragment extends Fragment {
-
+    private FragmentGoalWeightBinding goalWeightBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,26 +29,20 @@ public class GoalWeightFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goal_weight, container, false);
+        goalWeightBinding = FragmentGoalWeightBinding.inflate(inflater,container,false);
+        return goalWeightBinding.getRoot();
     }
 
-    private TabLayout goalWeightTabLayout;
-    private ViewPager goalWeightViewPager;
-    private AppCompatButton goalWeigthContinueBtn;
+
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        goalWeightTabLayout = view.findViewById(R.id.goalWeightTabLayout);
-        goalWeightViewPager = view.findViewById(R.id.goalWeightViewPager);
-        goalWeigthContinueBtn = view.findViewById(R.id.goalWeightContinueBtn);
-
         GoalWeightViewPagerAdapter goalWeightViewPagerAdapter = new GoalWeightViewPagerAdapter(getParentFragmentManager());
-        goalWeightViewPager.setAdapter(goalWeightViewPagerAdapter);
-        goalWeightTabLayout.setupWithViewPager(goalWeightViewPager);
+        goalWeightBinding.goalWeightViewPager.setAdapter(goalWeightViewPagerAdapter);
+        goalWeightBinding.goalWeightTabLayout.setupWithViewPager(goalWeightBinding.goalWeightViewPager);
 
-        goalWeigthContinueBtn.setOnClickListener(new View.OnClickListener() {
+        goalWeightBinding.goalWeightContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();

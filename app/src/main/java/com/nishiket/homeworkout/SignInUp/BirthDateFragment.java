@@ -19,12 +19,16 @@ import android.widget.DatePicker;
 import android.widget.EditText;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentBirthDateBinding;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
 
 public class BirthDateFragment extends Fragment {
+    private Calendar calendar;
+    private FragmentBirthDateBinding birthDateBinding;
+
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -34,21 +38,16 @@ public class BirthDateFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_birth_date, container, false);
+        birthDateBinding = FragmentBirthDateBinding.inflate(inflater,container,false);
+        return birthDateBinding.getRoot();
     }
 
-    private AppCompatButton birthDateContinueBtn;
-    private EditText birthDateEditText;
-    private Calendar calendar;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        birthDateContinueBtn = view.findViewById(R.id.birthDateContinueBtn);
-        birthDateEditText = view.findViewById(R.id.birthDateEditText);
         // get instance of calender to set piced date on this
         calendar = Calendar.getInstance();
-        birthDateContinueBtn.setOnClickListener(new View.OnClickListener() {
+        birthDateBinding.birthDateContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -57,7 +56,7 @@ public class BirthDateFragment extends Fragment {
             }
         });
 
-        birthDateEditText.setOnClickListener(new View.OnClickListener() {
+        birthDateBinding.birthDateEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 // method to show date dialog
@@ -65,7 +64,7 @@ public class BirthDateFragment extends Fragment {
             }
         });
         // this will make it read only box
-        birthDateEditText.setFocusable(false);
+        birthDateBinding.birthDateEditText.setFocusable(false);
     }
 
     // This method is to show dialogBox
@@ -101,6 +100,6 @@ public class BirthDateFragment extends Fragment {
         String formattedDate = sdf.format(calendar.getTime());
 
         // Set the formatted date to the EditText
-        birthDateEditText.setText(formattedDate);
+        birthDateBinding.birthDateEditText.setText(formattedDate);
     }
 }

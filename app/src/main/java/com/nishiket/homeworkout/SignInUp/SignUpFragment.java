@@ -52,6 +52,7 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthOptions;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentSignUpBinding;
 
 import java.util.Arrays;
 import java.util.concurrent.Executor;
@@ -59,7 +60,10 @@ import java.util.concurrent.TimeUnit;
 
 public class SignUpFragment extends Fragment {
 
-
+    private FragmentSignUpBinding signUpBinding;
+    private CallbackManager callbackManager;
+    private static final int RC_SIGN_IN = 9001;
+    private FirebaseAuth mAuth;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -69,28 +73,13 @@ public class SignUpFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_sign_up, container, false);
+        signUpBinding = FragmentSignUpBinding.inflate(inflater,container,false);
+        return signUpBinding.getRoot();
     }
 
-    private TextView signInInSignUpTxt;
-    private ImageView logoAppleSignUp,logoFacebookSignUp,logoGoogleSignUp;
-    private AppCompatButton signUpBtn;
-    private CheckBox privacyCheckBox;
-    private CallbackManager callbackManager;
-    private static final int RC_SIGN_IN = 9001;
-
-    private FirebaseAuth mAuth;
-
-    private EditText phoneEdt,fullNameEdt,emailEdt;
-    private TextInputEditText passwordEdt,confirmPasswordEdt;
-    private ToggleButton passwordToggle,confirmPasswordToggle;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        // to assignId
-        assignId(view);
 
         // parent fragment manager
         FragmentManager fragmentManager = getParentFragmentManager();
@@ -99,21 +88,21 @@ public class SignUpFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         callbackManager = CallbackManager.Factory.create();
 
-        signInInSignUpTxt.setOnClickListener(new View.OnClickListener() {
+        signUpBinding.SignInInSignUpTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 ft.replace(R.id.frame,new SignInFragment()).commit();
             }
         });
 
-            signUpBtn.setOnClickListener(new View.OnClickListener() {
+            signUpBinding.signUpBtn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
-                    if(privacyCheckBox.isChecked()) {
-                        String phoneNumber = phoneEdt.getText().toString();
-                        String email = emailEdt.getText().toString();
-                        String password = passwordEdt.getText().toString();
-                        String confirmPassword = confirmPasswordEdt.getText().toString();
+                    if(signUpBinding.privacyCheckBox.isChecked()) {
+                        String phoneNumber = signUpBinding.phoneEdt.getText().toString();
+                        String email = signUpBinding.emailEdt.getText().toString();
+                        String password = signUpBinding.passwordEdt.getText().toString();
+                        String confirmPassword = signUpBinding.confirmPasswordEdt.getText().toString();
                         if (confirmPassword.equals(password)) {
                             SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
                             signInUpActivity.phoneNumber = "+91"+phoneNumber;
@@ -141,7 +130,7 @@ public class SignUpFragment extends Fragment {
 
         GoogleSignInClient mGoogleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
 
-        logoGoogleSignUp.setOnClickListener(new View.OnClickListener() {
+        signUpBinding.logoGoogleSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 signInWithGoogle(mGoogleSignInClient);
@@ -150,35 +139,13 @@ public class SignUpFragment extends Fragment {
 
 
         callbackManager = CallbackManager.Factory.create();
-        logoFacebookSignUp.setOnClickListener(new View.OnClickListener() {
+        signUpBinding.logoFacebookSignUp.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 handleFacebookLogin();
             }
         });
         }
-
-
-
-    private void assignId(View view) {
-
-        signInInSignUpTxt = view.findViewById(R.id.SignInInSignUpTxt);
-
-        logoAppleSignUp = view.findViewById(R.id.logoAppleSignUp);
-        logoFacebookSignUp = view.findViewById(R.id.logoFacebookSignUp);
-        logoGoogleSignUp = view.findViewById(R.id.logoGoogleSignUp);
-
-        signUpBtn = view.findViewById(R.id.signUpBtn);
-
-        privacyCheckBox = view.findViewById(R.id.privacyCheckBox);
-
-        phoneEdt = view.findViewById(R.id.phoneEdt);
-        passwordEdt = view.findViewById(R.id.passwordEdt);
-        fullNameEdt = view.findViewById(R.id.fullNameEdt);
-        emailEdt = view.findViewById(R.id.emailEdt);
-        confirmPasswordEdt = view.findViewById(R.id.confirmPasswordEdt);
-
-    }
 
 
     private void handleFacebookLogin() {

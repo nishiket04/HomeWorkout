@@ -18,13 +18,15 @@ import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.MainGoalRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentGoalBinding;
 import com.nishiket.homeworkout.model.CardList;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class GoalFragment extends Fragment {
-
+    private List<CardList> cardListList = new ArrayList<>();
+    private FragmentGoalBinding goalBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,17 +35,12 @@ public class GoalFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_goal, container, false);
+        goalBinding = FragmentGoalBinding.inflate(inflater,container,false);
+        return goalBinding.getRoot();
     }
-    private RecyclerView recyclerView;
-    private List<CardList> cardListList = new ArrayList<>();
-    private AppCompatButton mainGoalContinueBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        recyclerView = view.findViewById(R.id.goalRecycler);
-        mainGoalContinueBtn = view.findViewById(R.id.mainGoalContinuBtn);
             CardList c1 = new CardList();
             CardList c2 = new CardList();
             CardList c3 = new CardList();
@@ -67,13 +64,13 @@ public class GoalFragment extends Fragment {
 
 
         MainGoalRecyclerViewAdapter mainGoalRecyclerViewAdapter = new MainGoalRecyclerViewAdapter(getActivity());
-        recyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        recyclerView.setAdapter(mainGoalRecyclerViewAdapter);
+        goalBinding.goalRecycler.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        goalBinding.goalRecycler.setAdapter(mainGoalRecyclerViewAdapter);
         mainGoalRecyclerViewAdapter.setCardListList(cardListList);
         mainGoalRecyclerViewAdapter.notifyDataSetChanged();
 
 
-        mainGoalContinueBtn.setOnClickListener(new View.OnClickListener() {
+        goalBinding.mainGoalContinuBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 CardList c = mainGoalRecyclerViewAdapter.getSelectedData();
