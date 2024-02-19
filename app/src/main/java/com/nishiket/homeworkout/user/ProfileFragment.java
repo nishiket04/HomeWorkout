@@ -24,9 +24,11 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.SignInUp.SignInUpActivity;
+import com.nishiket.homeworkout.databinding.FragmentPersonalTrainingBinding;
+import com.nishiket.homeworkout.databinding.FragmentProfileBinding;
 
 public class ProfileFragment extends Fragment {
-
+    private FragmentProfileBinding profileBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,21 +37,16 @@ public class ProfileFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_profile, container, false);
+        profileBinding = FragmentProfileBinding.inflate(inflater,container,false);
+        return profileBinding.getRoot();
     }
 
-    private TextView logout;
-    private LinearLayout accountInformationProfileLn,myWorkOutProfileLn,workoutReminderProfileLn;
-    private CardView premium;
-    private AppCompatButton goPremiumBtn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
 
-        logout.setOnClickListener(new View.OnClickListener() {
+        profileBinding.logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
@@ -65,23 +62,23 @@ public class ProfileFragment extends Fragment {
                 mainActivity.finish();
             }
         });
-        goPremiumBtn.setOnClickListener(new View.OnClickListener() {
+        profileBinding.goPrimiumBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                premium.setVisibility(View.VISIBLE);
-                goPremiumBtn.setVisibility(View.GONE);
+                profileBinding.premium.setVisibility(View.VISIBLE);
+                profileBinding.goPrimiumBtn.setVisibility(View.GONE);
             }
         });
 
-        premium.setOnClickListener(new View.OnClickListener() {
+        profileBinding.premium.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                premium.setVisibility(View.GONE);
-                goPremiumBtn.setVisibility(View.VISIBLE);
+                profileBinding.premium.setVisibility(View.GONE);
+                profileBinding.goPrimiumBtn.setVisibility(View.VISIBLE);
             }
         });
 
-        accountInformationProfileLn.setOnClickListener(new View.OnClickListener() {
+        profileBinding.accountInformationProfileLn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -90,7 +87,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        myWorkOutProfileLn.setOnClickListener(new View.OnClickListener() {
+        profileBinding.myWorkoutProfileLn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                FragmentManager fragmentManager = getParentFragmentManager();
@@ -102,7 +99,7 @@ public class ProfileFragment extends Fragment {
             }
         });
 
-        workoutReminderProfileLn.setOnClickListener(new View.OnClickListener() {
+        profileBinding.workoutReminderProfileLn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -112,14 +109,5 @@ public class ProfileFragment extends Fragment {
         });
 
 
-    }
-
-    private void assignId(View view) {
-        logout = view.findViewById(R.id.logout);
-        goPremiumBtn = view.findViewById(R.id.goPrimiumBtn);
-        premium = view.findViewById(R.id.premium);
-        accountInformationProfileLn = view.findViewById(R.id.accountInformationProfileLn);
-        myWorkOutProfileLn = view.findViewById(R.id.myWorkoutProfileLn);
-        workoutReminderProfileLn = view.findViewById(R.id.workoutReminderProfileLn);
     }
 }

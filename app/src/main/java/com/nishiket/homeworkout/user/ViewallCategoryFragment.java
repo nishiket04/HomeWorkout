@@ -17,13 +17,15 @@ import android.widget.ImageView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.ViewallCategoryRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentViewallCategoryBinding;
 import com.nishiket.homeworkout.model.ViewallCategoryModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewallCategoryFragment extends Fragment {
-
+    private List<ViewallCategoryModel> viewallCategoryModelList = new ArrayList<>();
+    private FragmentViewallCategoryBinding viewallCategoryBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +34,14 @@ public class ViewallCategoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_viewall_category, container, false);
+        viewallCategoryBinding = FragmentViewallCategoryBinding.inflate(inflater,container,false);
+        return viewallCategoryBinding.getRoot();
     }
 
-    private RecyclerView viewallCategoryRecyclerView;
-    private List<ViewallCategoryModel> viewallCategoryModelList = new ArrayList<>();
-    private ImageView backToHomeImage;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
 
         ViewallCategoryModel v1 = new ViewallCategoryModel();
         ViewallCategoryModel v2 = new ViewallCategoryModel();
@@ -86,14 +84,14 @@ public class ViewallCategoryFragment extends Fragment {
         viewallCategoryModelList.add(v7);
 
         ViewallCategoryRecyclerViewAdapter viewallCategoryRecyclerViewAdapter = new ViewallCategoryRecyclerViewAdapter(getActivity());
-        viewallCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        viewallCategoryRecyclerView.setAdapter(viewallCategoryRecyclerViewAdapter);
+        viewallCategoryBinding.viewallCategoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        viewallCategoryBinding.viewallCategoryRecyclerView.setAdapter(viewallCategoryRecyclerViewAdapter);
         viewallCategoryRecyclerViewAdapter.setViewallCategoryModelList(viewallCategoryModelList);
         viewallCategoryRecyclerViewAdapter.notifyDataSetChanged();
 
-        viewallCategoryRecyclerView.setNestedScrollingEnabled(false);
+        viewallCategoryBinding.viewallCategoryRecyclerView.setNestedScrollingEnabled(false);
 
-        backToHomeImage.setOnClickListener(new View.OnClickListener() {
+        viewallCategoryBinding.backToHomeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -101,10 +99,5 @@ public class ViewallCategoryFragment extends Fragment {
                 fragmentTransaction.replace(R.id.homeFrameLayout,new HomeFragment()).commit();
             }
         });
-    }
-
-    private void assignId(View view) {
-        viewallCategoryRecyclerView = view.findViewById(R.id.viewallCategoryRecyclerView);
-        backToHomeImage = view.findViewById(R.id.backToHomeImage);
     }
 }

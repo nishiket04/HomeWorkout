@@ -14,13 +14,15 @@ import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.WeightTrackingRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentWeightTrackingBinding;
 import com.nishiket.homeworkout.model.WeightTrackingModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WeightTrackingFragment extends Fragment {
-
+    private List<WeightTrackingModel> weightTrackingModelList = new ArrayList<>();
+    private FragmentWeightTrackingBinding weightTrackingBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,16 +31,13 @@ public class WeightTrackingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_weight_tracking, container, false);
+        weightTrackingBinding = FragmentWeightTrackingBinding.inflate(inflater,container,false);
+        return weightTrackingBinding.getRoot();
     }
-    private RecyclerView weightTrackingRecyclerView;
-    private List<WeightTrackingModel> weightTrackingModelList = new ArrayList<>();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assignId(view);
 
         WeightTrackingModel w1 = new WeightTrackingModel();
         WeightTrackingModel w2 = new WeightTrackingModel();
@@ -69,15 +68,11 @@ public class WeightTrackingFragment extends Fragment {
         weightTrackingModelList.add(w2);
         weightTrackingModelList.add(w3);
 
-        weightTrackingRecyclerView.setNestedScrollingEnabled(false);
+        weightTrackingBinding.weightTrackingRecyclerView.setNestedScrollingEnabled(false);
         WeightTrackingRecyclerViewAdapter weightTrackingRecyclerViewAdapter = new WeightTrackingRecyclerViewAdapter(getActivity());
-        weightTrackingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        weightTrackingRecyclerView.setAdapter(weightTrackingRecyclerViewAdapter);
+        weightTrackingBinding.weightTrackingRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        weightTrackingBinding.weightTrackingRecyclerView.setAdapter(weightTrackingRecyclerViewAdapter);
         weightTrackingRecyclerViewAdapter.setWeightTrackingModelList(weightTrackingModelList);
         weightTrackingRecyclerViewAdapter.notifyDataSetChanged();
-    }
-
-    private void assignId(View view) {
-        weightTrackingRecyclerView = view.findViewById(R.id.weightTrackingRecyclerView);
     }
 }

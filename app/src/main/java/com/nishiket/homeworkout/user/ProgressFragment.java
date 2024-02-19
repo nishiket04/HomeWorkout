@@ -16,8 +16,10 @@ import android.widget.ImageView;
 import com.google.android.material.tabs.TabLayout;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.ProgressViewPagerAdapter;
+import com.nishiket.homeworkout.databinding.FragmentProgressBinding;
 
 public class ProgressFragment extends Fragment {
+    private FragmentProgressBinding progressBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -26,23 +28,19 @@ public class ProgressFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_progress, container, false);
+        progressBinding = FragmentProgressBinding.inflate(inflater,container,false);
+        return progressBinding.getRoot();
     }
-    private TabLayout progressTab;
-    private ViewPager progressViewPager;
-    private ImageView backToActivityImage;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
 
         ProgressViewPagerAdapter progressViewPagerAdapter = new ProgressViewPagerAdapter(getParentFragmentManager());
-        progressViewPager.setAdapter(progressViewPagerAdapter);
-        progressTab.setupWithViewPager(progressViewPager);
+        progressBinding.progressViewPager.setAdapter(progressViewPagerAdapter);
+        progressBinding.progressTabLayout.setupWithViewPager(progressBinding.progressViewPager);
 
-        backToActivityImage.setOnClickListener(new View.OnClickListener() {
+        progressBinding.backToActivityImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -50,11 +48,5 @@ public class ProgressFragment extends Fragment {
             }
         });
 
-    }
-
-    private void assignId(View view) {
-        progressViewPager = view.findViewById(R.id.progressViewPager);
-        progressTab = view.findViewById(R.id.progressTabLayout);
-        backToActivityImage = view.findViewById(R.id.backToActivityImage);
     }
 }

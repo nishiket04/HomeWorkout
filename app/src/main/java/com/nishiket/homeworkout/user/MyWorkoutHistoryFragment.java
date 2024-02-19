@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.MyWorkoutParentRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentMyWorkoutHistoryBinding;
 import com.nishiket.homeworkout.model.MyWorkoutChildModel;
 import com.nishiket.homeworkout.model.MyWorkoutParentModel;
 
@@ -22,7 +23,9 @@ import java.util.List;
 
 public class MyWorkoutHistoryFragment extends Fragment {
 
-
+    private FragmentMyWorkoutHistoryBinding myWorkoutHistoryBinding;
+    private List<MyWorkoutChildModel> myWorkoutChildModelsList = new ArrayList<>();
+    private List<MyWorkoutParentModel> myWorkoutParentModelList = new ArrayList<>();
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,16 +36,12 @@ public class MyWorkoutHistoryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_workout_history, container, false);
+        myWorkoutHistoryBinding = FragmentMyWorkoutHistoryBinding.inflate(inflater,container,false);
+        return myWorkoutHistoryBinding.getRoot();
     }
-    private RecyclerView myWorkoutParentRecyclerView;
-    private List<MyWorkoutChildModel> myWorkoutChildModelsList = new ArrayList<>();
-    private List<MyWorkoutParentModel> myWorkoutParentModelList = new ArrayList<>();
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assignId(view);
 
         MyWorkoutChildModel c1 = new MyWorkoutChildModel();
         MyWorkoutChildModel c2 = new MyWorkoutChildModel();
@@ -75,13 +74,9 @@ public class MyWorkoutHistoryFragment extends Fragment {
         myWorkoutParentModelList.add(p2);
 
         MyWorkoutParentRecyclerViewAdapter myWorkoutParentRecyclerViewAdapter = new MyWorkoutParentRecyclerViewAdapter(getActivity());
-        myWorkoutParentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        myWorkoutParentRecyclerView.setAdapter(myWorkoutParentRecyclerViewAdapter);
+        myWorkoutHistoryBinding.myWorkoutHistoryParentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        myWorkoutHistoryBinding.myWorkoutHistoryParentRecyclerView.setAdapter(myWorkoutParentRecyclerViewAdapter);
         myWorkoutParentRecyclerViewAdapter.setMyWorkoutParentModelList(myWorkoutParentModelList);
         myWorkoutParentRecyclerViewAdapter.notifyDataSetChanged();
-    }
-
-    private void assignId(View view) {
-        myWorkoutParentRecyclerView = view.findViewById(R.id.myWorkoutHistoryParentRecyclerView);
     }
 }

@@ -18,12 +18,15 @@ import android.widget.LinearLayout;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.TrainingRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentTrainingsBinding;
 import com.nishiket.homeworkout.model.TrainingModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class TrainingsFragment extends Fragment implements TrainingRecyclerViewAdapter.OnItemClickedListiner {
+    private FragmentTrainingsBinding trainingsBinding;
+    private List<TrainingModel> trainingModelList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,20 +35,14 @@ public class TrainingsFragment extends Fragment implements TrainingRecyclerViewA
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        return inflater.inflate(R.layout.fragment_trainings, container, false);
+        trainingsBinding = FragmentTrainingsBinding.inflate(inflater,container,false);
+        return trainingsBinding.getRoot();
     }
 
-    private List<TrainingModel> trainingModelList = new ArrayList<>();
-    private RecyclerView trainingRecyclerView;
-    private LinearLayout personalTraining;
-    private CardView filter;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        trainingRecyclerView = view.findViewById(R.id.trainingRecyclerView);
-        personalTraining = view.findViewById(R.id.personalTraining);
-        filter = view.findViewById(R.id.filter);
 
             TrainingModel t1 = new TrainingModel();
             TrainingModel t2 = new TrainingModel();
@@ -98,16 +95,16 @@ public class TrainingsFragment extends Fragment implements TrainingRecyclerViewA
 
 
         TrainingRecyclerViewAdapter trainingRecyclerViewAdapter = new TrainingRecyclerViewAdapter(getActivity());
-        trainingRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        trainingRecyclerView.setAdapter(trainingRecyclerViewAdapter);
+        trainingsBinding.trainingRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        trainingsBinding.trainingRecyclerView.setAdapter(trainingRecyclerViewAdapter);
         trainingRecyclerViewAdapter.setTrainingModelList(trainingModelList);
         trainingRecyclerViewAdapter.notifyDataSetChanged();
 
-        trainingRecyclerView.setNestedScrollingEnabled(false);
+        trainingsBinding.trainingRecyclerView.setNestedScrollingEnabled(false);
 
         trainingRecyclerViewAdapter.setOnItemClickedListiner(this);
 
-        personalTraining.setOnClickListener(new View.OnClickListener() {
+        trainingsBinding.personalTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -116,7 +113,7 @@ public class TrainingsFragment extends Fragment implements TrainingRecyclerViewA
             }
         });
 
-        filter.setOnClickListener(new View.OnClickListener() {
+        trainingsBinding.filter.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();

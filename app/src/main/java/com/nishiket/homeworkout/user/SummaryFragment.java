@@ -9,9 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentSummaryBinding;
 
 public class SummaryFragment extends Fragment {
-
+    private FragmentSummaryBinding summaryBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -20,7 +21,7 @@ public class SummaryFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_summary, container, false);
+        summaryBinding = FragmentSummaryBinding.inflate(inflater,container,false);
+        return summaryBinding.getRoot();
     }
 }

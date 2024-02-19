@@ -18,13 +18,15 @@ import android.widget.TextView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.PersonalTrainingRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentPersonalTrainingBinding;
 import com.nishiket.homeworkout.model.PersonalTrainingModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersonalTrainingFragment extends Fragment implements PersonalTrainingRecyclerViewAdapter.OnItemClickListener {
-
+    private List<PersonalTrainingModel> personalTrainingModelList = new ArrayList<>();
+    private FragmentPersonalTrainingBinding personalTrainingBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,19 +35,14 @@ public class PersonalTrainingFragment extends Fragment implements PersonalTraini
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_personal_training, container, false);
+        personalTrainingBinding = FragmentPersonalTrainingBinding.inflate(inflater,container,false);
+        return personalTrainingBinding.getRoot();
     }
-    private RecyclerView personalTrainingRecyclerView;
-    private ImageView backToTrainingImage;
-    private TextView createPersonalTrainingTxt;
-    private List<PersonalTrainingModel> personalTrainingModelList = new ArrayList<>();
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
         PersonalTrainingModel p1 = new PersonalTrainingModel();
         PersonalTrainingModel p2 = new PersonalTrainingModel();
         PersonalTrainingModel p3 = new PersonalTrainingModel();
@@ -95,14 +92,14 @@ public class PersonalTrainingFragment extends Fragment implements PersonalTraini
         personalTrainingModelList.add(p7);
 
         PersonalTrainingRecyclerViewAdapter personalTrainingRecyclerViewAdapter = new PersonalTrainingRecyclerViewAdapter(getActivity());
-        personalTrainingRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        personalTrainingRecyclerView.setNestedScrollingEnabled(false);
-        personalTrainingRecyclerView.setAdapter(personalTrainingRecyclerViewAdapter);
+        personalTrainingBinding.personalTrainingRecylerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+        personalTrainingBinding.personalTrainingRecylerView.setNestedScrollingEnabled(false);
+        personalTrainingBinding.personalTrainingRecylerView.setAdapter(personalTrainingRecyclerViewAdapter);
         personalTrainingRecyclerViewAdapter.setPersonalTrainingModelList(personalTrainingModelList);
         personalTrainingRecyclerViewAdapter.notifyDataSetChanged();
         personalTrainingRecyclerViewAdapter.setOnItemClickListener(this);
 
-        backToTrainingImage.setOnClickListener(new View.OnClickListener() {
+        personalTrainingBinding.backToTrainingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -111,7 +108,7 @@ public class PersonalTrainingFragment extends Fragment implements PersonalTraini
             }
         });
 
-        createPersonalTrainingTxt.setOnClickListener(new View.OnClickListener() {
+        personalTrainingBinding.createPersonalTrainingTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -121,11 +118,6 @@ public class PersonalTrainingFragment extends Fragment implements PersonalTraini
         });
     }
 
-    private void assignId(View view) {
-        personalTrainingRecyclerView = view.findViewById(R.id.personalTrainingRecylerView);
-        createPersonalTrainingTxt = view.findViewById(R.id.createPersonalTrainingTxt);
-        backToTrainingImage = view.findViewById(R.id.backToTrainingImage);
-    }
     @Override
     public void onItemClick(int position, PersonalTrainingModel personalTrainingModel) {
         // Open the new fragment and pass data

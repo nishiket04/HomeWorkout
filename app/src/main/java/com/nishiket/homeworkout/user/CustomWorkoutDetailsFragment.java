@@ -20,6 +20,7 @@ import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.StretchingWorkoutRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.WarmupWorkoutRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.WorkoutWorkoutRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentCustomWorkoutDetailsBinding;
 import com.nishiket.homeworkout.model.StretchingWorkoutModel;
 import com.nishiket.homeworkout.model.WarmUpWorkoutModel;
 import com.nishiket.homeworkout.model.WorkoutWorkoutModel;
@@ -28,7 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class CustomWorkoutDetailsFragment extends Fragment {
-
+    private FragmentCustomWorkoutDetailsBinding customWorkoutDetailsBinding;
+    private List<WarmUpWorkoutModel> warmUpWorkoutModelsList = new ArrayList<>();
+    private  List<WorkoutWorkoutModel> workoutWorkoutModelList = new ArrayList<>();
+    private List<StretchingWorkoutModel> stretchingWorkoutModelList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,20 +41,13 @@ public class CustomWorkoutDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_custom_workout_details, container, false);
+        customWorkoutDetailsBinding = FragmentCustomWorkoutDetailsBinding.inflate(inflater,container,false);
+        return customWorkoutDetailsBinding.getRoot();
     }
-    private RecyclerView warmupWorkoutRecyclerView,workoutWorkoutRecyclerView,stretchingWorkoutRecyclerView;
-    private List<WarmUpWorkoutModel> warmUpWorkoutModelsList = new ArrayList<>();
-    private  List<WorkoutWorkoutModel> workoutWorkoutModelList = new ArrayList<>();
-    private List<StretchingWorkoutModel> stretchingWorkoutModelList = new ArrayList<>();
-    private ImageView backToPersonalTrainingImage,editWorkoutNameImage;
-    private TextView warmupEditWorkoutTxt;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assigId(view);
 
         WorkoutWorkoutModel w1 = new WorkoutWorkoutModel();
         WorkoutWorkoutModel w2 = new WorkoutWorkoutModel();
@@ -100,15 +97,15 @@ public class CustomWorkoutDetailsFragment extends Fragment {
         WarmupWorkoutRecyclerViewAdapter warmupWorkoutRecyclerViewAdapter = new WarmupWorkoutRecyclerViewAdapter(getActivity());
         WorkoutWorkoutRecyclerViewAdapter workoutWorkoutRecyclerViewAdapter = new WorkoutWorkoutRecyclerViewAdapter(getActivity());
         StretchingWorkoutRecyclerViewAdapter stretchingWorkoutRecyclerViewAdapter = new StretchingWorkoutRecyclerViewAdapter(getActivity());
-        warmupWorkoutRecyclerView.setNestedScrollingEnabled(false);
-        workoutWorkoutRecyclerView.setNestedScrollingEnabled(false);
-        stretchingWorkoutRecyclerView.setNestedScrollingEnabled(false);
-        warmupWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        workoutWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        stretchingWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        warmupWorkoutRecyclerView.setAdapter(warmupWorkoutRecyclerViewAdapter);
-        workoutWorkoutRecyclerView.setAdapter(workoutWorkoutRecyclerViewAdapter);
-        stretchingWorkoutRecyclerView.setAdapter(stretchingWorkoutRecyclerViewAdapter);
+        customWorkoutDetailsBinding.warmupWorkoutRecyclerView.setNestedScrollingEnabled(false);
+        customWorkoutDetailsBinding.workoutWorkoutRecyclerView.setNestedScrollingEnabled(false);
+        customWorkoutDetailsBinding.stretchingWorkoutRecyclerView.setNestedScrollingEnabled(false);
+        customWorkoutDetailsBinding.warmupWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        customWorkoutDetailsBinding.workoutWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        customWorkoutDetailsBinding.stretchingWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        customWorkoutDetailsBinding.warmupWorkoutRecyclerView.setAdapter(warmupWorkoutRecyclerViewAdapter);
+        customWorkoutDetailsBinding.workoutWorkoutRecyclerView.setAdapter(workoutWorkoutRecyclerViewAdapter);
+        customWorkoutDetailsBinding.stretchingWorkoutRecyclerView.setAdapter(stretchingWorkoutRecyclerViewAdapter);
         warmupWorkoutRecyclerViewAdapter.setWarmUpWorkoutModelList(warmUpWorkoutModelsList);
         workoutWorkoutRecyclerViewAdapter.setWorkoutWorkoutModelList(workoutWorkoutModelList);
         stretchingWorkoutRecyclerViewAdapter.setStretchingWorkoutModelList(stretchingWorkoutModelList);
@@ -116,7 +113,7 @@ public class CustomWorkoutDetailsFragment extends Fragment {
         warmupWorkoutRecyclerViewAdapter.notifyDataSetChanged();
         stretchingWorkoutRecyclerViewAdapter.notifyDataSetChanged();
 
-        warmupEditWorkoutTxt.setOnClickListener(new View.OnClickListener() {
+        customWorkoutDetailsBinding.warmupEditWorkoutTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -125,7 +122,7 @@ public class CustomWorkoutDetailsFragment extends Fragment {
             }
         });
 
-        backToPersonalTrainingImage.setOnClickListener(new View.OnClickListener() {
+        customWorkoutDetailsBinding.backToPersonalTrainingImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -133,14 +130,5 @@ public class CustomWorkoutDetailsFragment extends Fragment {
             }
         });
 
-    }
-
-    private void assigId(View view) {
-        warmupWorkoutRecyclerView = view.findViewById(R.id.warmupWorkoutRecyclerView);
-        workoutWorkoutRecyclerView = view.findViewById(R.id.workoutWorkoutRecyclerView);
-        stretchingWorkoutRecyclerView = view.findViewById(R.id.stretchingWorkoutRecyclerView);
-        backToPersonalTrainingImage = view.findViewById(R.id.backToPersonalTrainingImage);
-        editWorkoutNameImage = view.findViewById(R.id.editWorkoutNameImage);
-        warmupEditWorkoutTxt = view.findViewById(R.id.warmupEditWorkoutTxt);
     }
 }

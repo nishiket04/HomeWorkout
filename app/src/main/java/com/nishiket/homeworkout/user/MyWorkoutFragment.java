@@ -16,9 +16,10 @@ import android.widget.ImageView;
 import com.google.android.material.tabs.TabLayout;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.MyWorkoutViewPagerAdapter;
+import com.nishiket.homeworkout.databinding.FragmentMyWorkoutBinding;
 
 public class MyWorkoutFragment extends Fragment {
-
+    private FragmentMyWorkoutBinding myWorkoutBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -27,35 +28,24 @@ public class MyWorkoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_workout, container, false);
+        myWorkoutBinding = FragmentMyWorkoutBinding.inflate(inflater,container,false);
+        return myWorkoutBinding.getRoot();
     }
-
-    private TabLayout myWorkoutTabLayout;
-    private ViewPager myWorkoutViewPager;
-    private ImageView backToProfile;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
 
         MyWorkoutViewPagerAdapter myWorkoutViewPagerAdapter = new MyWorkoutViewPagerAdapter(getParentFragmentManager());
-        myWorkoutViewPager.setAdapter(myWorkoutViewPagerAdapter);
-        myWorkoutTabLayout.setupWithViewPager(myWorkoutViewPager);
+        myWorkoutBinding.myWorkoutViewPager.setAdapter(myWorkoutViewPagerAdapter);
+        myWorkoutBinding.myWorkoutTabLayout.setupWithViewPager(myWorkoutBinding.myWorkoutViewPager);
 
-        backToProfile.setOnClickListener(new View.OnClickListener() {
+        myWorkoutBinding.backToProfileImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.popBackStack();
             }
         });
-    }
-
-    private void assignId(View view) {
-        myWorkoutTabLayout = view.findViewById(R.id.myWorkoutTabLayout);
-        myWorkoutViewPager = view.findViewById(R.id.myWorkoutViewPager);
-        backToProfile = view.findViewById(R.id.backToProfileImage);
     }
 }

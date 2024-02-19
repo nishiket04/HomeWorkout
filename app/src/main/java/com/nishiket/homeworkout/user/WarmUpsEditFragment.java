@@ -18,13 +18,15 @@ import android.widget.TextView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.WarmUpEditRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentWarmUpsEditBinding;
 import com.nishiket.homeworkout.model.WarmUpEditModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class WarmUpsEditFragment extends Fragment {
-
+    private FragmentWarmUpsEditBinding warmUpsEditBinding;
+    private List<WarmUpEditModel> warmUpEditModelList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,18 +35,13 @@ public class WarmUpsEditFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_warm_ups_edit, container, false);
+        warmUpsEditBinding = FragmentWarmUpsEditBinding.inflate(inflater,container,false);
+        return warmUpsEditBinding.getRoot();
     }
-    private List<WarmUpEditModel> warmUpEditModelList = new ArrayList<>();
-    private RecyclerView warmupEditRecyclerView;
-    private ImageView backToWorkoutImage;
-    private TextView warmupEditAddTxt;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
 
         WarmUpEditModel w1 = new WarmUpEditModel();
         WarmUpEditModel w2 = new WarmUpEditModel();
@@ -93,13 +90,13 @@ public class WarmUpsEditFragment extends Fragment {
         warmUpEditModelList.add(w8);
 
         WarmUpEditRecyclerViewAdapter warmUpEditRecyclerViewAdapter = new WarmUpEditRecyclerViewAdapter(getActivity());
-        warmupEditRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        warmupEditRecyclerView.setAdapter(warmUpEditRecyclerViewAdapter);
-        warmupEditRecyclerView.setNestedScrollingEnabled(false);
+        warmUpsEditBinding.warmupEditRecylerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        warmUpsEditBinding.warmupEditRecylerView.setAdapter(warmUpEditRecyclerViewAdapter);
+        warmUpsEditBinding.warmupEditRecylerView.setNestedScrollingEnabled(false);
         warmUpEditRecyclerViewAdapter.setWarmUpEditModelList(warmUpEditModelList);
         warmUpEditRecyclerViewAdapter.notifyDataSetChanged();
 
-        backToWorkoutImage.setOnClickListener(new View.OnClickListener() {
+        warmUpsEditBinding.backToWorkoutImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -107,11 +104,5 @@ public class WarmUpsEditFragment extends Fragment {
                 fragmentTransaction.replace(R.id.homeFrameLayout,new CustomWorkoutDetailsFragment()).commit();
             }
         });
-    }
-
-    private void assignId(View view) {
-        warmupEditRecyclerView = view.findViewById(R.id.warmupEditRecylerView);
-        warmupEditAddTxt = view.findViewById(R.id.addWorkoutTxt);
-        backToWorkoutImage = view.findViewById(R.id.backToWorkoutImage);
     }
 }

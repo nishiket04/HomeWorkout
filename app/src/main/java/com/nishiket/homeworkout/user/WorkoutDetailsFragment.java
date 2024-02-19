@@ -19,6 +19,7 @@ import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.WorkoutDetailsEquipmentRecylerViewAdapter;
 import com.nishiket.homeworkout.adapter.WorkoutDetailsWarmUpRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.WorkoutDetailsWorkoutRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentWorkoutDetailsBinding;
 import com.nishiket.homeworkout.model.WorkoutDetailsEquipmentModel;
 import com.nishiket.homeworkout.model.WorkoutDetailsWarmUpModel;
 import com.nishiket.homeworkout.model.WorkoutDetailsWorkoutModel;
@@ -27,6 +28,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class WorkoutDetailsFragment extends Fragment {
+    private FragmentWorkoutDetailsBinding workoutDetailsBinding;
+    private List<WorkoutDetailsEquipmentModel> workoutDetailsEquipmentModelList = new ArrayList<>();
+    private List<WorkoutDetailsWarmUpModel> workoutDetailsWarmUpModelList = new ArrayList<>();
+    private List<WorkoutDetailsWorkoutModel> workoutDetailsWorkoutModelList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -35,19 +40,12 @@ public class WorkoutDetailsFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_workout_details, container, false);
+        workoutDetailsBinding = FragmentWorkoutDetailsBinding.inflate(inflater,container,false);
+        return workoutDetailsBinding.getRoot();
     }
-    private RecyclerView workoutDetailsEquipmentRecyclerView,workoutDetailsWarmupRecyclerView,workoutDetailsWorkoutRecyclerView;
-    private List<WorkoutDetailsEquipmentModel> workoutDetailsEquipmentModelList = new ArrayList<>();
-    private List<WorkoutDetailsWarmUpModel> workoutDetailsWarmUpModelList = new ArrayList<>();
-    private List<WorkoutDetailsWorkoutModel> workoutDetailsWorkoutModelList = new ArrayList<>();
-    private LinearLayout schudelWorkoutDetailsLn,pickaPlayListLn;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        assignId(view);
 
         WorkoutDetailsEquipmentModel w1 = new WorkoutDetailsEquipmentModel();
         WorkoutDetailsEquipmentModel w2 = new WorkoutDetailsEquipmentModel();
@@ -92,26 +90,26 @@ public class WorkoutDetailsFragment extends Fragment {
         workoutDetailsWarmUpModelList.add(wm2);
 
         WorkoutDetailsEquipmentRecylerViewAdapter workoutDetailsEquipmentRecylerViewAdapter = new WorkoutDetailsEquipmentRecylerViewAdapter(getActivity());
-        workoutDetailsEquipmentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        workoutDetailsEquipmentRecyclerView.setAdapter(workoutDetailsEquipmentRecylerViewAdapter);
+        workoutDetailsBinding.workoutDetailsEquipmentRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        workoutDetailsBinding.workoutDetailsEquipmentRecyclerView.setAdapter(workoutDetailsEquipmentRecylerViewAdapter);
         workoutDetailsEquipmentRecylerViewAdapter.setWorkoutDetailsEquipmentModelList(workoutDetailsEquipmentModelList);
         workoutDetailsEquipmentRecylerViewAdapter.notifyDataSetChanged();
 
         WorkoutDetailsWorkoutRecyclerViewAdapter workoutDetailsWorkoutRecyclerViewAdapter = new WorkoutDetailsWorkoutRecyclerViewAdapter(getActivity());
-        workoutDetailsWorkoutRecyclerView.setNestedScrollingEnabled(false);
-        workoutDetailsWorkoutRecyclerView.setAdapter(workoutDetailsWorkoutRecyclerViewAdapter);
-        workoutDetailsWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        workoutDetailsBinding.workoutDetailsWorkoutRecyclerView.setNestedScrollingEnabled(false);
+        workoutDetailsBinding.workoutDetailsWorkoutRecyclerView.setAdapter(workoutDetailsWorkoutRecyclerViewAdapter);
+        workoutDetailsBinding.workoutDetailsWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
         workoutDetailsWorkoutRecyclerViewAdapter.setWorkoutDetailsWorkoutModelList(workoutDetailsWorkoutModelList);
         workoutDetailsWorkoutRecyclerViewAdapter.notifyDataSetChanged();
 
         WorkoutDetailsWarmUpRecyclerViewAdapter workoutDetailsWarmUpRecyclerViewAdapter = new WorkoutDetailsWarmUpRecyclerViewAdapter(getActivity());
-        workoutDetailsWarmupRecyclerView.setNestedScrollingEnabled(false);
-        workoutDetailsWarmupRecyclerView.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        workoutDetailsWarmupRecyclerView.setAdapter(workoutDetailsWarmUpRecyclerViewAdapter);
+        workoutDetailsBinding.workoutDetailsExercisiesRecyclerView.setNestedScrollingEnabled(false);
+        workoutDetailsBinding.workoutDetailsEquipmentRecyclerView.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        workoutDetailsBinding.workoutDetailsExercisiesRecyclerView.setAdapter(workoutDetailsWarmUpRecyclerViewAdapter);
         workoutDetailsWarmUpRecyclerViewAdapter.setWorkoutDetailsWarmUpModelList(workoutDetailsWarmUpModelList);
         workoutDetailsWarmUpRecyclerViewAdapter.notifyDataSetChanged();
 
-        schudelWorkoutDetailsLn.setOnClickListener(new View.OnClickListener() {
+        workoutDetailsBinding.scgedulWorkoutDetailsLn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -120,7 +118,7 @@ public class WorkoutDetailsFragment extends Fragment {
             }
         });
 
-        pickaPlayListLn.setOnClickListener(new View.OnClickListener() {
+        workoutDetailsBinding.pickaPlayListLn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -130,13 +128,5 @@ public class WorkoutDetailsFragment extends Fragment {
         });
 
 
-    }
-
-    private void assignId(View view) {
-        workoutDetailsEquipmentRecyclerView = view.findViewById(R.id.workoutDetailsEquipmentRecyclerView);
-        workoutDetailsWarmupRecyclerView = view.findViewById(R.id.workoutDetailsExercisiesRecyclerView);
-        workoutDetailsWorkoutRecyclerView = view.findViewById(R.id.workoutDetailsWorkoutRecyclerView);
-        schudelWorkoutDetailsLn = view.findViewById(R.id.scgedulWorkoutDetailsLn);
-        pickaPlayListLn = view.findViewById(R.id.pickaPlayListLn);
     }
 }

@@ -17,6 +17,7 @@ import android.widget.ImageView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.NotificationParentRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentNotificationBinding;
 import com.nishiket.homeworkout.model.NotificationChildModel;
 import com.nishiket.homeworkout.model.NotificationParentModel;
 
@@ -24,7 +25,9 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class NotificationFragment extends Fragment {
-
+    private FragmentNotificationBinding notificationBinding;
+    private List<NotificationParentModel> notificationParentModelList = new ArrayList<>();
+    private List<NotificationChildModel> notificationChildModelList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -33,20 +36,13 @@ public class NotificationFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_notification, container, false);
+        notificationBinding = FragmentNotificationBinding.inflate(inflater,container,false);
+        return notificationBinding.getRoot();
     }
-
-
-    private RecyclerView notificationPerentRecycelrView;
-    private List<NotificationParentModel> notificationParentModelList = new ArrayList<>();
-    private List<NotificationChildModel> notificationChildModelList = new ArrayList<>();
-    private ImageView backToHome;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        
-        assignId(view);
+
 
         NotificationChildModel n1 = new NotificationChildModel();
         NotificationChildModel n2 = new NotificationChildModel();
@@ -78,22 +74,17 @@ public class NotificationFragment extends Fragment {
         notificationParentModelList.add(np2);
 
         NotificationParentRecyclerViewAdapter notificationParentRecyclerViewAdapter = new NotificationParentRecyclerViewAdapter(getActivity());
-        notificationPerentRecycelrView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        notificationPerentRecycelrView.setAdapter(notificationParentRecyclerViewAdapter);
+        notificationBinding.notificationPerentRecycelrView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        notificationBinding.notificationPerentRecycelrView.setAdapter(notificationParentRecyclerViewAdapter);
         notificationParentRecyclerViewAdapter.setNotificationParentModelList(notificationParentModelList);
         notificationParentRecyclerViewAdapter.notifyDataSetChanged();
 
-        backToHome.setOnClickListener(new View.OnClickListener() {
+        notificationBinding.backToHomeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.popBackStack();
             }
         });
-    }
-
-    private void assignId(View view) {
-        notificationPerentRecycelrView = view.findViewById(R.id.notificationPerentRecycelrView);
-        backToHome = view.findViewById(R.id.backToHomeImage);
     }
 }

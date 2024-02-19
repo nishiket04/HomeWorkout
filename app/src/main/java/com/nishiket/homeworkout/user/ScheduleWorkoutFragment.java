@@ -14,12 +14,14 @@ import android.widget.EditText;
 import android.widget.TimePicker;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentScheduleWorkoutBinding;
 
 import java.util.Calendar;
 import java.util.Locale;
 
 public class ScheduleWorkoutFragment extends Fragment {
-
+    private FragmentScheduleWorkoutBinding scheduleWorkoutBinding;
+    private TimePicker timePicker;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -28,18 +30,16 @@ public class ScheduleWorkoutFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_schedule_workout, container, false);
+        scheduleWorkoutBinding = FragmentScheduleWorkoutBinding.inflate(inflater,container,false);
+        return scheduleWorkoutBinding.getRoot();
     }
 
-    private TimePicker timePicker;
-    private EditText workoutTimeEditText;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assignId(view);
+
         timePicker = new TimePicker(getContext());
-        workoutTimeEditText.setOnClickListener(new View.OnClickListener() {
+        scheduleWorkoutBinding.workoutTimeEditText.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Calendar calendar = Calendar.getInstance();
@@ -57,11 +57,7 @@ public class ScheduleWorkoutFragment extends Fragment {
             }
         });
 
-        workoutTimeEditText.setFocusable(false);
-    }
-
-    private void assignId(View view) {
-        workoutTimeEditText = view.findViewById(R.id.workoutTimeEditText);
+        scheduleWorkoutBinding.workoutTimeEditText.setFocusable(false);
     }
 
     private TimePickerDialog.OnTimeSetListener timeSetListener = new TimePickerDialog.OnTimeSetListener() {
@@ -72,7 +68,7 @@ public class ScheduleWorkoutFragment extends Fragment {
             String selectedTime = String.format(Locale.getDefault(), "%02d:%02d", hourOfDay, minute);
 
             // Update the EditText with the selected time
-            workoutTimeEditText.setText(selectedTime);
+            scheduleWorkoutBinding.workoutTimeEditText.setText(selectedTime);
         }
     };
 }

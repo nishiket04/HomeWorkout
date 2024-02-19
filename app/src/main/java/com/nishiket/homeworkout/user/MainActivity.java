@@ -13,25 +13,22 @@ import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView
         .OnNavigationItemSelectedListener {
 
-    private FrameLayout frameLayout;
-    private BottomNavigationView bottom_navigation_view;
+    private ActivityMainBinding activityMainBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-        bottom_navigation_view = findViewById(R.id.bottom_navigation_view);
+        activityMainBinding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(activityMainBinding.getRoot());
+
         FirebaseMessaging.getInstance().subscribeToTopic("all_users");
 
-//        FragmentManager fragmentManager = getSupportFragmentManager();
-//        FragmentTransaction ft = fragmentManager.beginTransaction();
-//        ft.add(R.id.homeFrameLayout,new TrainingsFragment()).commit();
-
-        bottom_navigation_view.setOnNavigationItemSelectedListener(this);
-        bottom_navigation_view.setSelectedItemId(R.id.home);
+        activityMainBinding.bottomNavigationView.setOnNavigationItemSelectedListener(this);
+        activityMainBinding.bottomNavigationView.setSelectedItemId(R.id.home);
 
     }
 
@@ -45,9 +42,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .replace(R.id.homeFrameLayout, new HomeFragment())
                         .commit();
                 item.setIcon(R.drawable.home_selected);
-                bottom_navigation_view.getMenu().findItem(R.id.traing).setIcon(R.drawable.training);
-                bottom_navigation_view.getMenu().findItem(R.id.activity).setIcon(R.drawable.activity);
-                bottom_navigation_view.getMenu().findItem(R.id.user).setIcon(R.drawable.user);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.traing).setIcon(R.drawable.training);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.activity).setIcon(R.drawable.activity);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.user).setIcon(R.drawable.user);
                 return true;
             } else if (item.getItemId() == R.id.traing) {
                 getSupportFragmentManager()
@@ -55,9 +52,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .replace(R.id.homeFrameLayout, new TrainingsFragment())
                         .commit();
                 item.setIcon(R.drawable.trainign_selected);
-                bottom_navigation_view.getMenu().findItem(R.id.home).setIcon(R.drawable.home);
-                bottom_navigation_view.getMenu().findItem(R.id.activity).setIcon(R.drawable.activity);
-                bottom_navigation_view.getMenu().findItem(R.id.user).setIcon(R.drawable.user);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.home).setIcon(R.drawable.home);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.activity).setIcon(R.drawable.activity);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.user).setIcon(R.drawable.user);
                 return true;
             } else if (item.getItemId()==R.id.activity) {
                 getSupportFragmentManager()
@@ -65,9 +62,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .replace(R.id.homeFrameLayout, new ActivityFragment())
                         .commit();
                 item.setIcon(R.drawable.activity_selected);
-                bottom_navigation_view.getMenu().findItem(R.id.user).setIcon(R.drawable.user);
-                bottom_navigation_view.getMenu().findItem(R.id.traing).setIcon(R.drawable.training);
-                bottom_navigation_view.getMenu().findItem(R.id.home).setIcon(R.drawable.home);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.user).setIcon(R.drawable.user);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.traing).setIcon(R.drawable.training);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.home).setIcon(R.drawable.home);
                 return true;
             } else if (item.getItemId() == R.id.user) {
                 getSupportFragmentManager()
@@ -75,9 +72,9 @@ public class MainActivity extends AppCompatActivity implements BottomNavigationV
                         .replace(R.id.homeFrameLayout, new ProfileFragment())
                         .commit();
                 item.setIcon(R.drawable.profile_selected);
-                bottom_navigation_view.getMenu().findItem(R.id.traing).setIcon(R.drawable.training);
-                bottom_navigation_view.getMenu().findItem(R.id.activity).setIcon(R.drawable.activity);
-                bottom_navigation_view.getMenu().findItem(R.id.home).setIcon(R.drawable.home);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.traing).setIcon(R.drawable.training);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.activity).setIcon(R.drawable.activity);
+                activityMainBinding.bottomNavigationView.getMenu().findItem(R.id.home).setIcon(R.drawable.home);
                 return true;
             }
 

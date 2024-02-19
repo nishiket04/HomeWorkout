@@ -13,17 +13,19 @@ import com.github.mikephil.charting.components.YAxis;
 import com.github.mikephil.charting.data.Entry;
 import com.github.mikephil.charting.data.LineData;
 import com.github.mikephil.charting.data.LineDataSet;
+import com.nishiket.homeworkout.databinding.ActivitySplaseScreenBinding;
 import com.nishiket.homeworkout.onborading.WelcomeScreenActivity;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class SplaseScreenActivity extends AppCompatActivity {
-
+    private ActivitySplaseScreenBinding splaseScreenBinding;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_splase_screen);
+        splaseScreenBinding = ActivitySplaseScreenBinding.inflate(getLayoutInflater());
+        setContentView(splaseScreenBinding.getRoot());
 
         Intent i = new Intent(this, WelcomeScreenActivity.class);
 

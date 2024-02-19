@@ -9,8 +9,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentMusicProviderBinding;
 
 public class MusicProviderFragment extends Fragment {
+    private FragmentMusicProviderBinding musicProviderBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -19,7 +21,7 @@ public class MusicProviderFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_music_provider, container, false);
+        musicProviderBinding = FragmentMusicProviderBinding.inflate(inflater,container,false);
+        return musicProviderBinding.getRoot();
     }
 }

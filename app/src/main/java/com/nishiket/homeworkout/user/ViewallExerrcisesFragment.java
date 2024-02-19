@@ -17,13 +17,15 @@ import android.widget.ImageView;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.ViewallExercisesRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentViewallExerrcisesBinding;
 import com.nishiket.homeworkout.model.ViewallExercisesModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ViewallExerrcisesFragment extends Fragment {
-
+    private FragmentViewallExerrcisesBinding viewallExerrcisesBinding;
+    private List<ViewallExercisesModel> viewallExercisesModelList = new ArrayList<>();
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,19 +34,14 @@ public class ViewallExerrcisesFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_viewall_exerrcises, container, false);
+        viewallExerrcisesBinding = FragmentViewallExerrcisesBinding.inflate(inflater,container,false);
+        return viewallExerrcisesBinding.getRoot();
     }
-
-    private RecyclerView viewallExercisesRecyclerView;
-    private List<ViewallExercisesModel> viewallExercisesModelList = new ArrayList<>();
-    private ImageView backToHomeImage;
 
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
 
         ViewallExercisesModel e1 = new ViewallExercisesModel();
         ViewallExercisesModel e2 = new ViewallExercisesModel();
@@ -87,13 +84,13 @@ public class ViewallExerrcisesFragment extends Fragment {
         viewallExercisesModelList.add(e7);
 
         ViewallExercisesRecyclerViewAdapter viewallExercisesRecyclerViewAdapter = new ViewallExercisesRecyclerViewAdapter(getActivity());
-        viewallExercisesRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        viewallExercisesRecyclerView.setAdapter(viewallExercisesRecyclerViewAdapter);
-        viewallExercisesRecyclerView.setNestedScrollingEnabled(false);
+        viewallExerrcisesBinding.viewallExercisesRecyclerView1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        viewallExerrcisesBinding.viewallExercisesRecyclerView1.setAdapter(viewallExercisesRecyclerViewAdapter);
+        viewallExerrcisesBinding.viewallExercisesRecyclerView1.setNestedScrollingEnabled(false);
         viewallExercisesRecyclerViewAdapter.setViewallExercisesModelList(viewallExercisesModelList);
         viewallExercisesRecyclerViewAdapter.notifyDataSetChanged();
 
-        backToHomeImage.setOnClickListener(new View.OnClickListener() {
+        viewallExerrcisesBinding.backToHomeImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -102,10 +99,5 @@ public class ViewallExerrcisesFragment extends Fragment {
             }
         });
 
-    }
-
-    private void assignId(View view) {
-        viewallExercisesRecyclerView = view.findViewById(R.id.viewallExercisesRecyclerView1);
-        backToHomeImage = view.findViewById(R.id.backToHomeImage);
     }
 }

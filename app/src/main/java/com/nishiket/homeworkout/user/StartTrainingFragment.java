@@ -11,9 +11,10 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.FragmentStartTrainingBinding;
 
 public class StartTrainingFragment extends Fragment {
-
+    private FragmentStartTrainingBinding startTrainingBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -22,8 +23,8 @@ public class StartTrainingFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_start_training, container, false);
+        startTrainingBinding = FragmentStartTrainingBinding.inflate(inflater,container,false);
+        return startTrainingBinding.getRoot();
     }
 
     @Override

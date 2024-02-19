@@ -21,13 +21,19 @@ import com.nishiket.homeworkout.adapter.FilterEquipmentRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.FilterLevelRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.FilterPriceRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.FilterRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentFilterBinding;
 import com.nishiket.homeworkout.model.FilterModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class FilterFragment extends Fragment {
-
+    private List<FilterModel> filterModelList = new ArrayList<>();
+    private List<FilterModel> priceFilterModelList = new ArrayList<>();
+    private List<FilterModel> levelFilterModelList = new ArrayList<>();
+    private List<FilterModel> durationFilterModelList = new ArrayList<>();
+    private List<FilterModel> equipmentFilterModelList = new ArrayList<>();
+    private FragmentFilterBinding filterBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,20 +42,12 @@ public class FilterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_filter, container, false);
+        filterBinding = FragmentFilterBinding.inflate(inflater,container,false);
+        return filterBinding.getRoot();
     }
-    private RecyclerView categoryFilterRecyclerView,priceFilterRecyclerView,levelFilterRecyclerView,durationFilterRecyclerView,equipmentFilterRecyclerView;
-    private List<FilterModel> filterModelList = new ArrayList<>();
-    private List<FilterModel> priceFilterModelList = new ArrayList<>();
-    private List<FilterModel> levelFilterModelList = new ArrayList<>();
-    private List<FilterModel> durationFilterModelList = new ArrayList<>();
-    private List<FilterModel> equipmentFilterModelList = new ArrayList<>();
-    private ImageView backToTraining;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assignId(view);
 
         FilterModel f1 = new FilterModel();
         FilterModel f2 = new FilterModel();
@@ -118,23 +116,23 @@ public class FilterFragment extends Fragment {
         FilterDurationRecyclerViewAdapter filterDurationRecyclerViewAdapter = new FilterDurationRecyclerViewAdapter(getActivity());
         FilterEquipmentRecyclerViewAdapter filterEquipmentRecyclerViewAdapter = new FilterEquipmentRecyclerViewAdapter(getActivity());
 
-        categoryFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
-        priceFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
-        levelFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        durationFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
-        equipmentFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        filterBinding.categoryFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
+        filterBinding.priceFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),4));
+        filterBinding.levelFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        filterBinding.durationFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
+        filterBinding.equipmentFilterRecyclerView.setLayoutManager(new GridLayoutManager(getContext(),3));
 
-        categoryFilterRecyclerView.setNestedScrollingEnabled(false);
-        priceFilterRecyclerView.setNestedScrollingEnabled(false);
-        levelFilterRecyclerView.setNestedScrollingEnabled(false);
-        durationFilterRecyclerView.setNestedScrollingEnabled(false);
-        equipmentFilterRecyclerView.setNestedScrollingEnabled(false);
+        filterBinding.categoryFilterRecyclerView.setNestedScrollingEnabled(false);
+        filterBinding.priceFilterRecyclerView.setNestedScrollingEnabled(false);
+        filterBinding.levelFilterRecyclerView.setNestedScrollingEnabled(false);
+        filterBinding.durationFilterRecyclerView.setNestedScrollingEnabled(false);
+        filterBinding.equipmentFilterRecyclerView.setNestedScrollingEnabled(false);
 
-        categoryFilterRecyclerView.setAdapter(filterRecyclerViewAdapter);
-        priceFilterRecyclerView.setAdapter(filterPriceRecyclerViewAdapter);
-        levelFilterRecyclerView.setAdapter(filterLevelRecyclerViewAdapter);
-        durationFilterRecyclerView.setAdapter(filterDurationRecyclerViewAdapter);
-        equipmentFilterRecyclerView.setAdapter(filterEquipmentRecyclerViewAdapter);
+        filterBinding.categoryFilterRecyclerView.setAdapter(filterRecyclerViewAdapter);
+        filterBinding.priceFilterRecyclerView.setAdapter(filterPriceRecyclerViewAdapter);
+        filterBinding.levelFilterRecyclerView.setAdapter(filterLevelRecyclerViewAdapter);
+        filterBinding.durationFilterRecyclerView.setAdapter(filterDurationRecyclerViewAdapter);
+        filterBinding.equipmentFilterRecyclerView.setAdapter(filterEquipmentRecyclerViewAdapter);
 
         filterRecyclerViewAdapter.setFilterModelList(filterModelList);
         filterPriceRecyclerViewAdapter.setFilterModelList(priceFilterModelList);
@@ -148,21 +146,12 @@ public class FilterFragment extends Fragment {
         filterDurationRecyclerViewAdapter.notifyDataSetChanged();
         filterEquipmentRecyclerViewAdapter.notifyDataSetChanged();
 
-        backToTraining.setOnClickListener(new View.OnClickListener() {
+        filterBinding.backToTraining.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 fragmentManager.popBackStack();
             }
         });
-    }
-
-    private void assignId(View view) {
-        categoryFilterRecyclerView = view.findViewById(R.id.categoryFilterRecyclerView);
-        priceFilterRecyclerView = view.findViewById(R.id.priceFilterRecyclerView);
-        levelFilterRecyclerView = view.findViewById(R.id.levelFilterRecyclerView);
-        durationFilterRecyclerView = view.findViewById(R.id.durationFilterRecyclerView);
-        equipmentFilterRecyclerView = view.findViewById(R.id.equipmentFilterRecyclerView);
-        backToTraining = view.findViewById(R.id.backToTraining);
     }
 }

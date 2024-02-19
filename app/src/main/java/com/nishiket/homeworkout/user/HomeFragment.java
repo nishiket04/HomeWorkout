@@ -20,6 +20,7 @@ import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.CategoryRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.ExercisesRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.PopularWorkoutsRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentHomeBinding;
 import com.nishiket.homeworkout.model.CategoryModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.PopularWorkoutModel;
@@ -28,7 +29,10 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class HomeFragment extends Fragment {
-
+    private List<CategoryModel> categoryModelList = new ArrayList<>();
+    private  List<ExercisesModel> exercisesModelsList = new ArrayList<>();
+    private List<PopularWorkoutModel> popularWorkoutModelList = new ArrayList<>();
+    private FragmentHomeBinding homeBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -37,21 +41,14 @@ public class HomeFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_home, container, false);
+        homeBinding = FragmentHomeBinding.inflate(inflater,container,false);
+        return homeBinding.getRoot();
     }
-
-    private RecyclerView categoryRexcyclerView,exercisesRecyclerView,popularWorkoutRecyclerView;
-    private TextView viewallCategoryHomeTxt,viewallExercisiesHomeTxt;
-    private List<CategoryModel> categoryModelList = new ArrayList<>();
-    private  List<ExercisesModel> exercisesModelsList = new ArrayList<>();
-    private List<PopularWorkoutModel> popularWorkoutModelList = new ArrayList<>();
-    private MaterialCardView notification;
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        assignId(view);
+
 
         CategoryModel c1 = new CategoryModel();
         CategoryModel c2 = new CategoryModel();
@@ -118,27 +115,27 @@ public class HomeFragment extends Fragment {
 
 
         CategoryRecyclerViewAdapter categoryRecyclerViewAdapter = new CategoryRecyclerViewAdapter(getActivity());
-        categoryRexcyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        categoryRexcyclerView.setAdapter(categoryRecyclerViewAdapter);
+        homeBinding.categoryRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        homeBinding.categoryRecyclerView.setAdapter(categoryRecyclerViewAdapter);
         categoryRecyclerViewAdapter.setCategoryModelList(categoryModelList);
         categoryRecyclerViewAdapter.notifyDataSetChanged();
 
 
         ExercisesRecyclerViewAdapter exercisesRecyclerViewAdapter = new ExercisesRecyclerViewAdapter(getActivity());
-        exercisesRecyclerView.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        exercisesRecyclerView.setAdapter(exercisesRecyclerViewAdapter);
+        homeBinding.exercisesRecyclerView.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+        homeBinding.exercisesRecyclerView.setAdapter(exercisesRecyclerViewAdapter);
         exercisesRecyclerViewAdapter.setExercisesModelList(exercisesModelsList);
         exercisesRecyclerViewAdapter.notifyDataSetChanged();
 
         PopularWorkoutsRecyclerViewAdapter popularWorkoutsRecyclerViewAdapter = new PopularWorkoutsRecyclerViewAdapter(getActivity());
-        popularWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        popularWorkoutRecyclerView.setAdapter(popularWorkoutsRecyclerViewAdapter);
+        homeBinding.popularWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        homeBinding.popularWorkoutRecyclerView.setAdapter(popularWorkoutsRecyclerViewAdapter);
         popularWorkoutsRecyclerViewAdapter.setPopularWorkoutModelList(popularWorkoutModelList);
         popularWorkoutsRecyclerViewAdapter.notifyDataSetChanged();
 
-        exercisesRecyclerView.setNestedScrollingEnabled(false);
+        homeBinding.exercisesRecyclerView.setNestedScrollingEnabled(false);
 
-        viewallCategoryHomeTxt.setOnClickListener(new View.OnClickListener() {
+        homeBinding.viewallCategoryHomeTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -147,7 +144,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        viewallExercisiesHomeTxt.setOnClickListener(new View.OnClickListener() {
+        homeBinding.viewallExercisesHomeTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -156,7 +153,7 @@ public class HomeFragment extends Fragment {
             }
         });
 
-        notification.setOnClickListener(new View.OnClickListener() {
+       homeBinding.notification.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -167,12 +164,4 @@ public class HomeFragment extends Fragment {
 
     }
 
-    private void assignId(View view) {
-        categoryRexcyclerView = view.findViewById(R.id.categoryRecyclerView);
-        exercisesRecyclerView = view.findViewById(R.id.exercisesRecyclerView);
-        popularWorkoutRecyclerView = view.findViewById(R.id.popularWorkoutRecyclerView);
-        viewallCategoryHomeTxt = view.findViewById(R.id.viewallCategoryHomeTxt);
-        viewallExercisiesHomeTxt = view.findViewById(R.id.viewallExercisesHomeTxt);
-        notification = view.findViewById(R.id.notification);
-    }
 }

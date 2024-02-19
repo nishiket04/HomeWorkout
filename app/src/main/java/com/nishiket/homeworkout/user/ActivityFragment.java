@@ -17,13 +17,15 @@ import android.view.ViewGroup;
 import com.google.android.material.card.MaterialCardView;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.ActivityDateRecyclerViewAdapter;
+import com.nishiket.homeworkout.databinding.FragmentActivityBinding;
 import com.nishiket.homeworkout.model.ActivityDateModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class ActivityFragment extends Fragment {
-
+    private List<ActivityDateModel> activityDateModelList = new ArrayList<>();
+    private FragmentActivityBinding activityBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -32,18 +34,12 @@ public class ActivityFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_activity, container, false);
+        activityBinding = FragmentActivityBinding.inflate(inflater,container,false);
+        return activityBinding.getRoot();
     }
-
-    private RecyclerView dateActivityRecyclerView;
-    private MaterialCardView progress;
-    private List<ActivityDateModel> activityDateModelList = new ArrayList<>();
-
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        assignId(view);
 
         ActivityDateModel a1 = new ActivityDateModel();
         ActivityDateModel a2 = new ActivityDateModel();
@@ -78,12 +74,12 @@ public class ActivityFragment extends Fragment {
         activityDateModelList.add(a7);
 
         ActivityDateRecyclerViewAdapter dateRecyclerViewAdapter = new ActivityDateRecyclerViewAdapter(getActivity());
-        dateActivityRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        dateActivityRecyclerView.setAdapter(dateRecyclerViewAdapter);
+        activityBinding.activityDateRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
+        activityBinding.activityDateRecyclerView.setAdapter(dateRecyclerViewAdapter);
         dateRecyclerViewAdapter.setActivityDateModelsLst(activityDateModelList);
         dateRecyclerViewAdapter.notifyDataSetChanged();
 
-        progress.setOnClickListener(new View.OnClickListener() {
+        activityBinding.progress.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
@@ -91,10 +87,5 @@ public class ActivityFragment extends Fragment {
                 fragmentTransaction.replace(R.id.homeFrameLayout,new ProgressFragment()).addToBackStack(null).commit();
             }
         });
-    }
-
-    private void assignId(View view) {
-        dateActivityRecyclerView = view.findViewById(R.id.activityDateRecyclerView);
-        progress = view.findViewById(R.id.progress);
     }
 }
