@@ -22,6 +22,7 @@ import java.util.List;
 public class CardListRecyclerViewAdapter extends RecyclerView.Adapter<CardListRecyclerViewAdapter.viewHolder> {
     private List<CardList> cardListList;
     Context context;
+    private int selectedItem = NO_POSITION;
 
     public CardListRecyclerViewAdapter (Context context){
         this.context=context;
@@ -48,11 +49,16 @@ public class CardListRecyclerViewAdapter extends RecyclerView.Adapter<CardListRe
         holder.card.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.card.setBackgroundResource(R.drawable.card_selected_design);
-                holder.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
-
+                int oldPosition = selectedItem;
+                selectedItem = holder.getAdapterPosition();
+                notifyItemChanged(oldPosition);
+                notifyItemChanged(selectedItem);
             }
         });
+        if (selectedItem == position){
+            holder.card.setBackgroundResource(R.drawable.card_selected_design);
+            holder.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
+        }
 
     }
 

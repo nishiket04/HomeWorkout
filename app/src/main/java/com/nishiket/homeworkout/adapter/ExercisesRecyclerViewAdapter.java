@@ -2,7 +2,6 @@ package com.nishiket.homeworkout.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -11,6 +10,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.ExercisesDesignBinding;
 import com.nishiket.homeworkout.model.ExercisesModel;
 
 import java.util.List;
@@ -18,7 +18,7 @@ import java.util.List;
 public class ExercisesRecyclerViewAdapter extends RecyclerView.Adapter<ExercisesRecyclerViewAdapter.viewHolder> {
     private List<ExercisesModel> exercisesModelList;
     private Context context;
-
+    private ExercisesDesignBinding exercisesDesignBinding;
     public ExercisesRecyclerViewAdapter(Context context) {
         this.context = context;
     }
@@ -30,16 +30,17 @@ public class ExercisesRecyclerViewAdapter extends RecyclerView.Adapter<Exercises
     @NonNull
     @Override
     public ExercisesRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.exercises_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.exercises_design,parent,false);
+        exercisesDesignBinding = ExercisesDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(exercisesDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ExercisesRecyclerViewAdapter.viewHolder holder, int position) {
         ExercisesModel exercisesModel = exercisesModelList.get(position);
-        holder.exercisesTxt.setText(exercisesModel.getExercise());
-        holder.exercisesTimeTxt.setText(exercisesModel.getTime());
-        holder.exercisesImage.setImageResource(exercisesModel.getImage());
+        holder.binding.exercisesTxt.setText(exercisesModel.getExercise());
+        holder.binding.exercisesTimeTxt.setText(exercisesModel.getTime());
+        holder.binding.exercisesImage.setImageResource(exercisesModel.getImage());
 
     }
 
@@ -54,16 +55,11 @@ public class ExercisesRecyclerViewAdapter extends RecyclerView.Adapter<Exercises
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        TextView exercisesTxt,exercisesTimeTxt;
-        ImageView exercisesImage,exercisesInfoImage;
+       private ExercisesDesignBinding binding;
 
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            exercisesTxt = itemView.findViewById(R.id.exercisesTxt);
-            exercisesTimeTxt = itemView.findViewById(R.id.exercisesTimeTxt);
-            exercisesImage = itemView.findViewById(R.id.exercisesImage);
-            exercisesInfoImage = itemView.findViewById(R.id.exercisesInfoImage);
+        public viewHolder(@NonNull ExercisesDesignBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
         }
     }
 }

@@ -13,6 +13,7 @@ import android.widget.FrameLayout;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.firebase.messaging.FirebaseMessaging;
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.SignInUp.GenderFragment;
 import com.nishiket.homeworkout.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity implements BottomNavigationView
