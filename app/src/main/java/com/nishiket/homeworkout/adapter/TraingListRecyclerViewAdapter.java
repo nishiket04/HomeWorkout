@@ -13,6 +13,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.TraingLevelCaedDesignBinding;
 import com.nishiket.homeworkout.model.TraingListModel;
 
 import java.util.List;
@@ -21,6 +22,7 @@ public class TraingListRecyclerViewAdapter extends RecyclerView.Adapter<TraingLi
 
     private List<TraingListModel> traingListModelList;
     private Context context;
+    private TraingLevelCaedDesignBinding traingLevelCaedDesignBinding;
 
     public TraingListRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -33,19 +35,20 @@ public class TraingListRecyclerViewAdapter extends RecyclerView.Adapter<TraingLi
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.traing_level_caed_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.traing_level_caed_design,parent,false);
+        traingLevelCaedDesignBinding = TraingLevelCaedDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(traingLevelCaedDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull TraingListRecyclerViewAdapter.viewHolder holder, int position) {
         TraingListModel traingListModel = traingListModelList.get(position);
-        holder.mainTxt.setText(traingListModel.getMainTxt());
-        holder.subTxt.setText(traingListModel.getSubTxt());
-        holder.traingCard.setOnClickListener(new View.OnClickListener() {
+        holder.binding.traingTxt.setText(traingListModel.getMainTxt());
+        holder.binding.traingSubTxt.setText(traingListModel.getSubTxt());
+        holder.binding.traingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.traingCard.setBackgroundResource(R.drawable.card_selected_design);
+                holder.binding.traingCard.setBackgroundResource(R.drawable.card_selected_design);
             }
         });
 
@@ -62,14 +65,13 @@ public class TraingListRecyclerViewAdapter extends RecyclerView.Adapter<TraingLi
     }
 
     public static class viewHolder extends RecyclerView.ViewHolder {
-        private ConstraintLayout traingCard;
-        private TextView mainTxt,subTxt;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            traingCard = itemView.findViewById(R.id.traingCard);
-            mainTxt = itemView.findViewById(R.id.traingTxt);
-            subTxt = itemView.findViewById(R.id.traingSubTxt);
+        private TraingLevelCaedDesignBinding binding;
+        public viewHolder(@NonNull TraingLevelCaedDesignBinding itemView) {
+            super(itemView.getRoot());
+                binding = itemView;
+//            traingCard = itemView.findViewById(R.id.traingCard);
+//            mainTxt = itemView.findViewById(R.id.traingTxt);
+//            subTxt = itemView.findViewById(R.id.traingSubTxt);
 
         }
     }

@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.NotificationDesign1Binding;
 import com.nishiket.homeworkout.model.NotificationParentModel;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class NotificationParentRecyclerViewAdapter extends RecyclerView.Adapter<
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private List<NotificationParentModel> notificationParentModelList;
     private Context context;
+    private NotificationDesign1Binding notificationDesign1Binding;
 
     public NotificationParentRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -31,21 +33,22 @@ public class NotificationParentRecyclerViewAdapter extends RecyclerView.Adapter<
     @NonNull
     @Override
     public NotificationParentRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.notification_design_1,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.notification_design_1,parent,false);
+        notificationDesign1Binding = NotificationDesign1Binding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(notificationDesign1Binding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull viewHolder holder, int position) {
         NotificationParentModel notificationParentModel = notificationParentModelList.get(position);
-        holder.notificationDateTxt.setText(notificationParentModel.getNotifiacationTime());
+        holder.binding.notificationDateTxt.setText(notificationParentModel.getNotifiacationTime());
         LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
         layoutManager.setInitialPrefetchItemCount(notificationParentModel.getNotificationChildModelList().size());
         NotificationChildRecyclerrViewAdapter notificationChildRecyclerrViewAdapter = new NotificationChildRecyclerrViewAdapter(context);
         notificationChildRecyclerrViewAdapter.setNotificationChildModelList(notificationParentModel.getNotificationChildModelList());
-        holder.notificationChildRecyclerView.setAdapter(notificationChildRecyclerrViewAdapter);
-        holder.notificationChildRecyclerView.setLayoutManager(layoutManager);
-        holder.notificationChildRecyclerView.setRecycledViewPool(viewPool);
+        holder.binding.notificationChildRecyclerView.setAdapter(notificationChildRecyclerrViewAdapter);
+        holder.binding.notificationChildRecyclerView.setLayoutManager(layoutManager);
+        holder.binding.notificationChildRecyclerView.setRecycledViewPool(viewPool);
 
     }
 
@@ -60,13 +63,12 @@ public class NotificationParentRecyclerViewAdapter extends RecyclerView.Adapter<
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        TextView notificationDateTxt;
-        RecyclerView notificationChildRecyclerView;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-            notificationDateTxt = itemView.findViewById(R.id.notificationDateTxt);
-            notificationChildRecyclerView = itemView.findViewById(R.id.notificationChildRecyclerView);
-
+        private NotificationDesign1Binding binding;
+        public viewHolder(@NonNull NotificationDesign1Binding itemView) {
+            super(itemView.getRoot());
+//            notificationDateTxt = itemView.findViewById(R.id.notificationDateTxt);
+//            notificationChildRecyclerView = itemView.findViewById(R.id.notificationChildRecyclerView);
+                binding = itemView;
         }
     }
 }

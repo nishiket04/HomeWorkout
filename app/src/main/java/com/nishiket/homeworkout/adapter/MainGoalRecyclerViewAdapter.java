@@ -12,6 +12,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.ChooseGenderDesignBinding;
 import com.nishiket.homeworkout.model.CardList;
 
 import java.util.List;
@@ -22,7 +23,7 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
     private Context context;
 
     private int selectedPosition = -1;
-
+    private ChooseGenderDesignBinding chooseGenderDesignBinding;
 
 
     public MainGoalRecyclerViewAdapter(Context context) {
@@ -36,8 +37,9 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
     @NonNull
     @Override
     public viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.choose_gender_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.choose_gender_design,parent,false);
+        chooseGenderDesignBinding = ChooseGenderDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(chooseGenderDesignBinding);
     }
     public CardList getSelectedData() {
         if (selectedPosition != -1 && selectedPosition < cardListList.size()) {
@@ -48,13 +50,13 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
     @Override
     public void onBindViewHolder(@NonNull MainGoalRecyclerViewAdapter.viewHolder holder, int position) {
         CardList cardList = cardListList.get(position);
-        holder.gender.setText(cardList.getGender().toString());
-        holder.emoji.setImageResource(cardList.getImage());
-        holder.card.setOnClickListener(new View.OnClickListener() {
+        holder.binding.genderTxt.setText(cardList.getGender().toString());
+        holder.binding.emojiGenderCard.setImageResource(cardList.getImage());
+        holder.binding.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.card.setBackgroundResource(R.drawable.card_selected_design);
-                holder.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
+                holder.binding.card.setBackgroundResource(R.drawable.card_selected_design);
+                holder.binding.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
                 selectedPosition = position;
 
             }
@@ -71,15 +73,14 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView emoji;
-        TextView gender;
-        ConstraintLayout card,imageCard;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-            emoji = itemView.findViewById(R.id.emojiGenderCard);
-            gender = itemView.findViewById(R.id.genderTxt);
-            card = itemView.findViewById(R.id.card);
-            imageCard = itemView.findViewById(R.id.imageCard);
+        private ChooseGenderDesignBinding binding;
+        public viewHolder(@NonNull ChooseGenderDesignBinding itemView) {
+            super(itemView.getRoot());
+//            emoji = itemView.findViewById(R.id.emojiGenderCard);
+//            gender = itemView.findViewById(R.id.genderTxt);
+//            card = itemView.findViewById(R.id.card);
+//            imageCard = itemView.findViewById(R.id.imageCard);
+                binding = itemView;
         }
     }
 }

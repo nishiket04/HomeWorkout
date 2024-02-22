@@ -11,6 +11,7 @@ import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.DatesActivityDesignBinding;
 import com.nishiket.homeworkout.model.ActivityDateModel;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ActivityDateRecyclerViewAdapter extends RecyclerView.Adapter<Activi
 
     private Context context;
     private List<ActivityDateModel> activityDateModelsList;
+    private DatesActivityDesignBinding datesActivityDesignBinding;
 
     public void setActivityDateModelsLst(List<ActivityDateModel> activityDateModelsList) {
         this.activityDateModelsList = activityDateModelsList;
@@ -31,17 +33,17 @@ public class ActivityDateRecyclerViewAdapter extends RecyclerView.Adapter<Activi
     @NonNull
     @Override
     public ActivityDateRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.dates_activity_design,parent,false);
-        return new viewHolder(view);
+        datesActivityDesignBinding = DatesActivityDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(datesActivityDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ActivityDateRecyclerViewAdapter.viewHolder holder, int position) {
         ActivityDateModel activityDateModel = activityDateModelsList.get(position);
-        holder.mntActivityTxt.setText(activityDateModel.getMonth());
-        holder.dateActivityTxt.setText(activityDateModel.getDate());
+        holder.binding.mntActivityTxt.setText(activityDateModel.getMonth());
+        holder.binding.dateActivityTxt.setText(activityDateModel.getDate());
         if(position == 0){
-            holder.date_bg.setBackgroundResource(R.color.primary_light1);
+            holder.binding.dateBg.setBackgroundResource(R.color.primary_light1);
         }
 
     }
@@ -57,14 +59,14 @@ public class ActivityDateRecyclerViewAdapter extends RecyclerView.Adapter<Activi
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        ConstraintLayout date_bg;
-        TextView dateActivityTxt,mntActivityTxt;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
+       private DatesActivityDesignBinding binding;
+        public viewHolder(@NonNull DatesActivityDesignBinding itemView) {
+            super(itemView.getRoot());
+             binding = itemView;
 
-            date_bg = itemView.findViewById(R.id.date_bg);
-            dateActivityTxt = itemView.findViewById(R.id.dateActivityTxt);
-            mntActivityTxt = itemView.findViewById(R.id.mntActivityTxt);
+//            date_bg = itemView.findViewById(R.id.date_bg);
+//            dateActivityTxt = itemView.findViewById(R.id.dateActivityTxt);
+//            mntActivityTxt = itemView.findViewById(R.id.mntActivityTxt);
         }
     }
 }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.WorkoutDetailsEquipmentDesignBinding;
 import com.nishiket.homeworkout.model.WorkoutDetailsEquipmentModel;
 
 import java.util.List;
@@ -18,6 +19,7 @@ import java.util.List;
 public class WorkoutDetailsEquipmentRecylerViewAdapter extends RecyclerView.Adapter<WorkoutDetailsEquipmentRecylerViewAdapter.viewHolder> {
     private Context context;
     private List<WorkoutDetailsEquipmentModel> workoutDetailsEquipmentModelList;
+    private WorkoutDetailsEquipmentDesignBinding workoutDetailsEquipmentDesignBinding;
 
     public WorkoutDetailsEquipmentRecylerViewAdapter(Context context) {
         this.context = context;
@@ -30,15 +32,16 @@ public class WorkoutDetailsEquipmentRecylerViewAdapter extends RecyclerView.Adap
     @NonNull
     @Override
     public WorkoutDetailsEquipmentRecylerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.workout_details_equipment_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.workout_details_equipment_design,parent,false);
+        workoutDetailsEquipmentDesignBinding = WorkoutDetailsEquipmentDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(workoutDetailsEquipmentDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutDetailsEquipmentRecylerViewAdapter.viewHolder holder, int position) {
         WorkoutDetailsEquipmentModel workoutDetailsEquipmentModel = workoutDetailsEquipmentModelList.get(position);
-        holder.equipmentImage.setImageResource(workoutDetailsEquipmentModel.getImage());
-        holder.equipmentTxt.setText(workoutDetailsEquipmentModel.getEquipment());
+        holder.binding.equipmentImage.setImageResource(workoutDetailsEquipmentModel.getImage());
+        holder.binding.equipmentTxt.setText(workoutDetailsEquipmentModel.getEquipment());
     }
 
     @Override
@@ -52,12 +55,12 @@ public class WorkoutDetailsEquipmentRecylerViewAdapter extends RecyclerView.Adap
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView equipmentImage;
-        TextView equipmentTxt;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-            equipmentImage = itemView.findViewById(R.id.equipmentImage);
-            equipmentTxt = itemView.findViewById(R.id.equipmentTxt);
+        private WorkoutDetailsEquipmentDesignBinding binding;
+        public viewHolder(@NonNull WorkoutDetailsEquipmentDesignBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
+//            equipmentImage = itemView.findViewById(R.id.equipmentImage);
+//            equipmentTxt = itemView.findViewById(R.id.equipmentTxt);
         }
     }
 }

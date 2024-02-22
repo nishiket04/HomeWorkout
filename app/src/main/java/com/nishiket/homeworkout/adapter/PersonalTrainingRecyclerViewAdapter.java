@@ -13,6 +13,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.PersonalTreainingDesignBinding;
 import com.nishiket.homeworkout.model.PersonalTrainingModel;
 
 import org.w3c.dom.Text;
@@ -24,6 +25,7 @@ public class PersonalTrainingRecyclerViewAdapter extends RecyclerView.Adapter<Pe
     private List<PersonalTrainingModel> personalTrainingModelList;
     private Context context;
     private int selectItem=-1;
+    private PersonalTreainingDesignBinding personalTreainingDesignBinding;
 
     public interface OnItemClickListener {
         void onItemClick(int position, PersonalTrainingModel personalTrainingModel);
@@ -55,18 +57,19 @@ public class PersonalTrainingRecyclerViewAdapter extends RecyclerView.Adapter<Pe
     @NonNull
     @Override
     public PersonalTrainingRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.personal_treaining_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.personal_treaining_design,parent,false);
+        personalTreainingDesignBinding = PersonalTreainingDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(personalTreainingDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PersonalTrainingRecyclerViewAdapter.viewHolder holder, int position) {
             PersonalTrainingModel personalTrainingModel = personalTrainingModelList.get(position);
-            holder.personalTrainingTimeTxt.setText(personalTrainingModel.getTime());
-            holder.personalTrainingLevelTxt.setText(personalTrainingModel.getLevel());
-            holder.personalTrainingTxt.setText(personalTrainingModel.getWorkout());
-            holder.personalTrainingImage.setImageResource(personalTrainingModel.getImage());
-            holder.personalTrainingImage.setOnClickListener(new View.OnClickListener() {
+            holder.binding.personalTrainingTimeTxt.setText(personalTrainingModel.getTime());
+            holder.binding.personalTrainingLevelTxt.setText(personalTrainingModel.getLevel());
+            holder.binding.personalTrainingTxt.setText(personalTrainingModel.getWorkout());
+            holder.binding.personalTrainingImage.setImageResource(personalTrainingModel.getImage());
+            holder.binding.personalTrainingImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {
                     selectItem = position;
@@ -88,15 +91,14 @@ public class PersonalTrainingRecyclerViewAdapter extends RecyclerView.Adapter<Pe
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView personalTrainingImage;
-        TextView personalTrainingTxt,personalTrainingTimeTxt,personalTrainingLevelTxt;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            personalTrainingTxt = itemView.findViewById(R.id.personalTrainingTxt);
-            personalTrainingImage = itemView.findViewById(R.id.personalTrainingImage);
-            personalTrainingLevelTxt = itemView.findViewById(R.id.personalTrainingLevelTxt);
-            personalTrainingTimeTxt = itemView.findViewById(R.id.personalTrainingTimeTxt);
+        private PersonalTreainingDesignBinding binding;
+        public viewHolder(@NonNull PersonalTreainingDesignBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
+//            personalTrainingTxt = itemView.findViewById(R.id.personalTrainingTxt);
+//            personalTrainingImage = itemView.findViewById(R.id.personalTrainingImage);
+//            personalTrainingLevelTxt = itemView.findViewById(R.id.personalTrainingLevelTxt);
+//            personalTrainingTimeTxt = itemView.findViewById(R.id.personalTrainingTimeTxt);
         }
     }
 }

@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.MyWorkoutHistoryChildDesingBinding;
 import com.nishiket.homeworkout.model.MyWorkoutChildModel;
 
 import java.util.List;
@@ -19,7 +20,7 @@ public class MyWorkoutChildRecyclerViewAdapter extends RecyclerView.Adapter<MyWo
 
     private Context context;
     private List<MyWorkoutChildModel> myWorkoutChildModelsList;
-
+    private MyWorkoutHistoryChildDesingBinding myWorkoutHistoryChildDesingBinding;
     public MyWorkoutChildRecyclerViewAdapter(Context context) {
         this.context = context;
     }
@@ -31,16 +32,17 @@ public class MyWorkoutChildRecyclerViewAdapter extends RecyclerView.Adapter<MyWo
     @NonNull
     @Override
     public MyWorkoutChildRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.my_workout_history_child_desing,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.my_workout_history_child_desing,parent,false);
+        myWorkoutHistoryChildDesingBinding = MyWorkoutHistoryChildDesingBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(myWorkoutHistoryChildDesingBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyWorkoutChildRecyclerViewAdapter.viewHolder holder, int position) {
         MyWorkoutChildModel myWorkoutChildModel = myWorkoutChildModelsList.get(position);
-        holder.myWorkoutImage.setImageResource(myWorkoutChildModel.getImage());
-        holder.myWorkoutTxt.setText(myWorkoutChildModel.getWokrout());
-        holder.myWorkoutTimeTxt.setText(myWorkoutChildModel.getTime());
+        holder.binding.myWorkutImage.setImageResource(myWorkoutChildModel.getImage());
+        holder.binding.myWorkutWorkout.setText(myWorkoutChildModel.getWokrout());
+        holder.binding.myWorkutTime.setText(myWorkoutChildModel.getTime());
     }
 
     @Override
@@ -54,13 +56,13 @@ public class MyWorkoutChildRecyclerViewAdapter extends RecyclerView.Adapter<MyWo
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        ImageView myWorkoutImage;
-        TextView myWorkoutTxt,myWorkoutTimeTxt;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-            myWorkoutImage = itemView.findViewById(R.id.myWorkutImage);
-            myWorkoutTxt = itemView.findViewById(R.id.myWorkutWorkout);
-            myWorkoutTimeTxt = itemView.findViewById(R.id.myWorkutTime);
+        private MyWorkoutHistoryChildDesingBinding binding;
+        public viewHolder(@NonNull MyWorkoutHistoryChildDesingBinding itemView) {
+            super(itemView.getRoot());
+//            myWorkoutImage = itemView.findViewById(R.id.myWorkutImage);
+//            myWorkoutTxt = itemView.findViewById(R.id.myWorkutWorkout);
+//            myWorkoutTimeTxt = itemView.findViewById(R.id.myWorkutTime);
+            binding = itemView;
         }
     }
 }

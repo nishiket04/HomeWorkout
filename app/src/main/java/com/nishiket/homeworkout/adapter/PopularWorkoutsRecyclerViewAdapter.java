@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.PopularWorkoutDesignBinding;
 import com.nishiket.homeworkout.model.PopularWorkoutModel;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<Pop
 
     private List<PopularWorkoutModel> popularWorkoutModelList;
     private Context context;
+    private PopularWorkoutDesignBinding popularWorkoutDesignBinding;
 
     public PopularWorkoutsRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -31,18 +33,19 @@ public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<Pop
     @NonNull
     @Override
     public PopularWorkoutsRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.popular_workout_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.popular_workout_design,parent,false);
+        popularWorkoutDesignBinding = PopularWorkoutDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(popularWorkoutDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull PopularWorkoutsRecyclerViewAdapter.viewHolder holder, int position) {
 
         PopularWorkoutModel popularWorkoutModel = popularWorkoutModelList.get(position);
-        holder.popularWorkoutImage.setImageResource(popularWorkoutModel.getImage());
-        holder.popularWorkoutTxt.setText(popularWorkoutModel.getWorkout());
-        holder.popularWorkoutLevelTxt.setText(popularWorkoutModel.getType());
-        holder.popularWorkoutTimeTxt.setText(popularWorkoutModel.getTime());
+        holder.binding.popualrWorkoutImage.setImageResource(popularWorkoutModel.getImage());
+        holder.binding.popularWorkoutTxt.setText(popularWorkoutModel.getWorkout());
+        holder.binding.popularWorkoutLevelTxt.setText(popularWorkoutModel.getType());
+        holder.binding.popularWorkoutTimeTxt.setText(popularWorkoutModel.getTime());
 
     }
 
@@ -56,15 +59,14 @@ public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<Pop
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        TextView popularWorkoutTxt,popularWorkoutLevelTxt,popularWorkoutTimeTxt;
-        ImageView popularWorkoutImage;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            popularWorkoutTxt = itemView.findViewById(R.id.popularWorkoutTxt);
-            popularWorkoutLevelTxt = itemView.findViewById(R.id.popularWorkoutLevelTxt);
-            popularWorkoutTimeTxt = itemView.findViewById(R.id.popularWorkoutTimeTxt);
-            popularWorkoutImage = itemView.findViewById(R.id.popualrWorkoutImage);
+        private PopularWorkoutDesignBinding binding;
+        public viewHolder(@NonNull PopularWorkoutDesignBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
+//            popularWorkoutTxt = itemView.findViewById(R.id.popularWorkoutTxt);
+//            popularWorkoutLevelTxt = itemView.findViewById(R.id.popularWorkoutLevelTxt);
+//            popularWorkoutTimeTxt = itemView.findViewById(R.id.popularWorkoutTimeTxt);
+//            popularWorkoutImage = itemView.findViewById(R.id.popualrWorkoutImage);
         }
     }
 }

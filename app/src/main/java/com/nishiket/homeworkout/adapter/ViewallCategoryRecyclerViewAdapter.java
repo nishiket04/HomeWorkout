@@ -11,6 +11,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.ViewallCategoryDesignBinding;
 import com.nishiket.homeworkout.model.ViewallCategoryModel;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class ViewallCategoryRecyclerViewAdapter extends RecyclerView.Adapter<Vie
 
     private Context context;
     private List<ViewallCategoryModel> viewallCategoryModelList;
+    private ViewallCategoryDesignBinding viewallCategoryDesignBinding;
 
     public ViewallCategoryRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -31,16 +33,17 @@ public class ViewallCategoryRecyclerViewAdapter extends RecyclerView.Adapter<Vie
     @NonNull
     @Override
     public ViewallCategoryRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.viewall_category_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.viewall_category_design,parent,false);
+        viewallCategoryDesignBinding = ViewallCategoryDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(viewallCategoryDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewallCategoryRecyclerViewAdapter.viewHolder holder, int position) {
             ViewallCategoryModel viewallCategoryModel = viewallCategoryModelList.get(position);
-            holder.viewallCategoryTimeTxt.setText(viewallCategoryModel.getWorkouts());
-            holder.viewallCategoryTxt.setText(viewallCategoryModel.getCategory());
-            holder.viewallCategoryImage.setImageResource(viewallCategoryModel.getImage());
+            holder.binding.viewallCategoryTimeTxt.setText(viewallCategoryModel.getWorkouts());
+            holder.binding.viewallCategoryTxt.setText(viewallCategoryModel.getCategory());
+            holder.binding.viewallCategoryImage.setImageResource(viewallCategoryModel.getImage());
     }
 
     @Override
@@ -54,15 +57,14 @@ public class ViewallCategoryRecyclerViewAdapter extends RecyclerView.Adapter<Vie
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        TextView viewallCategoryTimeTxt,viewallCategoryTxt;
-        ImageView viewallCategoryImage,viewallCategoryInfoImage;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-
-            viewallCategoryImage = itemView.findViewById(R.id.viewallCategoryImage);
-            viewallCategoryTxt = itemView.findViewById(R.id.viewallCategoryTxt);
-            viewallCategoryTimeTxt = itemView.findViewById(R.id.viewallCategoryTimeTxt);
-            viewallCategoryInfoImage = itemView.findViewById(R.id.viewallCategoryInfoImage);
+        private ViewallCategoryDesignBinding binding;
+        public viewHolder(@NonNull ViewallCategoryDesignBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
+//            viewallCategoryImage = itemView.findViewById(R.id.viewallCategoryImage);
+//            viewallCategoryTxt = itemView.findViewById(R.id.viewallCategoryTxt);
+//            viewallCategoryTimeTxt = itemView.findViewById(R.id.viewallCategoryTimeTxt);
+//            viewallCategoryInfoImage = itemView.findViewById(R.id.viewallCategoryInfoImage);
         }
     }
 }

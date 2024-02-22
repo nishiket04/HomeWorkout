@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.databinding.MyWorkourHistoryParentDesignBinding;
 import com.nishiket.homeworkout.model.MyWorkoutParentModel;
 
 import java.util.List;
@@ -19,6 +20,7 @@ public class MyWorkoutParentRecyclerViewAdapter extends RecyclerView.Adapter<MyW
     private RecyclerView.RecycledViewPool viewPool = new RecyclerView.RecycledViewPool();
     private Context context;
     private List<MyWorkoutParentModel> myWorkoutParentModelList;
+    private MyWorkourHistoryParentDesignBinding myWorkourHistoryParentDesignBinding;
 
     public MyWorkoutParentRecyclerViewAdapter(Context context) {
         this.context = context;
@@ -31,23 +33,24 @@ public class MyWorkoutParentRecyclerViewAdapter extends RecyclerView.Adapter<MyW
     @NonNull
     @Override
     public MyWorkoutParentRecyclerViewAdapter.viewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(context).inflate(R.layout.my_workour_history_parent_design,parent,false);
-        return new viewHolder(view);
+//        View view = LayoutInflater.from(context).inflate(R.layout.my_workour_history_parent_design,parent,false);
+        myWorkourHistoryParentDesignBinding = MyWorkourHistoryParentDesignBinding.inflate(LayoutInflater.from(context),parent,false);
+        return new viewHolder(myWorkourHistoryParentDesignBinding);
     }
 
     @Override
     public void onBindViewHolder(@NonNull MyWorkoutParentRecyclerViewAdapter.viewHolder holder, int position) {
         MyWorkoutParentModel myWorkoutParentModel = myWorkoutParentModelList.get(position);
-        holder.workoutTimeAndWorkoutsTxt.setText(myWorkoutParentModel.getWorkout());
-        holder.myWorkoutDate.setText(myWorkoutParentModel.getDate());
+        holder.binding.workoutTimeAndWorkoutsTxt.setText(myWorkoutParentModel.getWorkout());
+        holder.binding.WorkoutDateTxt.setText(myWorkoutParentModel.getDate());
         MyWorkoutChildRecyclerViewAdapter myWorkoutChildRecyclerViewAdapter = new MyWorkoutChildRecyclerViewAdapter(context);
         LinearLayoutManager layoutManager = new LinearLayoutManager(context,LinearLayoutManager.VERTICAL,false);
         layoutManager.setInitialPrefetchItemCount(myWorkoutParentModel.getMyWorkoutChildModelsList().size());
         myWorkoutChildRecyclerViewAdapter.setMyWorkoutChildModels(myWorkoutParentModel.getMyWorkoutChildModelsList());
-        holder.myWorkoutChildRecyclerView.setNestedScrollingEnabled(false);
-        holder.myWorkoutChildRecyclerView.setLayoutManager(layoutManager);
-        holder.myWorkoutChildRecyclerView.setAdapter(myWorkoutChildRecyclerViewAdapter);
-        holder.myWorkoutChildRecyclerView.setRecycledViewPool(viewPool);
+        holder.binding.myWorkoutChildRecyclerView.setNestedScrollingEnabled(false);
+        holder.binding.myWorkoutChildRecyclerView.setLayoutManager(layoutManager);
+        holder.binding.myWorkoutChildRecyclerView.setAdapter(myWorkoutChildRecyclerViewAdapter);
+        holder.binding.myWorkoutChildRecyclerView.setRecycledViewPool(viewPool);
     }
 
     @Override
@@ -61,13 +64,13 @@ public class MyWorkoutParentRecyclerViewAdapter extends RecyclerView.Adapter<MyW
     }
 
     public class viewHolder extends RecyclerView.ViewHolder {
-        RecyclerView myWorkoutChildRecyclerView;
-        TextView myWorkoutDate,workoutTimeAndWorkoutsTxt;
-        public viewHolder(@NonNull View itemView) {
-            super(itemView);
-            myWorkoutChildRecyclerView = itemView.findViewById(R.id.myWorkoutChildRecyclerView);
-            myWorkoutDate = itemView.findViewById(R.id.WorkoutDateTxt);
-            workoutTimeAndWorkoutsTxt = itemView.findViewById(R.id.workoutTimeAndWorkoutsTxt);
+        private MyWorkourHistoryParentDesignBinding binding;
+        public viewHolder(@NonNull MyWorkourHistoryParentDesignBinding itemView) {
+            super(itemView.getRoot());
+            binding = itemView;
+//            myWorkoutChildRecyclerView = itemView.findViewById(R.id.myWorkoutChildRecyclerView);
+//            myWorkoutDate = itemView.findViewById(R.id.WorkoutDateTxt);
+//            workoutTimeAndWorkoutsTxt = itemView.findViewById(R.id.workoutTimeAndWorkoutsTxt);
         }
     }
 }
