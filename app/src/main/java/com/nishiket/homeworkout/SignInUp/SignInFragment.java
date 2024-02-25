@@ -11,6 +11,9 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import com.facebook.AccessToken;
 import com.facebook.CallbackManager;
@@ -28,6 +31,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.auth.api.signin.GoogleSignInAccount;
 import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
@@ -40,10 +44,12 @@ import com.google.firebase.auth.AuthCredential;
 import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FacebookAuthProvider;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.databinding.FragmentSignInBinding;
 import com.nishiket.homeworkout.user.MainActivity;
+import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 
 import java.util.Arrays;
 import java.util.concurrent.Executor;
@@ -66,7 +72,7 @@ public class SignInFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        signInBinding = FragmentSignInBinding.inflate(inflater,container,false);
+        signInBinding = FragmentSignInBinding.inflate(inflater, container, false);
         return signInBinding.getRoot();
     }
 
@@ -78,6 +84,9 @@ public class SignInFragment extends Fragment {
         mAuth = FirebaseAuth.getInstance();
         callbackManager = CallbackManager.Factory.create();
 
+        AuthViewModel viewModel = new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+
         // parent fragment manager
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction ft = fragmentManager.beginTransaction();
@@ -85,7 +94,7 @@ public class SignInFragment extends Fragment {
         signInBinding.signUpTxt.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                ft.replace(R.id.frame,new SignUpFragment()).commit();
+                ft.replace(R.id.frame, new SignUpFragment()).commit();
             }
         });
 
@@ -93,9 +102,26 @@ public class SignInFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 Intent i = new Intent(getActivity(), MainActivity.class);
-                startActivity(i);
-                SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
-                signInUpActivity.finish();
+                String email = signInBinding.editText2.getText().toString(); // email and convert it to string
+                String pass = signInBinding.editText.getText().toString(); // password and convert it to string
+
+                if (!email.isEmpty() && !pass.isEmpty()) { // if email and password is not empty then it will call viewModel signIn Method
+                    viewModel.signIn(email, pass); // signIn method of viewModel
+                    // now checking in viewModel MutableLiveData is changed or not
+                    viewModel.getFirebaseUserMutableLiveData().observe(getViewLifecycleOwner(), new Observer<FirebaseUser>() {
+                        @Override
+                        public void onChanged(FirebaseUser firebaseUser) { // if its changed
+                            if (firebaseUser != null) { // and firebaseUser its not Null then
+                                Toast.makeText(getContext(), "Login Successfully", Toast.LENGTH_SHORT).show(); // make a toast that its Success
+                                startActivity(i);
+                                SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
+                                signInUpActivity.finish();
+                            }
+                        }
+                    });
+                } else { // else user name or password is empty then make a toast
+                    Toast.makeText(getContext(), "Enter Email and Password", Toast.LENGTH_SHORT).show();
+                }
             }
         });
 

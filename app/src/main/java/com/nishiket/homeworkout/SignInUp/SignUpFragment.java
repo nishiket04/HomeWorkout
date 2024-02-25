@@ -108,7 +108,7 @@ public class SignUpFragment extends Fragment {
                             signInUpActivity.phoneNumber = "+91"+phoneNumber;
                             signInUpActivity.email = email;
                             signInUpActivity.password = password;
-                            ft.add(R.id.frame, new GenderFragment(), "verification").commit();
+                            ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
                         }else {
                             Toast.makeText(getContext(), "Password Mismatch", Toast.LENGTH_SHORT).show();
                         }
