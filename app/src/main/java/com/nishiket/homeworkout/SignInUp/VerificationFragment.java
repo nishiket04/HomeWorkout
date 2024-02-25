@@ -27,15 +27,25 @@ import com.google.firebase.auth.PhoneAuthCredential;
 import com.google.firebase.auth.PhoneAuthProvider;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.databinding.FragmentVerifiactionBinding;
+import com.nishiket.homeworkout.model.UserInsertModel;
+import com.nishiket.homeworkout.retrofit.Retrofit;
+import com.nishiket.homeworkout.retrofit.RetrofitClient;
 
 import java.util.concurrent.TimeUnit;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class VerificationFragment extends Fragment {
     private FragmentVerifiactionBinding verifiactionBinding;
     private String verificationId;
     private String otp;
-    private String email,password;
+    private String email,password,name;
+    private String number;
+    private Retrofit retrofit;
 
     public VerificationFragment() {
 
@@ -61,6 +71,8 @@ public class VerificationFragment extends Fragment {
         verifiactionBinding.phoneNumberTxt.setText(signInUpActivity.phoneNumber);
         email = signInUpActivity.email;
         password = signInUpActivity.password;
+        number = signInUpActivity.phoneNumber;
+        name = signInUpActivity.name;
         verifiactionBinding.otp1.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -228,6 +240,23 @@ public class VerificationFragment extends Fragment {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if(task.isSuccessful()){
+                            retrofit = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
+                            UserInsertModel userInsertModel = new UserInsertModel();
+                            userInsertModel.setEmail(email);
+                            userInsertModel.setName(name);
+                            userInsertModel.setPhone(Double.parseDouble(number));
+                            Call<ResponseBody> call = retrofit.sendData(123,userInsertModel);
+                            call.enqueue(new Callback<ResponseBody>() {
+                                @Override
+                                public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+
+                                }
+
+                                @Override
+                                public void onFailure(Call<ResponseBody> call, Throwable t) {
+
+                                }
+                            });
                             Log.d("done", "firebasae email: done");
                             FragmentManager fragmentManager = getParentFragmentManager();
                             FragmentTransaction ft = fragmentManager.beginTransaction();

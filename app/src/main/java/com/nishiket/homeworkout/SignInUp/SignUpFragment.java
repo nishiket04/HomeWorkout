@@ -102,12 +102,14 @@ public class SignUpFragment extends Fragment {
                         String phoneNumber = signUpBinding.phoneEdt.getText().toString();
                         String email = signUpBinding.emailEdt.getText().toString();
                         String password = signUpBinding.passwordEdt.getText().toString();
+                        String name = signUpBinding.fullNameEdt.getText().toString();
                         String confirmPassword = signUpBinding.confirmPasswordEdt.getText().toString();
                         if (confirmPassword.equals(password)) {
                             SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
                             signInUpActivity.phoneNumber = "+91"+phoneNumber;
                             signInUpActivity.email = email;
                             signInUpActivity.password = password;
+                            signInUpActivity.name = name;
                             ft.add(R.id.frame, new VerificationFragment(), "verification").commit();
                         }else {
                             Toast.makeText(getContext(), "Password Mismatch", Toast.LENGTH_SHORT).show();

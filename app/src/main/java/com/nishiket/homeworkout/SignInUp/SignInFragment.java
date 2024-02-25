@@ -48,11 +48,19 @@ import com.google.firebase.auth.FirebaseUser;
 import com.google.firebase.auth.GoogleAuthProvider;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.databinding.FragmentSignInBinding;
+import com.nishiket.homeworkout.model.UserInsertModel;
+import com.nishiket.homeworkout.retrofit.Retrofit;
+import com.nishiket.homeworkout.retrofit.RetrofitClient;
 import com.nishiket.homeworkout.user.MainActivity;
 import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 
 import java.util.Arrays;
 import java.util.concurrent.Executor;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 
 public class SignInFragment extends Fragment {
@@ -113,6 +121,28 @@ public class SignInFragment extends Fragment {
                         public void onChanged(FirebaseUser firebaseUser) { // if its changed
                             if (firebaseUser != null) { // and firebaseUser its not Null then
                                 Toast.makeText(getContext(), "Login Successfully", Toast.LENGTH_SHORT).show(); // make a toast that its Success
+                                Retrofit retrofit = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
+                                UserInsertModel userInsertModel = new UserInsertModel();
+                                userInsertModel.setEmail(email);
+                                userInsertModel.setName("nishiket");
+                                userInsertModel.setPhone(Double.parseDouble("7405105330"));
+                                Call<ResponseBody> call = retrofit.sendData(123,userInsertModel);
+                                call.enqueue(new Callback<ResponseBody>() {
+                                    @Override
+                                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                                        if (response.isSuccessful()) {
+                                            // Data sent successfully
+                                            Log.d("api", "onResponse: "+response.code());
+                                        } else {
+                                            // Error handling
+//                                            Log.d("api", "onResponse: "+response.code());
+                                        }
+                                    }
+                                    @Override
+                                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                                        Log.d("api", "onResponse: "+t.getMessage());
+                                    }
+                                });
                                 startActivity(i);
                                 SignInUpActivity signInUpActivity = (SignInUpActivity) getActivity();
                                 signInUpActivity.finish();
