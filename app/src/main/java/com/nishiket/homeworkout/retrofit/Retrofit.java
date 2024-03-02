@@ -1,5 +1,6 @@
 package com.nishiket.homeworkout.retrofit;
 
+import com.nishiket.homeworkout.model.ImageModel;
 import com.nishiket.homeworkout.model.UserInsertModel;
 
 import okhttp3.ResponseBody;
@@ -14,4 +15,6 @@ import retrofit2.http.Query;
 public interface Retrofit {
         @POST("user.php")
         Call<ResponseBody> sendData(@Query("api_key") int i, @Body UserInsertModel userData);
+        @GET("getImage.php")
+        Call<ImageModel> getImage(@Query("api_key") int apiKey, @Query("email") String email);
 }
