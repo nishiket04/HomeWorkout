@@ -5,18 +5,16 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.appcompat.widget.AppCompatButton;
-import androidx.cardview.widget.CardView;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelStoreOwner;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.LinearLayout;
-import android.widget.TextView;
 
 import com.bumptech.glide.Glide;
 import com.google.android.gms.auth.api.signin.GoogleSignIn;
@@ -25,20 +23,14 @@ import com.google.android.gms.auth.api.signin.GoogleSignInOptions;
 import com.google.firebase.auth.FirebaseAuth;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.SignInUp.SignInUpActivity;
-import com.nishiket.homeworkout.SplaseScreenActivity;
-import com.nishiket.homeworkout.databinding.FragmentPersonalTrainingBinding;
 import com.nishiket.homeworkout.databinding.FragmentProfileBinding;
 import com.nishiket.homeworkout.model.ImageModel;
 import com.nishiket.homeworkout.retrofit.Retrofit;
 import com.nishiket.homeworkout.retrofit.RetrofitClient;
-
-import retrofit2.Call;
-import retrofit2.Callback;
-import retrofit2.Response;
+import com.nishiket.homeworkout.viewmodel.UserDetailViewModel;
 
 public class ProfileFragment extends Fragment {
     private FragmentProfileBinding profileBinding;
-    private Retrofit apiService;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -54,15 +46,13 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
-        apiService = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
-
         // Add your API key and email
         int apiKey = 123;
         String email = "nishiket04@gmail.com";
-
+        UserDetailViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDetailViewModel.class);
         // Call method to fetch image
-        fetchImage(apiKey, email);
+        fetchImage(apiKey, email,viewModel);
 
 
         profileBinding.logout.setOnClickListener(new View.OnClickListener() {
@@ -129,21 +119,12 @@ public class ProfileFragment extends Fragment {
 
 
     }
-    private void fetchImage(int apiKey, String email) {
-        Call<ImageModel> call = apiService.getImage(apiKey, email);
-        call.enqueue(new Callback<ImageModel>() {
+    private void fetchImage(int apiKey, String email, UserDetailViewModel viewModel) {
+        viewModel.getImage(apiKey,email);
+        viewModel.getImageModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ImageModel>() {
             @Override
-            public void onResponse(Call<ImageModel> call, Response<ImageModel> response) {
-                if (response.isSuccessful() && response.body() != null) {
-                    // Image data fetched successfully
-                    // Load image into ImageView using Glide
-                    Glide.with(getContext()).load(response.body().getURL()).into(profileBinding.profileImage);
-                } else {
-                }
-            }
-
-            @Override
-            public void onFailure(Call<ImageModel> call, Throwable t) {
+            public void onChanged(ImageModel imageModel) {
+                Glide.with(getContext()).load(imageModel.getURL()).into(profileBinding.profileImage);
             }
         });
     }
