@@ -28,6 +28,7 @@ import com.nishiket.homeworkout.model.CategoryModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.PopularWorkoutModel;
 import com.nishiket.homeworkout.model.UserDetailModel;
+import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 import com.nishiket.homeworkout.viewmodel.UserDetailViewModel;
 
 import java.util.ArrayList;
@@ -52,11 +53,12 @@ public class HomeFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-
+        AuthViewModel authViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
         UserDetailViewModel userDetailViewModel = new ViewModelProvider(this,
                 ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDetailViewModel.class);
 
-        userDetailViewModel.getData(123,"nishiket04@gmail.com");
+        userDetailViewModel.getData(123,authViewModel.getCurrentUser().getEmail());
         userDetailViewModel.getUserDetailModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserDetailModel>() {
             @Override
             public void onChanged(UserDetailModel userDetailModel) {
