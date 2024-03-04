@@ -25,8 +25,10 @@ import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.SignInUp.SignInUpActivity;
 import com.nishiket.homeworkout.databinding.FragmentProfileBinding;
 import com.nishiket.homeworkout.model.ImageModel;
+import com.nishiket.homeworkout.model.UserDetailModel;
 import com.nishiket.homeworkout.retrofit.Retrofit;
 import com.nishiket.homeworkout.retrofit.RetrofitClient;
+import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 import com.nishiket.homeworkout.viewmodel.UserDetailViewModel;
 
 public class ProfileFragment extends Fragment {
@@ -46,13 +48,23 @@ public class ProfileFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        AuthViewModel authViewModel = new ViewModelProvider((ViewModelStoreOwner) this, (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+
         // Add your API key and email
         int apiKey = 123;
-        String email = "nishiket04@gmail.com";
+        String email = authViewModel.getCurrentUser().getEmail();
+
         UserDetailViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
                 (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDetailViewModel.class);
         // Call method to fetch image
         fetchImage(apiKey, email,viewModel);
+        viewModel.getData(apiKey,email);
+        viewModel.getUserDetailModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserDetailModel>() {
+            @Override
+            public void onChanged(UserDetailModel userDetailModel) {
+                profileBinding.userName.setText(userDetailModel.getName());
+            }
+        });
 
 
         profileBinding.logout.setOnClickListener(new View.OnClickListener() {

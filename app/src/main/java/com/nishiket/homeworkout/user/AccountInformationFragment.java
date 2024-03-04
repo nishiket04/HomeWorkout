@@ -23,6 +23,7 @@ import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.databinding.FragmentAccountInformationBinding;
 import com.nishiket.homeworkout.model.ImageModel;
 import com.nishiket.homeworkout.model.UserDetailModel;
+import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 import com.nishiket.homeworkout.viewmodel.UserDetailViewModel;
 
 import java.text.ParseException;
@@ -49,12 +50,14 @@ public class AccountInformationFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        AuthViewModel authViewModel = new ViewModelProvider((ViewModelStoreOwner) this,
+                (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
 
         UserDetailViewModel viewModel =new ViewModelProvider((ViewModelStoreOwner) this,
                 (ViewModelProvider.Factory) ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDetailViewModel.class);
 
-        viewModel.getData(123,"nishiket04@gmail.com");
-        viewModel.getImage(123,"nishiket04@gmail.com");
+        viewModel.getData(123,authViewModel.getCurrentUser().getEmail());
+        viewModel.getImage(123,authViewModel.getCurrentUser().getEmail());
 
         viewModel.getImageModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ImageModel>() {
             @Override
