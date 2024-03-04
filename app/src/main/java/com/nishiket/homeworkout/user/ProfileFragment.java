@@ -12,6 +12,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.lifecycle.ViewModelStoreOwner;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,6 +31,9 @@ import com.nishiket.homeworkout.retrofit.Retrofit;
 import com.nishiket.homeworkout.retrofit.RetrofitClient;
 import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 import com.nishiket.homeworkout.viewmodel.UserDetailViewModel;
+
+import java.time.LocalDate;
+import java.time.Period;
 
 public class ProfileFragment extends Fragment {
     private FragmentProfileBinding profileBinding;
@@ -63,6 +67,15 @@ public class ProfileFragment extends Fragment {
             @Override
             public void onChanged(UserDetailModel userDetailModel) {
                 profileBinding.userName.setText(userDetailModel.getName());
+                profileBinding.weight.setText(""+userDetailModel.getWeightKg()+" kg");
+                profileBinding.height.setText(""+userDetailModel.getHeightcm()+" cm");
+                LocalDate today = LocalDate.now();
+                Log.d("age", "onChanged: "+ today);
+                LocalDate birth = LocalDate.parse(userDetailModel.getBirth());
+                Log.d("age", "onChanged: "+ birth);
+                Period age = Period.between(birth,today);
+                Log.d("age", "onChanged: "+ age);
+                profileBinding.age.setText(""+age.getYears()+" Years");
             }
         });
 

@@ -4,8 +4,8 @@ import java.time.LocalDate;
 public class UserDetailModel {
     private long number;
     private String gender;
-    private long weightKg;
-    private long heightcm;
+    private float weight_kg;
+    private float height_cm;
     private String name;
     private String birth;
     private long goalweightKg;
@@ -19,11 +19,11 @@ public class UserDetailModel {
     public String getGender() { return gender; }
     public void setGender(String value) { this.gender = value; }
 
-    public long getWeightKg() { return weightKg; }
-    public void setWeightKg(long value) { this.weightKg = value; }
+    public float getWeightKg() { return weight_kg; }
+    public void setWeightKg(float value) { this.weight_kg = value; }
 
-    public long getHeightcm() { return heightcm; }
-    public void setHeightcm(long value) { this.heightcm = value; }
+    public float getHeightcm() { return height_cm; }
+    public void setHeightcm(float value) { this.height_cm = value; }
 
     public String getName() { return name; }
     public void setName(String value) { this.name = value; }
