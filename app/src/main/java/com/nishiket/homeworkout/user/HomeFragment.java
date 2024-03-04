@@ -7,9 +7,12 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.text.TextUtils;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,6 +27,8 @@ import com.nishiket.homeworkout.databinding.FragmentHomeBinding;
 import com.nishiket.homeworkout.model.CategoryModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.PopularWorkoutModel;
+import com.nishiket.homeworkout.model.UserDetailModel;
+import com.nishiket.homeworkout.viewmodel.UserDetailViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -48,8 +53,16 @@ public class HomeFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        UserDetailViewModel userDetailViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(UserDetailViewModel.class);
 
-
+        userDetailViewModel.getData(123,"nishiket04@gmail.com");
+        userDetailViewModel.getUserDetailModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserDetailModel>() {
+            @Override
+            public void onChanged(UserDetailModel userDetailModel) {
+                homeBinding.userNameTxt.setText("Hi, "+Character.toUpperCase(userDetailModel.getName().charAt(0)) + userDetailModel.getName().substring(1).toLowerCase());
+            }
+        });
         CategoryModel c1 = new CategoryModel();
         CategoryModel c2 = new CategoryModel();
         CategoryModel c3 = new CategoryModel();
