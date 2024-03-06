@@ -3,13 +3,11 @@ package com.nishiket.homeworkout.adapter;
 import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.ExercisesDesignBinding;
 import com.nishiket.homeworkout.model.ExercisesModel;
 
@@ -38,9 +36,9 @@ public class ExercisesRecyclerViewAdapter extends RecyclerView.Adapter<Exercises
     @Override
     public void onBindViewHolder(@NonNull ExercisesRecyclerViewAdapter.viewHolder holder, int position) {
         ExercisesModel exercisesModel = exercisesModelList.get(position);
-        holder.binding.exercisesTxt.setText(exercisesModel.getExercise());
+        holder.binding.exercisesTxt.setText(exercisesModel.getExercises());
         holder.binding.exercisesTimeTxt.setText(exercisesModel.getTime());
-        holder.binding.exercisesImage.setImageResource(exercisesModel.getImage());
+        Glide.with(context).load(exercisesModel.getImage()).into(holder.binding.exercisesImage);
 
     }
 

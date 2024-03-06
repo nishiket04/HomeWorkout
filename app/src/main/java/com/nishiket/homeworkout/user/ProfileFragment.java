@@ -66,7 +66,7 @@ public class ProfileFragment extends Fragment {
         viewModel.getUserDetailModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserDetailModel>() {
             @Override
             public void onChanged(UserDetailModel userDetailModel) {
-                profileBinding.userName.setText(userDetailModel.getName());
+                profileBinding.userName.setText(Character.toUpperCase(userDetailModel.getName().charAt(0)) + userDetailModel.getName().substring(1).toLowerCase());
                 profileBinding.weight.setText(""+userDetailModel.getWeightKg()+" kg");
                 profileBinding.height.setText(""+userDetailModel.getHeightcm()+" cm");
                 LocalDate today = LocalDate.now();

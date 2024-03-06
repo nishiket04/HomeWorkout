@@ -10,15 +10,12 @@ import androidx.fragment.app.FragmentTransaction;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
-import android.text.TextUtils;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 
-import com.google.android.material.card.MaterialCardView;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.CategoryRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.ExercisesRecyclerViewAdapter;
@@ -28,15 +25,21 @@ import com.nishiket.homeworkout.model.CategoryModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.PopularWorkoutModel;
 import com.nishiket.homeworkout.model.UserDetailModel;
+import com.nishiket.homeworkout.retrofit.Retrofit;
+import com.nishiket.homeworkout.retrofit.RetrofitClient;
 import com.nishiket.homeworkout.viewmodel.AuthViewModel;
+import com.nishiket.homeworkout.viewmodel.ExerciseViewModel;
 import com.nishiket.homeworkout.viewmodel.UserDetailViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class HomeFragment extends Fragment {
     private List<CategoryModel> categoryModelList = new ArrayList<>();
-    private  List<ExercisesModel> exercisesModelsList = new ArrayList<>();
     private List<PopularWorkoutModel> popularWorkoutModelList = new ArrayList<>();
     private FragmentHomeBinding homeBinding;
     @Override
@@ -85,30 +88,20 @@ public class HomeFragment extends Fragment {
         categoryModelList.add(c3);
         categoryModelList.add(c4);
 
-        ExercisesModel e1 = new ExercisesModel();
-        ExercisesModel e2 = new ExercisesModel();
-        ExercisesModel e3 = new ExercisesModel();
-        ExercisesModel e4 = new ExercisesModel();
+        ExerciseViewModel exerciseViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ExerciseViewModel.class);
 
-        e1.setExercise("Front and Back Lunge");
-        e2.setExercise("Side Plank");
-        e3.setExercise("Arm circles");
-        e4.setExercise("Sumo Squat");
-
-        e1.setImage(R.drawable.back);
-        e2.setImage(R.drawable.plank);
-        e3.setImage(R.drawable.lag);
-        e4.setImage(R.drawable.sumo_squat);
-
-        e1.setTime("00:30");
-        e2.setTime("00:30");
-        e3.setTime("00:30");
-        e4.setTime("00:30");
-
-        exercisesModelsList.add(e1);
-        exercisesModelsList.add(e2);
-        exercisesModelsList.add(e3);
-        exercisesModelsList.add(e4);
+        exerciseViewModel.getExercises(123);
+        exerciseViewModel.getExercisesListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<ExercisesModel>>() {
+            @Override
+            public void onChanged(List<ExercisesModel> exercisesModelList) {
+                ExercisesRecyclerViewAdapter exercisesRecyclerViewAdapter = new ExercisesRecyclerViewAdapter(getActivity());
+                homeBinding.exercisesRecyclerView.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
+                homeBinding.exercisesRecyclerView.setAdapter(exercisesRecyclerViewAdapter);
+                exercisesRecyclerViewAdapter.setExercisesModelList(exercisesModelList.subList(0,4));
+                exercisesRecyclerViewAdapter.notifyDataSetChanged();
+            }
+        });
 
         PopularWorkoutModel p1 = new PopularWorkoutModel();
         PopularWorkoutModel p2 = new PopularWorkoutModel();
@@ -134,13 +127,6 @@ public class HomeFragment extends Fragment {
         homeBinding.categoryRecyclerView.setAdapter(categoryRecyclerViewAdapter);
         categoryRecyclerViewAdapter.setCategoryModelList(categoryModelList);
         categoryRecyclerViewAdapter.notifyDataSetChanged();
-
-
-        ExercisesRecyclerViewAdapter exercisesRecyclerViewAdapter = new ExercisesRecyclerViewAdapter(getActivity());
-        homeBinding.exercisesRecyclerView.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
-        homeBinding.exercisesRecyclerView.setAdapter(exercisesRecyclerViewAdapter);
-        exercisesRecyclerViewAdapter.setExercisesModelList(exercisesModelsList);
-        exercisesRecyclerViewAdapter.notifyDataSetChanged();
 
         PopularWorkoutsRecyclerViewAdapter popularWorkoutsRecyclerViewAdapter = new PopularWorkoutsRecyclerViewAdapter(getActivity());
         homeBinding.popularWorkoutRecyclerView.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));

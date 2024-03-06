@@ -2,30 +2,27 @@ package com.nishiket.homeworkout.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.ViewallExercisesDesignBinding;
-import com.nishiket.homeworkout.model.ViewallExercisesModel;
+import com.nishiket.homeworkout.model.ExercisesModel;
 
 import java.util.List;
 
 public class ViewallExercisesRecyclerViewAdapter extends RecyclerView.Adapter<ViewallExercisesRecyclerViewAdapter.viewHolder> {
     private Context context;
-    private List<ViewallExercisesModel> viewallExercisesModelList;
+    private List<ExercisesModel> viewallExercisesModelList;
     private ViewallExercisesDesignBinding viewallExercisesDesignBinding;
 
     public ViewallExercisesRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setViewallExercisesModelList(List<ViewallExercisesModel> viewallExercisesModelList) {
+    public void setViewallExercisesModelList(List<ExercisesModel> viewallExercisesModelList) {
         this.viewallExercisesModelList = viewallExercisesModelList;
     }
 
@@ -39,10 +36,10 @@ public class ViewallExercisesRecyclerViewAdapter extends RecyclerView.Adapter<Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewallExercisesRecyclerViewAdapter.viewHolder holder, int position) {
-        ViewallExercisesModel viewallExercisesModel = viewallExercisesModelList.get(position);
+        ExercisesModel viewallExercisesModel = viewallExercisesModelList.get(position);
         holder.binding.viewExercisesTimeTxt.setText(viewallExercisesModel.getTime());
-        holder.binding.viewExercisesTxt.setText(viewallExercisesModel.getTitle());
-        holder.binding.viewExercisesImage.setImageResource(viewallExercisesModel.getImage());
+        holder.binding.viewExercisesTxt.setText(viewallExercisesModel.getExercises());
+        Glide.with(context).load(viewallExercisesModel.getImage()).into(holder.binding.viewExercisesImage);
     }
 
     @Override

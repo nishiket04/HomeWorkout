@@ -1,30 +1,20 @@
 package com.nishiket.homeworkout.model;
 
 public class ExercisesModel {
-    int image;
-    String exercise,time;
+    private String image;
+    private String exercises;
+    private long id;
+    private String time;
 
-    public int getImage() {
-        return image;
-    }
+    public String getImage() { return image; }
+    public void setImage(String value) { this.image = value; }
 
-    public void setImage(int image) {
-        this.image = image;
-    }
+    public String getExercises() { return exercises; }
+    public void setExercises(String value) { this.exercises = value; }
 
-    public String getExercise() {
-        return exercise;
-    }
+    public long getid() { return id; }
+    public void setid(long value) { this.id = value; }
 
-    public void setExercise(String exercise) {
-        this.exercise = exercise;
-    }
-
-    public String getTime() {
-        return time;
-    }
-
-    public void setTime(String time) {
-        this.time = time;
-    }
+    public String getTime() { return time; }
+    public void setTime(String value) { this.time = value; }
 }
