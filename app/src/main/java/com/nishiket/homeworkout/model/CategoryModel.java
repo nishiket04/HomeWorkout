@@ -1,15 +1,17 @@
 package com.nishiket.homeworkout.model;
 
 public class CategoryModel {
-    int image;
+    int id;
     String category;
+    long workouts;
+    String image;
 
-    public int getImage() {
-        return image;
+    public int getId() {
+        return id;
     }
 
-    public void setImage(int image) {
-        this.image = image;
+    public void setId(int id) {
+        this.id = id;
     }
 
     public String getCategory() {
@@ -18,5 +20,21 @@ public class CategoryModel {
 
     public void setCategory(String category) {
         this.category = category;
+    }
+
+    public long getWorkouts() {
+        return workouts;
+    }
+
+    public void setWorkouts(long workouts) {
+        this.workouts = workouts;
+    }
+
+    public String getImage() {
+        return image;
+    }
+
+    public void setImage(String image) {
+        this.image = image;
     }
 }

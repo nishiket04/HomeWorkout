@@ -11,6 +11,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.databinding.CategoryDesignBinding;
 import com.nishiket.homeworkout.model.CategoryModel;
@@ -42,7 +43,7 @@ public class CategoryRecyclerViewAdapter extends RecyclerView.Adapter<CategoryRe
     @Override
     public void onBindViewHolder(@NonNull CategoryRecyclerViewAdapter.viewHolder holder, int position) {
         CategoryModel categoryModel = categoryModelList.get(position);
-        holder.binding.categoryImage.setImageResource(categoryModel.getImage());
+        Glide.with(context).load(categoryModel.getImage()).into(holder.binding.categoryImage);
         holder.binding.categoryTxt.setText(categoryModel.getCategory());
 
     }

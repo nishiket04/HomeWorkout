@@ -12,6 +12,7 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.databinding.PersonalTreainingDesignBinding;
 import com.nishiket.homeworkout.model.PersonalTrainingModel;
@@ -68,7 +69,7 @@ public class PersonalTrainingRecyclerViewAdapter extends RecyclerView.Adapter<Pe
             holder.binding.personalTrainingTimeTxt.setText(personalTrainingModel.getTime());
             holder.binding.personalTrainingLevelTxt.setText(personalTrainingModel.getLevel());
             holder.binding.personalTrainingTxt.setText(personalTrainingModel.getWorkout());
-            holder.binding.personalTrainingImage.setImageResource(personalTrainingModel.getImage());
+            Glide.with(context).load(personalTrainingModel.getImage()).into(holder.binding.personalTrainingImage);
             holder.binding.personalTrainingImage.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

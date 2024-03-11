@@ -7,6 +7,8 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,12 +22,12 @@ import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.PersonalTrainingRecyclerViewAdapter;
 import com.nishiket.homeworkout.databinding.FragmentPersonalTrainingBinding;
 import com.nishiket.homeworkout.model.PersonalTrainingModel;
+import com.nishiket.homeworkout.viewmodel.WorkoutViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
 
 public class PersonalTrainingFragment extends Fragment implements PersonalTrainingRecyclerViewAdapter.OnItemClickListener {
-    private List<PersonalTrainingModel> personalTrainingModelList = new ArrayList<>();
     private FragmentPersonalTrainingBinding personalTrainingBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -43,61 +45,22 @@ public class PersonalTrainingFragment extends Fragment implements PersonalTraini
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-        PersonalTrainingModel p1 = new PersonalTrainingModel();
-        PersonalTrainingModel p2 = new PersonalTrainingModel();
-        PersonalTrainingModel p3 = new PersonalTrainingModel();
-        PersonalTrainingModel p4 = new PersonalTrainingModel();
-        PersonalTrainingModel p5 = new PersonalTrainingModel();
-        PersonalTrainingModel p6 = new PersonalTrainingModel();
-        PersonalTrainingModel p7 = new PersonalTrainingModel();
+        WorkoutViewModel workoutViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(WorkoutViewModel.class);
 
-        p1.setImage(R.drawable.women_workingout);
-        p2.setImage(R.drawable.man_workingout);
-        p3.setImage(R.drawable.women_workingout);
-        p4.setImage(R.drawable.man_workingout);
-        p5.setImage(R.drawable.women_workingout);
-        p6.setImage(R.drawable.man_workingout);
-        p7.setImage(R.drawable.women_workingout);
-
-        p1.setWorkout("Bodyweight Stretch");
-        p2.setWorkout("Full Body Fast");
-        p3.setWorkout("Express Tabata");
-        p4.setWorkout("Express Tabata");
-        p5.setWorkout("Glutes & Abs");
-        p6.setWorkout("Interval Pilates");
-        p7.setWorkout("Bodyweight Stretch");
-
-        p1.setLevel("Beginner");
-        p2.setLevel("Beginner");
-        p3.setLevel("Beginner");
-        p4.setLevel("Beginner");
-        p5.setLevel("Beginner");
-        p6.setLevel("Beginner");
-        p7.setLevel("Beginner");
-
-        p1.setTime("32 min");
-        p2.setTime("32 min");
-        p3.setTime("32 min");
-        p4.setTime("32 min");
-        p5.setTime("32 min");
-        p6.setTime("32 min");
-        p7.setTime("32 min");
-
-        personalTrainingModelList.add(p1);
-        personalTrainingModelList.add(p2);
-        personalTrainingModelList.add(p3);
-        personalTrainingModelList.add(p4);
-        personalTrainingModelList.add(p5);
-        personalTrainingModelList.add(p6);
-        personalTrainingModelList.add(p7);
-
-        PersonalTrainingRecyclerViewAdapter personalTrainingRecyclerViewAdapter = new PersonalTrainingRecyclerViewAdapter(getActivity());
-        personalTrainingBinding.personalTrainingRecylerView.setLayoutManager(new GridLayoutManager(getContext(),2));
-        personalTrainingBinding.personalTrainingRecylerView.setNestedScrollingEnabled(false);
-        personalTrainingBinding.personalTrainingRecylerView.setAdapter(personalTrainingRecyclerViewAdapter);
-        personalTrainingRecyclerViewAdapter.setPersonalTrainingModelList(personalTrainingModelList);
-        personalTrainingRecyclerViewAdapter.notifyDataSetChanged();
-        personalTrainingRecyclerViewAdapter.setOnItemClickListener(this);
+        workoutViewModel.getData(123);
+        workoutViewModel.getListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<PersonalTrainingModel>>() {
+            @Override
+            public void onChanged(List<PersonalTrainingModel> personalTrainingModelList) {
+                PersonalTrainingRecyclerViewAdapter personalTrainingRecyclerViewAdapter = new PersonalTrainingRecyclerViewAdapter(getActivity());
+                personalTrainingBinding.personalTrainingRecylerView.setLayoutManager(new GridLayoutManager(getContext(),2));
+                personalTrainingBinding.personalTrainingRecylerView.setAdapter(personalTrainingRecyclerViewAdapter);
+                personalTrainingRecyclerViewAdapter.setPersonalTrainingModelList(personalTrainingModelList);
+                personalTrainingRecyclerViewAdapter.notifyDataSetChanged();
+                personalTrainingBinding.scrollView.stopNestedScroll();
+                personalTrainingRecyclerViewAdapter.setOnItemClickListener(PersonalTrainingFragment.this);
+            }
+        });
 
         personalTrainingBinding.backToTrainingImage.setOnClickListener(new View.OnClickListener() {
             @Override

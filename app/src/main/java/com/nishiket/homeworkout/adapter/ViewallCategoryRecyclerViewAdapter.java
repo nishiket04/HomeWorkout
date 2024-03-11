@@ -1,33 +1,31 @@
 package com.nishiket.homeworkout.adapter;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.ViewallCategoryDesignBinding;
-import com.nishiket.homeworkout.model.ViewallCategoryModel;
+import com.nishiket.homeworkout.model.CategoryModel;
 
 import java.util.List;
 
 public class ViewallCategoryRecyclerViewAdapter extends RecyclerView.Adapter<ViewallCategoryRecyclerViewAdapter.viewHolder> {
 
     private Context context;
-    private List<ViewallCategoryModel> viewallCategoryModelList;
+    private List<CategoryModel> categoryModelList;
     private ViewallCategoryDesignBinding viewallCategoryDesignBinding;
 
     public ViewallCategoryRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setViewallCategoryModelList(List<ViewallCategoryModel> viewallCategoryModelList) {
-        this.viewallCategoryModelList = viewallCategoryModelList;
+    public void setViewallCategoryModelList(List<CategoryModel> categoryModelList) {
+        this.categoryModelList = categoryModelList;
     }
 
     @NonNull
@@ -40,19 +38,20 @@ public class ViewallCategoryRecyclerViewAdapter extends RecyclerView.Adapter<Vie
 
     @Override
     public void onBindViewHolder(@NonNull ViewallCategoryRecyclerViewAdapter.viewHolder holder, int position) {
-            ViewallCategoryModel viewallCategoryModel = viewallCategoryModelList.get(position);
-            holder.binding.viewallCategoryTimeTxt.setText(viewallCategoryModel.getWorkouts());
-            holder.binding.viewallCategoryTxt.setText(viewallCategoryModel.getCategory());
-            holder.binding.viewallCategoryImage.setImageResource(viewallCategoryModel.getImage());
+            CategoryModel categoryModel = categoryModelList.get(position);
+            holder.binding.viewallCategoryTimeTxt.setText(""+categoryModel.getWorkouts()+" workouts");
+        Log.d("data", "onBindViewHolder: "+categoryModelList.size());
+            holder.binding.viewallCategoryTxt.setText(categoryModel.getCategory());
+            Glide.with(context).load(categoryModel.getImage()).into(holder.binding.viewallCategoryImage);
     }
 
     @Override
     public int getItemCount() {
-        if(viewallCategoryModelList == null){
+        if(categoryModelList == null){
             return 0;
         }
         else {
-            return viewallCategoryModelList.size();
+            return categoryModelList.size();
         }
     }
 

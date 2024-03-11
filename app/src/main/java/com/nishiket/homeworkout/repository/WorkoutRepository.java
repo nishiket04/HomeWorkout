@@ -2,8 +2,7 @@ package com.nishiket.homeworkout.repository;
 
 import android.app.Application;
 
-import com.nishiket.homeworkout.model.CategoryModel;
-import com.nishiket.homeworkout.model.ExercisesModel;
+import com.nishiket.homeworkout.model.PersonalTrainingModel;
 import com.nishiket.homeworkout.retrofit.Retrofit;
 import com.nishiket.homeworkout.retrofit.RetrofitClient;
 
@@ -13,21 +12,22 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class ExcirciseRepository {
+public class WorkoutRepository {
     private Application application;
     private OnComplete onComplete;
     private Retrofit retrofit = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
 
-    public ExcirciseRepository(Application application,OnComplete onComplete) {
+
+    public WorkoutRepository(Application application, OnComplete onComplete) {
         this.application = application;
         this.onComplete = onComplete;
     }
 
-    public void getExercises(int api_key){
-        Call<List<ExercisesModel>> call = retrofit.getExcisemodel(api_key);
-        call.enqueue(new Callback<List<ExercisesModel>>() {
+    public void getWorkouts(int api_key){
+        Call<List<PersonalTrainingModel>> call = retrofit.getWorkout(api_key);
+        call.enqueue(new Callback<List<PersonalTrainingModel>>() {
             @Override
-            public void onResponse(Call<List<ExercisesModel>> call, Response<List<ExercisesModel>> response) {
+            public void onResponse(Call<List<PersonalTrainingModel>> call, Response<List<PersonalTrainingModel>> response) {
                 if(response.isSuccessful()){
                     if(onComplete!=null){
                         onComplete.onComplete(response.body());
@@ -36,12 +36,13 @@ public class ExcirciseRepository {
             }
 
             @Override
-            public void onFailure(Call<List<ExercisesModel>> call, Throwable t) {
+            public void onFailure(Call<List<PersonalTrainingModel>> call, Throwable t) {
 
             }
         });
     }
+
     public interface OnComplete{
-        void onComplete(List<ExercisesModel> exercisesModelList);
+        void onComplete(List<PersonalTrainingModel> personalTrainingModelList);
     }
 }

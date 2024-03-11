@@ -1,7 +1,9 @@
 package com.nishiket.homeworkout.retrofit;
 
+import com.nishiket.homeworkout.model.CategoryModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.ImageModel;
+import com.nishiket.homeworkout.model.PersonalTrainingModel;
 import com.nishiket.homeworkout.model.UserDetailModel;
 import com.nishiket.homeworkout.model.UserInsertModel;
 
@@ -25,5 +27,10 @@ public interface Retrofit {
 
         @GET("getExercises.php")
         Call<List<ExercisesModel>> getExcisemodel(@Query("api_key") int apiKey);
+        @GET("getWorkout.php")
+        Call<List<PersonalTrainingModel>> getWorkout(@Query("api_key") int apiKey);
+
+        @GET("getCategory.php")
+        Call<List<CategoryModel>> getCategory(@Query("api_key") int apiKey);
 
 }

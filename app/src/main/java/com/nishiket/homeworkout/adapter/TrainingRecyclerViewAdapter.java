@@ -4,21 +4,18 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
-import androidx.fragment.app.FragmentActivity;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.TrainingsWorkoutDesignBinding;
-import com.nishiket.homeworkout.model.TrainingModel;
+import com.nishiket.homeworkout.model.PersonalTrainingModel;
 
 import java.util.List;
 
 public class TrainingRecyclerViewAdapter extends RecyclerView.Adapter<TrainingRecyclerViewAdapter.viewHolder> {
-    private List<TrainingModel> trainingModelList;
+    private List<PersonalTrainingModel> personalTrainingModelList;
     private Context context;
     private TrainingsWorkoutDesignBinding trainingsWorkoutDesignBinding;
 
@@ -26,12 +23,12 @@ public class TrainingRecyclerViewAdapter extends RecyclerView.Adapter<TrainingRe
         this.context = context;
     }
 
-    public void setTrainingModelList(List<TrainingModel> trainingModelList) {
-        this.trainingModelList = trainingModelList;
+    public void setTrainingModelList(List<PersonalTrainingModel> personalTrainingModelList) {
+        this.personalTrainingModelList = personalTrainingModelList;
     }
 
     public interface OnItemClickedListiner{
-        void onItemClicked(int position,TrainingModel trainingModel);
+        void onItemClicked(int position,PersonalTrainingModel personalTrainingModel);
     }
     private OnItemClickedListiner onItemClickedListiner;
 
@@ -50,17 +47,17 @@ public class TrainingRecyclerViewAdapter extends RecyclerView.Adapter<TrainingRe
     @Override
     public void onBindViewHolder(@NonNull TrainingRecyclerViewAdapter.viewHolder holder, int position) {
 
-        TrainingModel trainingModel = trainingModelList.get(position);
-        holder.binding.traingWorkoutTxt.setText(trainingModel.getWorkout());
-        holder.binding.traingWorkoutImage.setImageResource(trainingModel.getImage());
-        holder.binding.traingWorkoutLevelTxt.setText(trainingModel.getLevel());
-        holder.binding.traingWorkoutTimeTxt.setText(trainingModel.getTime());
+        PersonalTrainingModel personalTrainingModel = personalTrainingModelList.get(position);
+        holder.binding.traingWorkoutTxt.setText(personalTrainingModel.getWorkout());
+        Glide.with(context).load(personalTrainingModel.getImage()).into(holder.binding.traingWorkoutImage);
+        holder.binding.traingWorkoutLevelTxt.setText(personalTrainingModel.getLevel());
+        holder.binding.traingWorkoutTimeTxt.setText(personalTrainingModel.getTime());
 
         holder.binding.traingWorkoutImage.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 if(onItemClickedListiner !=null){
-                    onItemClickedListiner.onItemClicked(position,trainingModel);
+                    onItemClickedListiner.onItemClicked(position,personalTrainingModel);
                 }
             }
         });
@@ -68,11 +65,11 @@ public class TrainingRecyclerViewAdapter extends RecyclerView.Adapter<TrainingRe
 
     @Override
     public int getItemCount() {
-        if(trainingModelList == null){
+        if(personalTrainingModelList == null){
             return 0;
         }
         else {
-            return trainingModelList.size();
+            return personalTrainingModelList.size();
         }
     }
 

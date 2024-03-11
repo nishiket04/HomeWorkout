@@ -30,6 +30,6 @@ public class ExerciseViewModel extends AndroidViewModel implements ExcirciseRepo
 
     @Override
     public void onComplete(List<ExercisesModel> exercisesModelList) {
-            listMutableLiveData.setValue(exercisesModelList);
+        listMutableLiveData.setValue(exercisesModelList);
     }
 }

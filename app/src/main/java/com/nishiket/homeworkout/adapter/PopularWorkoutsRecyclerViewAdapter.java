@@ -2,23 +2,21 @@ package com.nishiket.homeworkout.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.PopularWorkoutDesignBinding;
+import com.nishiket.homeworkout.model.PersonalTrainingModel;
 import com.nishiket.homeworkout.model.PopularWorkoutModel;
 
 import java.util.List;
 
 public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<PopularWorkoutsRecyclerViewAdapter.viewHolder> {
 
-    private List<PopularWorkoutModel> popularWorkoutModelList;
+    private List<PersonalTrainingModel> personalTrainingModelList;
     private Context context;
     private PopularWorkoutDesignBinding popularWorkoutDesignBinding;
 
@@ -26,8 +24,8 @@ public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<Pop
         this.context = context;
     }
 
-    public void setPopularWorkoutModelList(List<PopularWorkoutModel> popularWorkoutModelList) {
-        this.popularWorkoutModelList = popularWorkoutModelList;
+    public void setPopularWorkoutModelList(List<PersonalTrainingModel> personalTrainingModelList) {
+        this.personalTrainingModelList = personalTrainingModelList;
     }
 
     @NonNull
@@ -41,20 +39,20 @@ public class PopularWorkoutsRecyclerViewAdapter extends RecyclerView.Adapter<Pop
     @Override
     public void onBindViewHolder(@NonNull PopularWorkoutsRecyclerViewAdapter.viewHolder holder, int position) {
 
-        PopularWorkoutModel popularWorkoutModel = popularWorkoutModelList.get(position);
-        holder.binding.popualrWorkoutImage.setImageResource(popularWorkoutModel.getImage());
-        holder.binding.popularWorkoutTxt.setText(popularWorkoutModel.getWorkout());
-        holder.binding.popularWorkoutLevelTxt.setText(popularWorkoutModel.getType());
-        holder.binding.popularWorkoutTimeTxt.setText(popularWorkoutModel.getTime());
+        PersonalTrainingModel personalTrainingModel = personalTrainingModelList.get(position);
+        Glide.with(context).load(personalTrainingModel.getImage()).into(holder.binding.popualrWorkoutImage);
+        holder.binding.popularWorkoutTxt.setText(personalTrainingModel.getWorkout());
+        holder.binding.popularWorkoutLevelTxt.setText(personalTrainingModel.getLevel());
+        holder.binding.popularWorkoutTimeTxt.setText(personalTrainingModel.getTime()+" min");
 
     }
 
     @Override
     public int getItemCount() {
-        if (popularWorkoutModelList == null){
+        if (personalTrainingModelList == null){
             return 0;
         }else {
-            return popularWorkoutModelList.size();
+            return personalTrainingModelList.size();
         }
     }
 
