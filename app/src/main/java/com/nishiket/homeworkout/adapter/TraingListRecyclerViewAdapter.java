@@ -1,5 +1,6 @@
 package com.nishiket.homeworkout.adapter;
 
+import static androidx.recyclerview.widget.RecyclerView.NO_POSITION;
 import static com.nishiket.homeworkout.R.drawable.card_selected_design;
 
 import android.content.Context;
@@ -22,6 +23,7 @@ public class TraingListRecyclerViewAdapter extends RecyclerView.Adapter<TraingLi
 
     private List<TraingListModel> traingListModelList;
     private Context context;
+    private int selectedItem = NO_POSITION;
     private TraingLevelCaedDesignBinding traingLevelCaedDesignBinding;
 
     public TraingListRecyclerViewAdapter(Context context) {
@@ -30,6 +32,10 @@ public class TraingListRecyclerViewAdapter extends RecyclerView.Adapter<TraingLi
 
     public void setTraingListModelList(List<TraingListModel> traingListModelList) {
         this.traingListModelList = traingListModelList;
+    }
+
+    public int getLevel(){
+        return selectedItem;
     }
 
     @NonNull
@@ -48,9 +54,16 @@ public class TraingListRecyclerViewAdapter extends RecyclerView.Adapter<TraingLi
         holder.binding.traingCard.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.binding.traingCard.setBackgroundResource(R.drawable.card_selected_design);
+//                holder.binding.traingCard.setBackgroundResource(R.drawable.card_selected_design);
+                int oldPosition = selectedItem;
+                selectedItem = holder.getAdapterPosition();
+                notifyItemChanged(oldPosition);
+                notifyItemChanged(selectedItem);
             }
         });
+        if (selectedItem == position){
+            holder.binding.traingCard.setBackgroundResource(R.drawable.card_selected_design);
+        }
 
     }
 

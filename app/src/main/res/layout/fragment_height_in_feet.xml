@@ -12,14 +12,14 @@
         android:layout_width="97dp"
         android:layout_height="64dp"
         android:background="@drawable/birthdate_edittxt_design"
+        android:fontFamily="@font/poppins_semibold"
         android:inputType="numberDecimal"
         android:maxLength="3"
-        android:textCursorDrawable="@drawable/cursor_color"
         android:textAlignment="center"
-        android:fontFamily="@font/poppins_semibold"
-        android:textSize="27dp"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textCursorDrawable="@drawable/cursor_color"
+        android:textSize="27dp"
+        app:layout_constraintBottom_toTopOf="@+id/heightContinueBtn"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -27,15 +27,31 @@
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="feet"
         android:layout_marginLeft="6dp"
-        android:textAlignment="center"
         android:fontFamily="@font/open_sans"
-        android:textSize="16dp"
+        android:text="feet"
+        android:textAlignment="center"
         android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:textSize="16dp"
+        app:layout_constraintBottom_toTopOf="@+id/heightContinueBtn"
         app:layout_constraintStart_toEndOf="@+id/feetEditText"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.AppCompatButton
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        android:layout_marginRight="21dp"
+        android:layout_marginLeft="21dp"
+        android:background="@drawable/button_design"
+        android:text="Continue"
+        android:textSize="17dp"
+        android:textAllCaps="false"
+        android:id="@+id/heightContinueBtn"
+        android:textColor="@color/white"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        android:layout_marginBottom="15dp"/>
 
 
 </androidx.constraintlayout.widget.ConstraintLayout>

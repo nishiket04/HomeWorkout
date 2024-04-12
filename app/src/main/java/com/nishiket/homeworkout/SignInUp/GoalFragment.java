@@ -8,6 +8,7 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
@@ -20,9 +21,18 @@ import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.MainGoalRecyclerViewAdapter;
 import com.nishiket.homeworkout.databinding.FragmentGoalBinding;
 import com.nishiket.homeworkout.model.CardList;
+import com.nishiket.homeworkout.model.UserGoalModel;
+import com.nishiket.homeworkout.retrofit.Retrofit;
+import com.nishiket.homeworkout.retrofit.RetrofitClient;
+import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class GoalFragment extends Fragment {
     private List<CardList> cardListList = new ArrayList<>();
@@ -41,6 +51,11 @@ public class GoalFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+
+        AuthViewModel authViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
+
             CardList c1 = new CardList();
             CardList c2 = new CardList();
             CardList c3 = new CardList();
@@ -74,7 +89,22 @@ public class GoalFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 CardList c = mainGoalRecyclerViewAdapter.getSelectedData();
-                Log.d("c", "onClick: " + c.getGender());
+                UserGoalModel userGoalModel = new UserGoalModel();
+                userGoalModel.setEmail(authViewModel.getCurrentUser().getEmail());
+                userGoalModel.setGoale(c.getGender());
+                Call<ResponseBody> call = retrofit.setGoale(123,userGoalModel);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Log.d("goal", "onResponse: "+response.code());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.d("goal", "onFailure: "+t.getMessage());
+
+                    }
+                });
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.frame,new BirthDateFragment()).commit();

@@ -8,8 +8,10 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
 import androidx.viewpager.widget.ViewPager;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -18,6 +20,15 @@ import com.google.android.material.tabs.TabLayout;
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.adapter.WeigthViewPagerAdapter;
 import com.nishiket.homeworkout.databinding.FragmentWeightBinding;
+import com.nishiket.homeworkout.model.UserWeightModel;
+import com.nishiket.homeworkout.retrofit.Retrofit;
+import com.nishiket.homeworkout.retrofit.RetrofitClient;
+import com.nishiket.homeworkout.viewmodel.AuthViewModel;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class WeightFragment extends Fragment {
 
@@ -37,17 +48,18 @@ public class WeightFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
+        AuthViewModel authViewModel = new ViewModelProvider(this, ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
+
         WeigthViewPagerAdapter weigthViewPagerAdapter = new WeigthViewPagerAdapter(getParentFragmentManager());
         weightBinding.weightViewPager.setAdapter(weigthViewPagerAdapter);
         weightBinding.weightTabLayout.setupWithViewPager(weightBinding.weightViewPager);
 
-        weightBinding.weightContinueBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                FragmentManager fragmentManager = getParentFragmentManager();
-                FragmentTransaction ft = fragmentManager.beginTransaction();
-                ft.replace(R.id.frame,new GoalWeightFragment()).commit();
-            }
-        });
+//        weightBinding.weightContinueBtn.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//
+//            }
+//        });
     }
 }

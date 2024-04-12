@@ -35,6 +35,18 @@ public class StpesCompleteFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
+        final float[] x = {1};
+        new Handler().postDelayed(new Runnable() {
+            @Override
+            public void run() {
+            stpesCompleteBinding.progressBar.setProgress(x[0]);
+            stpesCompleteBinding.txt.setText(""+x[0]+"%");
+            x[0]++;
+                if (x[0] <= 100) {
+                    new Handler().postDelayed(this, 30);
+                }
+            }
+        },3000);
         stpesCompleteBinding.stepsCompleteBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

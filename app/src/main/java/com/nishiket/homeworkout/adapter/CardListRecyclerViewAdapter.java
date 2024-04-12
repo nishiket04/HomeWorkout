@@ -32,6 +32,9 @@ public class CardListRecyclerViewAdapter extends RecyclerView.Adapter<CardListRe
         this.cardListList = cardListList;
     }
 
+    public int getSelectedGender(){
+        return selectedItem;
+    }
 
     @NonNull
     @Override

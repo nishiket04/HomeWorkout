@@ -1,5 +1,7 @@
 package com.nishiket.homeworkout.SignInUp;
 
+import static androidx.lifecycle.ViewModelProvider.*;
+
 import android.app.DatePickerDialog;
 import android.os.Bundle;
 
@@ -9,9 +11,12 @@ import androidx.appcompat.widget.AppCompatButton;
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.ViewModelProvider;
+import androidx.lifecycle.ViewModelProvider.AndroidViewModelFactory;
 
 import android.text.Editable;
 import android.text.TextWatcher;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,10 +25,20 @@ import android.widget.EditText;
 
 import com.nishiket.homeworkout.R;
 import com.nishiket.homeworkout.databinding.FragmentBirthDateBinding;
+import com.nishiket.homeworkout.model.UserBirthModel;
+import com.nishiket.homeworkout.model.UserGoalModel;
+import com.nishiket.homeworkout.retrofit.Retrofit;
+import com.nishiket.homeworkout.retrofit.RetrofitClient;
+import com.nishiket.homeworkout.viewmodel.AuthViewModel;
 
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
 import java.util.Locale;
+
+import okhttp3.ResponseBody;
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class BirthDateFragment extends Fragment {
     private Calendar calendar;
@@ -45,11 +60,30 @@ public class BirthDateFragment extends Fragment {
     @Override
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
-        // get instance of calender to set piced date on this
+
+        AuthViewModel authViewModel = new ViewModelProvider(this,
+                ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
+        Retrofit retrofit = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
         calendar = Calendar.getInstance();
         birthDateBinding.birthDateContinueBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                UserBirthModel userBirthModel = new UserBirthModel();
+                userBirthModel.setEmail(authViewModel.getCurrentUser().getEmail());
+                userBirthModel.setBirth(birthDateBinding.birthDateEditText.getText().toString());
+                Call<ResponseBody> call = retrofit.setBirthDate(123,userBirthModel);
+                call.enqueue(new Callback<ResponseBody>() {
+                    @Override
+                    public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
+                        Log.d("birth", "onResponse: "+response.code());
+                    }
+
+                    @Override
+                    public void onFailure(Call<ResponseBody> call, Throwable t) {
+                        Log.d("birth", "onFailure: "+t.getMessage());
+
+                    }
+                });
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction ft = fragmentManager.beginTransaction();
                 ft.replace(R.id.frame,new HeightFragment()).commit();

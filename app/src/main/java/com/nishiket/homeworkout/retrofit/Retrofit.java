@@ -4,8 +4,15 @@ import com.nishiket.homeworkout.model.CategoryModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.ImageModel;
 import com.nishiket.homeworkout.model.PersonalTrainingModel;
+import com.nishiket.homeworkout.model.UserBirthModel;
 import com.nishiket.homeworkout.model.UserDetailModel;
+import com.nishiket.homeworkout.model.UserGenderModel;
+import com.nishiket.homeworkout.model.UserGoalModel;
+import com.nishiket.homeworkout.model.UserGoalWeightModel;
+import com.nishiket.homeworkout.model.UserHeightModel;
 import com.nishiket.homeworkout.model.UserInsertModel;
+import com.nishiket.homeworkout.model.UserLevelModel;
+import com.nishiket.homeworkout.model.UserWeightModel;
 
 import java.util.List;
 
@@ -32,5 +39,23 @@ public interface Retrofit {
 
         @GET("getCategory.php")
         Call<List<CategoryModel>> getCategory(@Query("api_key") int apiKey);
+
+        @POST("gender.php")
+        Call<ResponseBody> setGender(@Query("api_key") int i,@Body UserGenderModel userGender);
+        @POST("goal.php")
+        Call<ResponseBody> setGoale(@Query("api_key") int i,@Body UserGoalModel userGoal);
+        @POST("birth.php")
+        Call<ResponseBody> setBirthDate(@Query("api_key") int i,@Body UserBirthModel userBirth);
+
+        @POST("height.php")
+        Call<ResponseBody> setHeight(@Query("api_key") int i, @Body UserHeightModel userHeight );
+        @POST("weight.php")
+        Call<ResponseBody> setWeight(@Query("api_key") int i, @Body UserWeightModel userWeight);
+
+        @POST("goalWeight.php")
+        Call<ResponseBody> setGoalWeight(@Query("api_key") int i, @Body UserGoalWeightModel userGoalWeight);
+
+        @POST("level.php")
+        Call<ResponseBody> setLevel(@Query("api_key") int i, @Body UserLevelModel userLevel);
 
 }

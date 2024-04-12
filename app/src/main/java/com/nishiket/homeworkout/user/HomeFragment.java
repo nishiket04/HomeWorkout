@@ -66,6 +66,7 @@ public class HomeFragment extends Fragment {
         userDetailViewModel.getUserDetailModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<UserDetailModel>() {
             @Override
             public void onChanged(UserDetailModel userDetailModel) {
+                Log.d("name", "onChanged: "+ userDetailModel.getName());
                 homeBinding.userNameTxt.setText("Hi, "+Character.toUpperCase(userDetailModel.getName().charAt(0)) + userDetailModel.getName().substring(1).toLowerCase());
             }
         });

@@ -94,25 +94,26 @@
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/heightViewPager"
         android:layout_width="match_parent"
-        android:layout_height="250dp"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/heightTabLayout" />
 
-    <androidx.appcompat.widget.AppCompatButton
-        android:layout_width="match_parent"
-        android:layout_height="48dp"
-        android:layout_marginRight="21dp"
-        android:layout_marginLeft="21dp"
-        android:background="@drawable/button_design"
-        android:text="Continue"
-        android:textSize="17dp"
-        android:textAllCaps="false"
-        android:id="@+id/heightContinueBtn"
-        android:textColor="@color/white"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginBottom="15dp"/>
+<!--    <androidx.appcompat.widget.AppCompatButton-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="48dp"-->
+<!--        android:layout_marginRight="21dp"-->
+<!--        android:layout_marginLeft="21dp"-->
+<!--        android:background="@drawable/button_design"-->
+<!--        android:text="Continue"-->
+<!--        android:textSize="17dp"-->
+<!--        android:textAllCaps="false"-->
+<!--        android:id="@+id/heightContinueBtn"-->
+<!--        android:textColor="@color/white"-->
+<!--        app:layout_constraintBottom_toBottomOf="parent"-->
+<!--        app:layout_constraintEnd_toEndOf="parent"-->
+<!--        app:layout_constraintStart_toStartOf="parent"-->
+<!--        android:layout_marginBottom="15dp"/>-->
 
 </androidx.constraintlayout.widget.ConstraintLayout>

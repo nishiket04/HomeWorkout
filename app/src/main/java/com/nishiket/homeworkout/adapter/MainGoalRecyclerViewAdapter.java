@@ -55,12 +55,20 @@ public class MainGoalRecyclerViewAdapter extends RecyclerView.Adapter<MainGoalRe
         holder.binding.card.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                holder.binding.card.setBackgroundResource(R.drawable.card_selected_design);
-                holder.binding.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
-                selectedPosition = position;
+                int oldPosition = selectedPosition;
+//                holder.binding.card.setBackgroundResource(R.drawable.card_selected_design);
+//                holder.binding.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
+//                selectedPosition = position;
+                selectedPosition= holder.getAdapterPosition();
+                notifyItemChanged(oldPosition);
+                notifyItemChanged(selectedPosition);
 
             }
         });
+        if (selectedPosition == position){
+            holder.binding.card.setBackgroundResource(R.drawable.card_selected_design);
+            holder.binding.imageCard.setBackgroundResource(R.drawable.card_selected_emoji_design);
+        }
     }
 
     @Override
