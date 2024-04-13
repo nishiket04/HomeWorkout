@@ -113,7 +113,7 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/userName"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
@@ -122,6 +122,11 @@
                                 android:text="Deborah Moore"
                                 android:textColor="#E5E9EF"
                                 android:textSize="14dp"
+                                android:enabled="false"
+                                android:imeOptions="actionSend"
+                                android:inputType="text"
+                                android:textCursorDrawable="@drawable/cursor_color"
+                                android:background="@android:color/transparent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/imageView4"
                                 app:layout_constraintTop_toTopOf="parent" />
@@ -178,15 +183,20 @@
                                 app:layout_constraintStart_toStartOf="parent"
                                 app:layout_constraintTop_toTopOf="parent" />
 
-                            <TextView
+                            <EditText
                                 android:id="@+id/weight"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
                                 android:layout_marginRight="12dp"
                                 android:fontFamily="@font/open_sans"
                                 android:text="52.7 kg"
+                                android:inputType="numberDecimal"
                                 android:textColor="#E5E9EF"
                                 android:textSize="14dp"
+                                android:enabled="false"
+                                android:imeOptions="actionSend"
+                                android:textCursorDrawable="@drawable/cursor_color"
+                                android:background="@android:color/transparent"
                                 app:layout_constraintBottom_toBottomOf="parent"
                                 app:layout_constraintEnd_toStartOf="@+id/imageView5"
                                 app:layout_constraintTop_toTopOf="parent" />

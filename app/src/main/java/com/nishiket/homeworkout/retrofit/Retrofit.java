@@ -12,15 +12,19 @@ import com.nishiket.homeworkout.model.UserGoalWeightModel;
 import com.nishiket.homeworkout.model.UserHeightModel;
 import com.nishiket.homeworkout.model.UserInsertModel;
 import com.nishiket.homeworkout.model.UserLevelModel;
+import com.nishiket.homeworkout.model.UserNameModel;
 import com.nishiket.homeworkout.model.UserWeightModel;
 
 import java.util.List;
 
+import okhttp3.MultipartBody;
 import okhttp3.ResponseBody;
 import retrofit2.Call;
 import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.Multipart;
 import retrofit2.http.POST;
+import retrofit2.http.Part;
 import retrofit2.http.Query;
 
 public interface Retrofit {
@@ -57,5 +61,11 @@ public interface Retrofit {
 
         @POST("level.php")
         Call<ResponseBody> setLevel(@Query("api_key") int i, @Body UserLevelModel userLevel);
+        @Multipart
+        @POST("image.php")
+        Call<ResponseBody> setImage(@Query("api_key") int i, @Query("email") String email, @Part MultipartBody.Part sendImage);
+
+        @POST("name.php")
+        Call<ResponseBody> setName(@Query("api_key") int i, @Body UserNameModel userName);
 
 }

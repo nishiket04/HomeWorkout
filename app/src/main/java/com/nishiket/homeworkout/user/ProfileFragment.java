@@ -83,13 +83,13 @@ public class ProfileFragment extends Fragment {
         profileBinding.logout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                FirebaseAuth firebaseAuth = FirebaseAuth.getInstance();
                 GoogleSignInOptions gso = new GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
                         .requestIdToken("514357553984-6jdqglnfnb99dmg2jmkhc4pjl8rojm35.apps.googleusercontent.com")
                         .requestEmail()
                         .build();
                 GoogleSignInClient googleSignInClient = GoogleSignIn.getClient(getActivity(), gso);
                 googleSignInClient.revokeAccess();
+                authViewModel.signOut();
                 Intent i = new Intent(getActivity(), SignInUpActivity.class);
                 startActivity(i);
                 MainActivity mainActivity = (MainActivity) getActivity();
