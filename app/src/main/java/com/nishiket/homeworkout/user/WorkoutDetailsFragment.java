@@ -23,20 +23,16 @@ import com.nishiket.homeworkout.adapter.WorkoutDetailsWorkoutRecyclerViewAdapter
 import com.nishiket.homeworkout.databinding.FragmentWorkoutDetailsBinding;
 import com.nishiket.homeworkout.model.EquipmentModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
-import com.nishiket.homeworkout.model.WorkoutDetailsWarmUpModel;
-import com.nishiket.homeworkout.model.WorkoutDetailsWorkoutModel;
 import com.nishiket.homeworkout.model.WorkoutInfoModel;
 import com.nishiket.homeworkout.model.WormUpModel;
-import com.nishiket.homeworkout.repository.WorkoutInfoRepository;
 import com.nishiket.homeworkout.viewmodel.EquipmentViewModel;
 import com.nishiket.homeworkout.viewmodel.ExerciseViewModel;
 import com.nishiket.homeworkout.viewmodel.WorkoutInfoViewModel;
 import com.nishiket.homeworkout.viewmodel.WormUpViewModel;
 
-import java.util.ArrayList;
 import java.util.List;
 
-public class WorkoutDetailsFragment extends Fragment implements WorkoutDetailsWorkoutRecyclerViewAdapter.OnClickedItem {
+public class WorkoutDetailsFragment extends Fragment implements WorkoutDetailsWorkoutRecyclerViewAdapter.OnClickedItem,WorkoutDetailsWarmUpRecyclerViewAdapter.OnClickedItem {
     private FragmentWorkoutDetailsBinding workoutDetailsBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -112,6 +108,7 @@ public class WorkoutDetailsFragment extends Fragment implements WorkoutDetailsWo
                     workoutDetailsBinding.workoutDetailsExercisiesRecyclerView.setLayoutManager( new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
                     workoutDetailsBinding.workoutDetailsExercisiesRecyclerView.setAdapter(workoutDetailsWarmUpRecyclerViewAdapter);
                     workoutDetailsWarmUpRecyclerViewAdapter.setWorkoutDetailsWarmUpModelList(wormUpModels);
+                    workoutDetailsWarmUpRecyclerViewAdapter.setOnClickedItem(WorkoutDetailsFragment.this);
                     workoutDetailsWarmUpRecyclerViewAdapter.notifyDataSetChanged();
                 }
             });
@@ -155,6 +152,22 @@ public class WorkoutDetailsFragment extends Fragment implements WorkoutDetailsWo
         bundle.putInt("id",exercisesModel.getid());
         bundle.putString("title",exercisesModel.getExercises());
         bundle.putString("image",exercisesModel.getImage());
+        bundle.putString("which","exercises");
+        exerciseInfoFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_enter,R.anim.fragment_exit);
+        fragmentTransaction.add(R.id.homeFrameLayout,exerciseInfoFragment,"exerciseInfo").addToBackStack("exerciseInfo").commit();
+    }
+
+    @Override
+    public void onClicked(int i, WormUpModel wormUpModel) {
+        ExerciseInfoFragment exerciseInfoFragment = new ExerciseInfoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",wormUpModel.getId());
+        bundle.putString("title", wormUpModel.getName());
+        bundle.putString("image", wormUpModel.getImage());
+        bundle.putString("which","wormUp");
         exerciseInfoFragment.setArguments(bundle);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();

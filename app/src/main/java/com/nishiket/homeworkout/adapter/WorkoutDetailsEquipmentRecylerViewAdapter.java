@@ -38,7 +38,9 @@ public class WorkoutDetailsEquipmentRecylerViewAdapter extends RecyclerView.Adap
     public void onBindViewHolder(@NonNull WorkoutDetailsEquipmentRecylerViewAdapter.viewHolder holder, int position) {
         EquipmentModel equipmentModel = equipmentModelList.get(position);
         holder.binding.equipmentTxt.setText(equipmentModel.getName());
-        Glide.with(context).load(equipmentModel.getImage()).into(holder.binding.equipmentImage);
+        if(equipmentModel.getImage()!=null){
+            Glide.with(context).load(equipmentModel.getImage()).into(holder.binding.equipmentImage);
+        }
     }
 
     @Override

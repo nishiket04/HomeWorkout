@@ -17,6 +17,7 @@ import com.nishiket.homeworkout.model.UserLevelModel;
 import com.nishiket.homeworkout.model.UserNameModel;
 import com.nishiket.homeworkout.model.UserWeightModel;
 import com.nishiket.homeworkout.model.WorkoutInfoModel;
+import com.nishiket.homeworkout.model.WormUpInfoModel;
 import com.nishiket.homeworkout.model.WormUpModel;
 
 import java.util.List;
@@ -86,5 +87,8 @@ public interface Retrofit {
 
         @GET("getWarmUp.php")
         Call<List<WormUpModel>> getWormUp(@Query("api_key") int i, @Query("id") String id);
+
+        @GET("getWarmUpInfo.php")
+        Call<WormUpInfoModel> getWormUpInfo(@Query("api_key")int i, @Query("id")int id);
 
 }

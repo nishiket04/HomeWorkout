@@ -22,9 +22,12 @@ import com.nishiket.homeworkout.adapter.WorkoutDetailsEquipmentRecylerViewAdapte
 import com.nishiket.homeworkout.databinding.FragmentExerciseInfoBinding;
 import com.nishiket.homeworkout.model.EquipmentModel;
 import com.nishiket.homeworkout.model.ExercisesInfoModel;
+import com.nishiket.homeworkout.model.WormUpInfoModel;
 import com.nishiket.homeworkout.viewmodel.EquipmentViewModel;
 import com.nishiket.homeworkout.viewmodel.ExerciesInfoViewModel;
+import com.nishiket.homeworkout.viewmodel.WormUpInfoViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class ExerciseInfoFragment extends Fragment {
@@ -51,34 +54,55 @@ public class ExerciseInfoFragment extends Fragment {
 
         ExerciesInfoViewModel exerciesInfoViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(ExerciesInfoViewModel.class);
         EquipmentViewModel equipmentViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(EquipmentViewModel.class);
+        WormUpInfoViewModel wormUpInfoViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(WormUpInfoViewModel.class);
         Bundle bundle = getArguments();
         int id = bundle.getInt("id");
         exerciseInfoBinding.textView45.setText(bundle.getString("title"));
         Glide.with(this).load(bundle.getString("image")).into(exerciseInfoBinding.image);
+        String which = bundle.getString("which");
 
+        if(which.equals("exercises")) {
+            WorkoutDetailsEquipmentRecylerViewAdapter workoutDetailsEquipmentRecylerViewAdapter = new WorkoutDetailsEquipmentRecylerViewAdapter(getActivity());
+            exerciseInfoBinding.recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+            exerciseInfoBinding.recyclerView2.setAdapter(workoutDetailsEquipmentRecylerViewAdapter);
 
-        WorkoutDetailsEquipmentRecylerViewAdapter workoutDetailsEquipmentRecylerViewAdapter = new WorkoutDetailsEquipmentRecylerViewAdapter(getActivity());
-        exerciseInfoBinding.recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.HORIZONTAL,false));
-        exerciseInfoBinding.recyclerView2.setAdapter(workoutDetailsEquipmentRecylerViewAdapter);
-
-        exerciesInfoViewModel.getExerciesInfo(123,id);
-        exerciesInfoViewModel.getExercisesInfoModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ExercisesInfoModel>() {
-            @Override
-            public void onChanged(ExercisesInfoModel exercisesInfoModel) {
-                exerciseInfoBinding.textView48.setText(exercisesInfoModel.getDetail());
-                exerciseInfoBinding.textView51.setText(exercisesInfoModel.getTechnique());
-                Log.d("info", "onChanged: "+exercisesInfoModel.getEquipment().replace("[","").replace("]",""));
-                equipmentViewModel.getEquipment(123,exercisesInfoModel.getEquipment().replace("[","").replace("]",""));
-                equipmentViewModel.getListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<EquipmentModel>>() {
-                    @Override
-                    public void onChanged(List<EquipmentModel> equipmentModels) {
-                        Log.d("info", "onChanged: "+equipmentModels.get(0).getName());
-                        workoutDetailsEquipmentRecylerViewAdapter.setWorkoutDetailsEquipmentModelList(equipmentModels);
-                        workoutDetailsEquipmentRecylerViewAdapter.notifyDataSetChanged();
-                    }
-                });
-            }
-        });
+            exerciesInfoViewModel.getExerciesInfo(123, id);
+            exerciesInfoViewModel.getExercisesInfoModelMutableLiveData().observe(getViewLifecycleOwner(), new Observer<ExercisesInfoModel>() {
+                @Override
+                public void onChanged(ExercisesInfoModel exercisesInfoModel) {
+                    exerciseInfoBinding.textView48.setText(exercisesInfoModel.getDetail());
+                    exerciseInfoBinding.textView51.setText(exercisesInfoModel.getTechnique());
+                    Log.d("info", "onChanged: " + exercisesInfoModel.getEquipment().replace("[", "").replace("]", ""));
+                    equipmentViewModel.getEquipment(123, exercisesInfoModel.getEquipment().replace("[", "").replace("]", ""));
+                    equipmentViewModel.getListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<EquipmentModel>>() {
+                        @Override
+                        public void onChanged(List<EquipmentModel> equipmentModels) {
+                            Log.d("info", "onChanged: " + equipmentModels.get(0).getName());
+                            workoutDetailsEquipmentRecylerViewAdapter.setWorkoutDetailsEquipmentModelList(equipmentModels);
+                            workoutDetailsEquipmentRecylerViewAdapter.notifyDataSetChanged();
+                        }
+                    });
+                }
+            });
+        } else if (which.equals("wormUp")) {
+            wormUpInfoViewModel.getWormUpInfo(123,id);
+            wormUpInfoViewModel.getWormUpInfoMutableLiveData().observe(getViewLifecycleOwner(), new Observer<WormUpInfoModel>() {
+                @Override
+                public void onChanged(WormUpInfoModel wormUpInfoModel) {
+                    EquipmentModel equipmentModels = new EquipmentModel();
+                    equipmentModels.setName("No Equipment");
+                    List<EquipmentModel> equipmentModels1 = new ArrayList<>();
+                    equipmentModels1.add(equipmentModels);
+                    exerciseInfoBinding.textView48.setText(wormUpInfoModel.getDetail());
+                    exerciseInfoBinding.textView51.setText(wormUpInfoModel.getTechnique());
+                    WorkoutDetailsEquipmentRecylerViewAdapter workoutDetailsEquipmentRecylerViewAdapter = new WorkoutDetailsEquipmentRecylerViewAdapter(getActivity());
+                    exerciseInfoBinding.recyclerView2.setLayoutManager(new LinearLayoutManager(getContext(), LinearLayoutManager.HORIZONTAL, false));
+                    exerciseInfoBinding.recyclerView2.setAdapter(workoutDetailsEquipmentRecylerViewAdapter);
+                    workoutDetailsEquipmentRecylerViewAdapter.setWorkoutDetailsEquipmentModelList(equipmentModels1);
+                    workoutDetailsEquipmentRecylerViewAdapter.notifyDataSetChanged();
+                }
+            });
+        }
 
         exerciseInfoBinding.closeBtn.setOnClickListener(new View.OnClickListener() {
             @Override

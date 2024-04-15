@@ -11,7 +11,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.WorkoutDetailWarmupWoroutDesignBinding;
 import com.nishiket.homeworkout.model.ExercisesModel;
-import com.nishiket.homeworkout.model.WorkoutDetailsWorkoutModel;
 
 import java.util.List;
 

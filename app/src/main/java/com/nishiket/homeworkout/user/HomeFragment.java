@@ -153,6 +153,7 @@ public class HomeFragment extends Fragment implements ExercisesRecyclerViewAdapt
         bundle.putInt("id",exercisesModel.getid());
         bundle.putString("title",exercisesModel.getExercises());
         bundle.putString("image",exercisesModel.getImage());
+        bundle.putString("which","exercises");
         exerciseInfoFragment.setArguments(bundle);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
