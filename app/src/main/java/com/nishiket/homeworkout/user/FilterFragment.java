@@ -150,7 +150,14 @@ public class FilterFragment extends Fragment {
             @Override
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
-                fragmentManager.popBackStack();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_enter,R.anim.fragment_exit);
+                FilterFragment fragment = (FilterFragment) fragmentManager.findFragmentByTag("filter");
+                if(fragment!=null){
+                    fragmentTransaction.remove(fragment);
+                    fragmentTransaction.commit();
+                    fragmentManager.popBackStack();
+                }
             }
         });
     }

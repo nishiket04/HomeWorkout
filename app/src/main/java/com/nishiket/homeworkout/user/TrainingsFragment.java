@@ -78,7 +78,8 @@ public class TrainingsFragment extends Fragment implements TrainingRecyclerViewA
             public void onClick(View view) {
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.add(R.id.homeFrameLayout,new FilterFragment()).addToBackStack("filter").commit();
+                fragmentTransaction.setCustomAnimations(R.anim.fragment_enter,R.anim.fragment_exit);
+                fragmentTransaction.add(R.id.homeFrameLayout,new FilterFragment(),"filter").addToBackStack("filter").commit();
             }
         });
     }
