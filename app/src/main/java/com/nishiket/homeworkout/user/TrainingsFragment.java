@@ -85,8 +85,16 @@ public class TrainingsFragment extends Fragment implements TrainingRecyclerViewA
 
     @Override
     public void onItemClicked(int position, PersonalTrainingModel personalTrainingModel) {
+        WorkoutDetailsFragment workoutDetailsFragment = new WorkoutDetailsFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",personalTrainingModel.getId());
+        bundle.putString("title",personalTrainingModel.getWorkout());
+        bundle.putString("level",personalTrainingModel.getLevel());
+        bundle.putString("time",personalTrainingModel.getTime());
+        bundle.putString("image",personalTrainingModel.getImage());
+        workoutDetailsFragment.setArguments(bundle);
         FragmentManager fragmentManager = getParentFragmentManager();
         FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.homeFrameLayout, new CustomWorkoutDetailsFragment()).addToBackStack("accountInformation").commit();
+        fragmentTransaction.replace(R.id.homeFrameLayout,workoutDetailsFragment,"workout").addToBackStack("workout").commit();
     }
 }

@@ -2,6 +2,7 @@ package com.nishiket.homeworkout.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
+import android.view.View;
 import android.view.ViewGroup;
 
 import androidx.annotation.NonNull;
@@ -16,9 +17,18 @@ import java.util.List;
 public class ExercisesRecyclerViewAdapter extends RecyclerView.Adapter<ExercisesRecyclerViewAdapter.viewHolder> {
     private List<ExercisesModel> exercisesModelList;
     private Context context;
+    private onClickedItem onClickedItem;
     private ExercisesDesignBinding exercisesDesignBinding;
     public ExercisesRecyclerViewAdapter(Context context) {
         this.context = context;
+    }
+
+    public void setOnClickedItem(ExercisesRecyclerViewAdapter.onClickedItem onClickedItem) {
+        this.onClickedItem = onClickedItem;
+    }
+
+    public interface onClickedItem{
+        void onCliced(int i,ExercisesModel exercisesModel);
     }
 
     public void setExercisesModelList(List<ExercisesModel> exercisesModelList) {
@@ -39,6 +49,14 @@ public class ExercisesRecyclerViewAdapter extends RecyclerView.Adapter<Exercises
         holder.binding.exercisesTxt.setText(exercisesModel.getExercises());
         holder.binding.exercisesTimeTxt.setText(exercisesModel.getTime());
         Glide.with(context).load(exercisesModel.getImage()).into(holder.binding.exercisesImage);
+        holder.binding.exercisesInfoImage.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onClickedItem != null){
+                    onClickedItem.onCliced(holder.getAdapterPosition(),exercisesModelList.get(holder.getAdapterPosition()));
+                }
+            }
+        });
 
     }
 

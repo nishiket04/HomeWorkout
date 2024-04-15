@@ -1,6 +1,8 @@
 package com.nishiket.homeworkout.retrofit;
 
 import com.nishiket.homeworkout.model.CategoryModel;
+import com.nishiket.homeworkout.model.EquipmentModel;
+import com.nishiket.homeworkout.model.ExercisesInfoModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.ImageModel;
 import com.nishiket.homeworkout.model.PersonalTrainingModel;
@@ -14,6 +16,8 @@ import com.nishiket.homeworkout.model.UserInsertModel;
 import com.nishiket.homeworkout.model.UserLevelModel;
 import com.nishiket.homeworkout.model.UserNameModel;
 import com.nishiket.homeworkout.model.UserWeightModel;
+import com.nishiket.homeworkout.model.WorkoutInfoModel;
+import com.nishiket.homeworkout.model.WormUpModel;
 
 import java.util.List;
 
@@ -67,5 +71,20 @@ public interface Retrofit {
 
         @POST("name.php")
         Call<ResponseBody> setName(@Query("api_key") int i, @Body UserNameModel userName);
+
+        @GET("getExerciesInfo.php")
+        Call<ExercisesInfoModel> getExerciesInfo(@Query("api_key")int i, @Query("id")int id);
+
+        @GET("getEquipment.php")
+        Call<List<EquipmentModel>> getEquipment(@Query("api_key")int i, @Query("id")String id);
+
+        @GET("getWorkoutInfo.php")
+        Call<WorkoutInfoModel> getWorkoutInfo(@Query("api_key")int i, @Query("id")int id);
+
+        @GET("getSelectedExercies.php")
+        Call<List<ExercisesModel>> getSelectedExercies(@Query("api_key")int i, @Query("id")String id);
+
+        @GET("getWarmUp.php")
+        Call<List<WormUpModel>> getWormUp(@Query("api_key") int i, @Query("id") String id);
 
 }

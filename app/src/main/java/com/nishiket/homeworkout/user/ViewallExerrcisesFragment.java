@@ -16,6 +16,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.adapter.ExercisesRecyclerViewAdapter;
 import com.nishiket.homeworkout.adapter.ViewallExercisesRecyclerViewAdapter;
 import com.nishiket.homeworkout.databinding.FragmentViewallExerrcisesBinding;
 import com.nishiket.homeworkout.model.ExercisesModel;
@@ -23,7 +24,7 @@ import com.nishiket.homeworkout.viewmodel.ExerciseViewModel;
 
 import java.util.List;
 
-public class ViewallExerrcisesFragment extends Fragment {
+public class ViewallExerrcisesFragment extends Fragment implements ViewallExercisesRecyclerViewAdapter.onClickedItem {
     private FragmentViewallExerrcisesBinding viewallExerrcisesBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -52,6 +53,7 @@ public class ViewallExerrcisesFragment extends Fragment {
                 viewallExerrcisesBinding.viewallExercisesRecyclerView1.setLayoutManager(new LinearLayoutManager(getContext(),LinearLayoutManager.VERTICAL,false));
                 viewallExerrcisesBinding.viewallExercisesRecyclerView1.setAdapter(viewallExercisesRecyclerViewAdapter);
                 viewallExerrcisesBinding.viewallExercisesRecyclerView1.setNestedScrollingEnabled(false);
+                viewallExercisesRecyclerViewAdapter.setOnClickedItem(ViewallExerrcisesFragment.this);
                 viewallExercisesRecyclerViewAdapter.setViewallExercisesModelList(exercisesModelList);
                 viewallExercisesRecyclerViewAdapter.notifyDataSetChanged();
             }
@@ -67,5 +69,19 @@ public class ViewallExerrcisesFragment extends Fragment {
             }
         });
 
+    }
+
+    @Override
+    public void onCliced(int i, ExercisesModel exercisesModel) {
+        ExerciseInfoFragment exerciseInfoFragment = new ExerciseInfoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",exercisesModel.getid());
+        bundle.putString("title",exercisesModel.getExercises());
+        bundle.putString("image",exercisesModel.getImage());
+        exerciseInfoFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_enter,R.anim.fragment_exit);
+        fragmentTransaction.add(R.id.homeFrameLayout,exerciseInfoFragment,"exerciseInfo").addToBackStack("exerciseInfo").commit();
     }
 }

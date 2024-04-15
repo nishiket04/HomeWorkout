@@ -41,7 +41,7 @@ import retrofit2.Call;
 import retrofit2.Callback;
 import retrofit2.Response;
 
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements ExercisesRecyclerViewAdapter.onClickedItem {
     private FragmentHomeBinding homeBinding;
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -98,6 +98,7 @@ public class HomeFragment extends Fragment {
                 homeBinding.exercisesRecyclerView.setAdapter(exercisesRecyclerViewAdapter);
                 exercisesRecyclerViewAdapter.setExercisesModelList(exercisesModelList.subList(0,4));
                 exercisesRecyclerViewAdapter.notifyDataSetChanged();
+                exercisesRecyclerViewAdapter.setOnClickedItem(HomeFragment.this);
                 homeBinding.exercisesRecyclerView.setNestedScrollingEnabled(false);
             }
         });
@@ -145,4 +146,17 @@ public class HomeFragment extends Fragment {
 
     }
 
+    @Override
+    public void onCliced(int i, ExercisesModel exercisesModel) {
+        ExerciseInfoFragment exerciseInfoFragment = new ExerciseInfoFragment();
+        Bundle bundle = new Bundle();
+        bundle.putInt("id",exercisesModel.getid());
+        bundle.putString("title",exercisesModel.getExercises());
+        bundle.putString("image",exercisesModel.getImage());
+        exerciseInfoFragment.setArguments(bundle);
+        FragmentManager fragmentManager = getParentFragmentManager();
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.setCustomAnimations(R.anim.fragment_enter,R.anim.fragment_exit);
+        fragmentTransaction.add(R.id.homeFrameLayout,exerciseInfoFragment,"exerciseInfo").addToBackStack("exerciseInfo").commit();
+    }
 }

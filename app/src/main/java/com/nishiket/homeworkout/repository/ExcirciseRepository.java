@@ -41,6 +41,25 @@ public class ExcirciseRepository {
             }
         });
     }
+
+    public void getSelectedExercises(int api_key,String id){
+        Call<List<ExercisesModel>> call = retrofit.getSelectedExercies(api_key, id);
+        call.enqueue(new Callback<List<ExercisesModel>>() {
+            @Override
+            public void onResponse(Call<List<ExercisesModel>> call, Response<List<ExercisesModel>> response) {
+                if(response.isSuccessful()){
+                    if(onComplete!=null){
+                        onComplete.onComplete(response.body());
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<List<ExercisesModel>> call, Throwable t) {
+
+            }
+        });
+    }
     public interface OnComplete{
         void onComplete(List<ExercisesModel> exercisesModelList);
     }

@@ -28,6 +28,10 @@ public class ExerciseViewModel extends AndroidViewModel implements ExcirciseRepo
         excirciseRepository.getExercises(api_key);
     }
 
+    public void getSelectedExercises(int api_key,String id){
+        excirciseRepository.getSelectedExercises(api_key, id);
+    }
+
     @Override
     public void onComplete(List<ExercisesModel> exercisesModelList) {
         listMutableLiveData.setValue(exercisesModelList);

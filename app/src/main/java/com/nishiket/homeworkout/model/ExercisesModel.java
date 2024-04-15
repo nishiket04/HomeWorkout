@@ -12,7 +12,7 @@ public class ExercisesModel {
     public String getExercises() { return exercises; }
     public void setExercises(String value) { this.exercises = value; }
 
-    public long getid() { return id; }
+    public int getid() { return Integer.parseInt(String.valueOf(id)); }
     public void setid(long value) { this.id = value; }
 
     public String getTime() { return time; }

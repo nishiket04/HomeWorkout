@@ -2,31 +2,28 @@ package com.nishiket.homeworkout.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.WorkoutDetailsEquipmentDesignBinding;
-import com.nishiket.homeworkout.model.WorkoutDetailsEquipmentModel;
+import com.nishiket.homeworkout.model.EquipmentModel;
 
 import java.util.List;
 
 public class WorkoutDetailsEquipmentRecylerViewAdapter extends RecyclerView.Adapter<WorkoutDetailsEquipmentRecylerViewAdapter.viewHolder> {
     private Context context;
-    private List<WorkoutDetailsEquipmentModel> workoutDetailsEquipmentModelList;
+    private List<EquipmentModel> equipmentModelList;
     private WorkoutDetailsEquipmentDesignBinding workoutDetailsEquipmentDesignBinding;
 
     public WorkoutDetailsEquipmentRecylerViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setWorkoutDetailsEquipmentModelList(List<WorkoutDetailsEquipmentModel> workoutDetailsEquipmentModelList) {
-        this.workoutDetailsEquipmentModelList = workoutDetailsEquipmentModelList;
+    public void setWorkoutDetailsEquipmentModelList(List<EquipmentModel> workoutDetailsEquipmentModelList) {
+        this.equipmentModelList = workoutDetailsEquipmentModelList;
     }
 
     @NonNull
@@ -39,18 +36,18 @@ public class WorkoutDetailsEquipmentRecylerViewAdapter extends RecyclerView.Adap
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutDetailsEquipmentRecylerViewAdapter.viewHolder holder, int position) {
-        WorkoutDetailsEquipmentModel workoutDetailsEquipmentModel = workoutDetailsEquipmentModelList.get(position);
-        holder.binding.equipmentImage.setImageResource(workoutDetailsEquipmentModel.getImage());
-        holder.binding.equipmentTxt.setText(workoutDetailsEquipmentModel.getEquipment());
+        EquipmentModel equipmentModel = equipmentModelList.get(position);
+        holder.binding.equipmentTxt.setText(equipmentModel.getName());
+        Glide.with(context).load(equipmentModel.getImage()).into(holder.binding.equipmentImage);
     }
 
     @Override
     public int getItemCount() {
-       if(workoutDetailsEquipmentModelList == null){
+       if(equipmentModelList == null){
            return 0;
        }
        else {
-           return workoutDetailsEquipmentModelList.size();
+           return equipmentModelList.size();
        }
     }
 

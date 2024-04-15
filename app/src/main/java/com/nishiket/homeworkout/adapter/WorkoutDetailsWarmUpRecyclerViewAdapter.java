@@ -2,27 +2,25 @@ package com.nishiket.homeworkout.adapter;
 
 import android.content.Context;
 import android.view.LayoutInflater;
-import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.WorkoutDetailWarmupWoroutDesignBinding;
 import com.nishiket.homeworkout.model.WorkoutDetailsWarmUpModel;
+import com.nishiket.homeworkout.model.WormUpModel;
 
 import java.util.List;
 
 public class WorkoutDetailsWarmUpRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutDetailsWarmUpRecyclerViewAdapter.viewHolder> {
 
     private Context context;
-    private List<WorkoutDetailsWarmUpModel> workoutDetailsWarmUpModelList;
+    private List<WormUpModel> workoutDetailsWarmUpModelList;
     private WorkoutDetailWarmupWoroutDesignBinding workoutDetailWarmupWoroutDesignBinding;
 
-    public void setWorkoutDetailsWarmUpModelList(List<WorkoutDetailsWarmUpModel> workoutDetailsWarmUpModelList) {
+    public void setWorkoutDetailsWarmUpModelList(List<WormUpModel> workoutDetailsWarmUpModelList) {
         this.workoutDetailsWarmUpModelList = workoutDetailsWarmUpModelList;
     }
 
@@ -40,10 +38,11 @@ public class WorkoutDetailsWarmUpRecyclerViewAdapter extends RecyclerView.Adapte
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutDetailsWarmUpRecyclerViewAdapter.viewHolder holder, int position) {
-        WorkoutDetailsWarmUpModel workoutDetailsWarmUpModel = workoutDetailsWarmUpModelList.get(position);
-        holder.binding.workoutDetailWorkoutTxt.setText(workoutDetailsWarmUpModel.getWorkout());
+        WormUpModel workoutDetailsWarmUpModel = workoutDetailsWarmUpModelList.get(position);
+        holder.binding.workoutDetailWorkoutTxt.setText(workoutDetailsWarmUpModel.getName());
         holder.binding.workoutDetailsrepsTxt.setText(workoutDetailsWarmUpModel.getTime());
-        holder.binding.image.setImageResource(workoutDetailsWarmUpModel.getImage());
+//        holder.binding.image.setImageResource(workoutDetailsWarmUpModel.getImage());
+        Glide.with(context).load(workoutDetailsWarmUpModel.getImage()).into(holder.binding.image);
     }
 
     @Override

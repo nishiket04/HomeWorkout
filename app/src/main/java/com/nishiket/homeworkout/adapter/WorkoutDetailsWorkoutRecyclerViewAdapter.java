@@ -4,14 +4,13 @@ import android.content.Context;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ImageView;
-import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
-import com.nishiket.homeworkout.R;
+import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.databinding.WorkoutDetailWarmupWoroutDesignBinding;
+import com.nishiket.homeworkout.model.ExercisesModel;
 import com.nishiket.homeworkout.model.WorkoutDetailsWorkoutModel;
 
 import java.util.List;
@@ -19,15 +18,24 @@ import java.util.List;
 public class WorkoutDetailsWorkoutRecyclerViewAdapter extends RecyclerView.Adapter<WorkoutDetailsWorkoutRecyclerViewAdapter.viewHolder> {
 
     private Context context;
-    private List<WorkoutDetailsWorkoutModel> workoutDetailsWorkoutModelList;
+    private List<ExercisesModel> workoutDetailsWorkoutModelList;
+    private OnClickedItem onClickedItem;
     private WorkoutDetailWarmupWoroutDesignBinding workoutDetailWarmupWoroutDesignBinding;
 
     public WorkoutDetailsWorkoutRecyclerViewAdapter(Context context) {
         this.context = context;
     }
 
-    public void setWorkoutDetailsWorkoutModelList(List<WorkoutDetailsWorkoutModel> workoutDetailsWorkoutModelList) {
+    public interface OnClickedItem{
+        void onClicked(int i,ExercisesModel exercisesModel);
+    }
+
+    public void setWorkoutDetailsWorkoutModelList(List<ExercisesModel> workoutDetailsWorkoutModelList) {
         this.workoutDetailsWorkoutModelList = workoutDetailsWorkoutModelList;
+    }
+
+    public void setOnClickedItem(OnClickedItem onClickedItem) {
+        this.onClickedItem = onClickedItem;
     }
 
     @NonNull
@@ -40,10 +48,19 @@ public class WorkoutDetailsWorkoutRecyclerViewAdapter extends RecyclerView.Adapt
 
     @Override
     public void onBindViewHolder(@NonNull WorkoutDetailsWorkoutRecyclerViewAdapter.viewHolder holder, int position) {
-        WorkoutDetailsWorkoutModel workoutDetailsWorkoutModel = workoutDetailsWorkoutModelList.get(position);
-        holder.binding.workoutDetailWorkoutTxt.setText(workoutDetailsWorkoutModel.getWorkout());
-        holder.binding.workoutDetailsrepsTxt.setText(workoutDetailsWorkoutModel.getReps());
-        holder.binding.image.setImageResource(workoutDetailsWorkoutModel.getImage());
+        ExercisesModel workoutDetailsWorkoutModel = workoutDetailsWorkoutModelList.get(position);
+        holder.binding.workoutDetailWorkoutTxt.setText(workoutDetailsWorkoutModel.getExercises());
+        holder.binding.workoutDetailsrepsTxt.setText(workoutDetailsWorkoutModel.getTime());
+//        holder.binding.image.setImageResource(workoutDetailsWorkoutModel.getImage());
+        Glide.with(context).load(workoutDetailsWorkoutModel.getImage()).into(holder.binding.image);
+        holder.binding.info.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(onClickedItem!=null){
+                    onClickedItem.onClicked(holder.getAdapterPosition(),workoutDetailsWorkoutModelList.get(holder.getAdapterPosition()));
+                }
+            }
+        });
     }
 
     @Override
