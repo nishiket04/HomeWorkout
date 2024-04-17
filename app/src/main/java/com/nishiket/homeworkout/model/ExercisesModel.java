@@ -1,5 +1,10 @@
 package com.nishiket.homeworkout.model;
 
+import android.os.Parcel;
+import android.os.Parcelable;
+
+import androidx.annotation.NonNull;
+
 public class ExercisesModel {
     private String image;
     private String exercises;
@@ -17,4 +22,5 @@ public class ExercisesModel {
 
     public String getTime() { return time; }
     public void setTime(String value) { this.time = value; }
+
 }

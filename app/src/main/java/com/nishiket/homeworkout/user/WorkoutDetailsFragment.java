@@ -11,6 +11,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
+import android.os.Parcelable;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,10 +31,12 @@ import com.nishiket.homeworkout.viewmodel.ExerciseViewModel;
 import com.nishiket.homeworkout.viewmodel.WorkoutInfoViewModel;
 import com.nishiket.homeworkout.viewmodel.WormUpViewModel;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class WorkoutDetailsFragment extends Fragment implements WorkoutDetailsWorkoutRecyclerViewAdapter.OnClickedItem,WorkoutDetailsWarmUpRecyclerViewAdapter.OnClickedItem {
     private FragmentWorkoutDetailsBinding workoutDetailsBinding;
+    String list;
     @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -87,6 +90,7 @@ public class WorkoutDetailsFragment extends Fragment implements WorkoutDetailsWo
                 @Override
                 public void onChanged(List<ExercisesModel> exercisesModels) {
                     workoutDetailsBinding.workoutCount.setText(""+exercisesModels.size()+" Exercises");
+                    list = workoutInfoModel.getWorkouts().replace("[","").replace("]","");
                     WorkoutDetailsWorkoutRecyclerViewAdapter workoutDetailsWorkoutRecyclerViewAdapter = new WorkoutDetailsWorkoutRecyclerViewAdapter(getActivity());
                     workoutDetailsBinding.workoutDetailsWorkoutRecyclerView.setNestedScrollingEnabled(false);
                     workoutDetailsBinding.workoutDetailsWorkoutRecyclerView.setAdapter(workoutDetailsWorkoutRecyclerViewAdapter);
@@ -128,9 +132,13 @@ public class WorkoutDetailsFragment extends Fragment implements WorkoutDetailsWo
         workoutDetailsBinding.startWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                StartTrainingFragment startTrainingFragment = new StartTrainingFragment();
+                Bundle bundle = new Bundle();
+                bundle.putString("list",list);
+                startTrainingFragment.setArguments(bundle);
                 FragmentManager fragmentManager = getParentFragmentManager();
                 FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
-                fragmentTransaction.replace(R.id.homeFrameLayout,new StartTrainingFragment()).addToBackStack(null).commit();
+                fragmentTransaction.replace(R.id.homeFrameLayout,startTrainingFragment).addToBackStack(null).commit();
             }
         });
 

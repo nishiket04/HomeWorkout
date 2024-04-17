@@ -127,7 +127,7 @@
                     android:layout_height="match_parent"
                     android:layout_weight="0.3"
                     android:padding="9dp"
-                    android:src="@drawable/vector" />
+                    android:src="@drawable/custom" />
             </LinearLayout>
 
             <androidx.recyclerview.widget.RecyclerView
