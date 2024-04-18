@@ -41,6 +41,7 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="18dp"
+                android:paddingRight="18dp"
                 android:layout_marginTop="5dp"
                 android:fontFamily="@font/open_sans"
                 android:text="Log each workout you complete to keep track of tour fitness program!"
@@ -116,21 +117,9 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:fontFamily="@font/open_sans"
-                    android:text="2 Dumbells, Mat "
-                    android:textColor="#E5E9EF"
-                    android:textSize="14dp"
-                    android:layout_marginRight="10dp"
-                    app:layout_constraintBottom_toTopOf="@+id/linearLayout12"
-                    app:layout_constraintEnd_toStartOf="@+id/imageView4"
-                    app:layout_constraintTop_toTopOf="parent" />
-
                 <ImageView
                     android:id="@+id/imageView4"
-                    android:layout_width="8dp"
+                    android:layout_width="14dp"
                     android:layout_height="14dp"
                     android:layout_marginRight="16dp"
                     android:src="@drawable/right_arrow"
@@ -168,6 +157,7 @@
                     app:layout_constraintVertical_bias="0.0" />
 
                 <com.google.android.material.materialswitch.MaterialSwitch
+                    android:id="@+id/warmUpSwitch"
                     android:layout_width="52dp"
                     android:layout_height="25dp"
                     android:layout_marginTop="8dp"
@@ -182,6 +172,7 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
 
             <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/createWorkout"
                 android:layout_width="match_parent"
                 android:layout_height="48dp"
                 android:background="@drawable/button_design"

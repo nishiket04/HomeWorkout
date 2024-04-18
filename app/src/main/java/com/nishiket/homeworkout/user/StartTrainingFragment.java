@@ -14,6 +14,7 @@ import android.os.CountDownTimer;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Toast;
 
 import com.bumptech.glide.Glide;
 import com.nishiket.homeworkout.R;
@@ -59,9 +60,6 @@ public class StartTrainingFragment extends Fragment {
         exerciseViewModel.getExercisesListMutableLiveData().observe(getViewLifecycleOwner(), new Observer<List<ExercisesModel>>() {
             @Override
             public void onChanged(List<ExercisesModel> exercisesModels) {
-//                ExercisesModel exercisesModel = exercisesModels.get(0);
-//                Glide.with(StartTrainingFragment.this).load(exercisesModel.getImage()).into(startTrainingBinding.image);
-//                startTrainingBinding.workoutDetailWorkoutTxt.setText(exercisesModel.getExercises());
                 exercisesList = exercisesModels;
                 startTrainingBinding.nextBtn.setEnabled(false);
                 startExercise();
@@ -82,6 +80,7 @@ public class StartTrainingFragment extends Fragment {
                 }
             }
         });
+
 
         startTrainingBinding.nextBtn.setOnClickListener(new View.OnClickListener() {
             @Override

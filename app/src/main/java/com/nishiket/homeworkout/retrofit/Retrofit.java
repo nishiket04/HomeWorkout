@@ -1,6 +1,7 @@
 package com.nishiket.homeworkout.retrofit;
 
 import com.nishiket.homeworkout.model.CategoryModel;
+import com.nishiket.homeworkout.model.CustomWorkoutModel;
 import com.nishiket.homeworkout.model.EquipmentModel;
 import com.nishiket.homeworkout.model.ExercisesInfoModel;
 import com.nishiket.homeworkout.model.ExercisesModel;
@@ -90,5 +91,8 @@ public interface Retrofit {
 
         @GET("getWarmUpInfo.php")
         Call<WormUpInfoModel> getWormUpInfo(@Query("api_key")int i, @Query("id")int id);
+
+        @POST("insertCustomWorkout.php")
+        Call<ResponseBody> setCustomWorkout(@Query("api_key") int i,@Body CustomWorkoutModel customWorkoutModel);
 
 }
