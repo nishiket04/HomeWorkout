@@ -65,6 +65,15 @@ public class StartTrainingFragment extends Fragment {
                 startExercise();
             }
         });
+
+        startTrainingBinding.nextBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(!startTrainingBinding.nextBtn.isEnabled()){
+                    Toast.makeText(getContext(), "Button is Disabled till countdown is completed", Toast.LENGTH_SHORT).show();
+                }
+            }
+        });
         startTrainingBinding.pauseBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {

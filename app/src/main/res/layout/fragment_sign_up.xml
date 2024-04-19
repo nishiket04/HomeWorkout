@@ -31,7 +31,7 @@
         android:layout_marginTop="24dp"
         android:background="@drawable/edittext_design"
         android:fontFamily="@font/open_sans"
-        android:hint="Full Name"
+        android:hint="First Name"
         android:inputType="text"
         android:textColor="@color/white"
         android:textColorHint="@android:color/background_light"

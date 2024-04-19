@@ -7,6 +7,9 @@ import androidx.activity.OnBackPressedDispatcher;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 
@@ -17,6 +20,7 @@ import android.view.ViewGroup;
 import android.widget.Toast;
 
 import com.nishiket.homeworkout.R;
+import com.nishiket.homeworkout.SignInUp.GenderFragment;
 import com.nishiket.homeworkout.adapter.TraingListRecyclerViewAdapter;
 import com.nishiket.homeworkout.databinding.FragmentCreatePersonalTrainingBinding;
 import com.nishiket.homeworkout.model.CustomWorkoutModel;
@@ -24,6 +28,7 @@ import com.nishiket.homeworkout.model.TraingListModel;
 import com.nishiket.homeworkout.retrofit.Retrofit;
 import com.nishiket.homeworkout.retrofit.RetrofitClient;
 import com.nishiket.homeworkout.viewmodel.AuthViewModel;
+import com.nishiket.homeworkout.viewmodel.SharedViewModel;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -37,6 +42,7 @@ public class CreatePersonalTrainingFragment extends Fragment {
 
     private FragmentCreatePersonalTrainingBinding createPersonalTrainingBinding;
     private List<TraingListModel> traingListModelList =  new ArrayList<>();
+    private List<Integer> integerList;
     private Retrofit retrofit = RetrofitClient.getRetrofitInstance().create(Retrofit.class);
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -55,7 +61,7 @@ public class CreatePersonalTrainingFragment extends Fragment {
         super.onViewCreated(view, savedInstanceState);
 
         AuthViewModel authViewModel = new ViewModelProvider(this,ViewModelProvider.AndroidViewModelFactory.getInstance(getActivity().getApplication())).get(AuthViewModel.class);
-
+        SharedViewModel sharedViewModel = new ViewModelProvider(requireActivity()).get(SharedViewModel.class);
         TraingListModel t1 = new TraingListModel();
         TraingListModel t3 = new TraingListModel();
         TraingListModel t4 = new TraingListModel();
@@ -79,6 +85,21 @@ public class CreatePersonalTrainingFragment extends Fragment {
         traingListRecyclerViewAdapter.setTraingListModelList(traingListModelList);
         traingListRecyclerViewAdapter.notifyDataSetChanged();
 
+        createPersonalTrainingBinding.imageView4.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                FragmentManager fragmentManager = getParentFragmentManager();
+                FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+                fragmentTransaction.add(R.id.homeFrameLayout,new ShowEquipment(),"show").addToBackStack("show").commit();
+            }
+        });
+        sharedViewModel.getLiveData().observe(getViewLifecycleOwner(), new Observer<List<Integer>>() {
+            @Override
+            public void onChanged(List<Integer> integers) {
+                integerList = integers;
+                Log.d("list", "onChanged: "+integerList.toString());
+            }
+        });
         createPersonalTrainingBinding.createWorkout.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -91,18 +112,26 @@ public class CreatePersonalTrainingFragment extends Fragment {
                 else {
                     customWorkoutModel.setWormup(-1);
                 }
-                customWorkoutModel.setEquipment("[3,4]");
+                customWorkoutModel.setEquipment(integerList.toString());
                 customWorkoutModel.setLevel(traingListRecyclerViewAdapter.getLevel()+1);
                 Call<ResponseBody> call = retrofit.setCustomWorkout(123,customWorkoutModel);
                 call.enqueue(new Callback<ResponseBody>() {
                     @Override
                     public void onResponse(Call<ResponseBody> call, Response<ResponseBody> response) {
                             Log.d("add", "onResponse: "+response.code());
+                            if(response.isSuccessful()){
+                                if(response.code() == 200){
+                                    Toast.makeText(getContext(), "New Workout Created", Toast.LENGTH_SHORT).show();
+                                    FragmentManager fragmentManager = getParentFragmentManager();
+                                    fragmentManager.popBackStack();
+                                }
+                            }
                     }
 
                     @Override
                     public void onFailure(Call<ResponseBody> call, Throwable t) {
                         Log.d("add", "onResponse: "+t.getMessage());
+                        Toast.makeText(getContext(), t.getMessage().toString(), Toast.LENGTH_SHORT).show();
                     }
                 });
             }
